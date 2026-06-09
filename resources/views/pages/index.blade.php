@@ -5,7 +5,7 @@
     {{-- CTA --}}
     <section class="mx-auto container pt-24 px-2 mx:px-0">
       <div
-        class="bg-[url('http://sparkrobotics.test/images/robotic.webp')] bg-cover bg-center h-auto flex items-center rounded-3xl">
+        class="bg-[url('https://sparkrobotics.id/images/robotic.webp')] bg-cover bg-center h-auto flex items-center rounded-3xl">
 
         <div class="container max-w-2xl mx-auto px-6 py-12 rounded-lg text-center mb-96">
           <h2 class="text-6xl font-medium font-jakarta text-white mb-4 ">Spark Robotics <br> <span
