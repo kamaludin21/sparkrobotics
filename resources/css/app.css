@@ -9,3 +9,25 @@
     --font-sans: 'DM Sans', 'DM Sans Fallback: Arial', ui-sans-serif, system-ui, sans-serif;
     --font-jakarta: 'Plus Jakarta Sans', 'Plus Jakarta Sans Fallback: Arial', sans-serif;
 }
+
+.pattern-background {
+    /* background-color: #E5E5F7; */
+    opacity: 0.5;
+    background-image: repeating-linear-gradient(0deg, transparent, transparent 35px, #444CF7 35px, #444CF7 36px, transparent 36px, transparent 71px, #444CF7 71px, #444CF7 72px), repeating-linear-gradient(90deg, transparent, transparent 35px, #444CF7 35px, #444CF7 36px, transparent 36px, transparent 71px, #444CF7 71px, #444CF7 72px), radial-gradient(circle at 36px 36px, #444CF7 2.88px, transparent 3.38px), radial-gradient(circle at 0px 0px, #444CF7 2.16px, transparent 2.66px), radial-gradient(circle at 72px 0px, #444CF7 2.16px, transparent 2.66px), radial-gradient(circle at 0px 72px, #444CF7 2.16px, transparent 2.66px), radial-gradient(circle at 72px 72px, #444CF7 2.16px, transparent 2.66px);
+    background-size: 72px 72px;
+    mask-image: radial-gradient(ellipse at center, rgba(0, 0, 0, 0) 40%, rgba(0, 0, 0, 0.6) 100%);
+    -webkit-mask-image: radial-gradient(ellipse at center, rgba(0, 0, 0, 0) 40%, rgba(0, 0, 0, 0.6) 100%);
+    mask-size: 100% 100%;
+    -webkit-mask-size: 100% 100%;
+    mask-repeat: no-repeat;
+    -webkit-mask-repeat: no-repeat;
+}
+
+.no-scrollbar::-webkit-scrollbar {
+    display: none;
+}
+
+.no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}

@@ -5,10 +5,11 @@
     {{-- CTA --}}
     <section class="mx-auto container pt-24 px-2 mx:px-0">
       <div
-        class="bg-[url('https://sparkrobotics.id/images/robotic.webp')] bg-cover bg-center h-auto flex items-center rounded-3xl">
-
-        <div class="container max-w-2xl mx-auto px-6 py-12 rounded-lg text-center mb-96">
-          <h2 class="text-6xl font-medium font-jakarta text-white mb-4 ">Spark Robotics <br> <span
+        class="bg-radial-[at_50%_75%] from-sky-400 via-sky-600 to-sky-900 to-90% h-auto flex items-center rounded-3xl flex-col justify-between ">
+        {{-- <div
+        class="pattern-background h-auto flex items-center rounded-3xl flex-col justify-between "> --}}
+        <div class="container max-w-2xl mx-auto px-6 py-12 rounded-lg text-center">
+          <h2 class="text-5xl md:text-6xl font-medium font-jakarta text-white mb-4 ">Spark Robotics <br> <span
               class="text-black italic">and</span> Drones</h2>
           <p class="text-xl font-jakarta text-gray-200 mb-6">Best Solution for Industrial & Creative Needs. With
             professional expertise and cutting-edge technology.</p>
@@ -21,79 +22,119 @@
             </a>
           </div>
         </div>
+        <div class="flex justify-center">
+          <img src="{{ asset('images/robotic.png') }}" alt="Hero Image" class="w-full h-72 object-cover rounded-lg">
+        </div>
+      </div>
     </section>
     {{-- CTA --}}
 
     {{-- Category --}}
-    <section class="container mx-auto flex flex-col md:flex-row mt-24 md:mt-48 gap-8 px-2 md:px-0">
-      <div class="mb-6 w-full md:w-1/3">
-        <p class="text-3xl text-slate-700 font-bold">Our Products Segment</p>
+    <section class="container mx-auto mt-24 md:mt-48 gap-8 px-2 md:px-0 space-y-16">
+      <div class="w-full text-center space-y-4">
+        <p class="text-3xl text-slate-700 font-bold">Products Segment</p>
+        <p class="text-5xl text-slate-600">Our Wide Range of Robotics and Drones Segments.</p>
       </div>
-      <div class="w-full md:w-2/3 space-y-6">
-        <div class="max-w-full md:max-w-xl">
-          <p class="text-5xl text-slate-600">Our Wide Range of Robotics and Drones Segments.</p>
-        </div>
-        <div class="grid grid-cols-2 gap-4">
-          <div class="bg-gray-100 rounded-lg p-4">
-            <h3 class="text-lg font-semibold mb-2 text-slate-700">Industrial Robotics</h3>
-            <p class="text-gray-600 ">Robots designed for manufacturing, assembly, and automation processes.</p>
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-              stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-14 w-auto text-gray-400 mt-4">
-              <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-              <path d="M3 21h18" />
-              <path d="M5 21v-12l5 4v-4l5 4h4" />
-              <path d="M19 21v-8l-1.436 -9.574a.5 .5 0 0 0 -.495 -.426h-1.145a.5 .5 0 0 0 -.494 .418l-1.43 8.582" />
-              <path d="M9 17h1" />
-              <path d="M14 17h1" />
-            </svg>
+      <div class="w-full bg-white">
+        <div class="grid grid-cols-1 gap-4 md:grid-cols-12 md:grid-rows-2">
+
+          <!-- Left Large Card -->
+          <div class="relative overflow-hidden rounded-2xl md:col-span-6 md:row-span-2">
+            <img src="https://images.unsplash.com/photo-1517466787929-bc90951d0974?q=80&w=1200&auto=format&fit=crop"
+              alt="" class="h-full w-full object-cover" />
+
+            <div class="absolute inset-0 bg-black/30"></div>
+
+            <div class="absolute bottom-0 left-0 flex h-full w-full flex-col justify-between p-6">
+              <div class="text-4xl font-black leading-none text-white">
+                WE<br />
+                ARE<br />
+                RC
+              </div>
+
+              <div class="space-y-4">
+                <h2 class="max-w-xs text-2xl font-bold uppercase leading-tight text-white">
+                  A Special Away Jersey For Every Nation
+                </h2>
+
+                <button
+                  class="inline-flex items-center gap-2 rounded-md bg-white px-4 py-2 text-sm font-medium text-black">
+                  View Collection
+                  <span>↗</span>
+                </button>
+              </div>
+            </div>
           </div>
-          <div class="bg-gray-100 rounded-lg p-4">
-            <h3 class="text-lg font-semibold mb-2 text-slate-700">Service Robotics</h3>
-            <p class="text-gray-600">Robots used in healthcare, hospitality, and customer service applications.</p>
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-              stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-              class="h-14 w-auto text-gray-400 mt-4">
-              <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-              <path
-                d="M13 20.693c-.905 .628 -2.36 .292 -2.675 -1.01a1.724 1.724 0 0 0 -2.573 -1.066c-1.543 .94 -3.31 -.826 -2.37 -2.37a1.724 1.724 0 0 0 -1.065 -2.572c-1.756 -.426 -1.756 -2.924 0 -3.35a1.724 1.724 0 0 0 1.066 -2.573c-.94 -1.543 .826 -3.31 2.37 -2.37c1 .608 2.296 .07 2.572 -1.065c.426 -1.756 2.924 -1.756 3.35 0a1.724 1.724 0 0 0 2.573 1.066c1.543 -.94 3.31 .826 2.37 2.37a1.724 1.724 0 0 0 1.065 2.572c1.492 .362 1.716 2.219 .674 3.03" />
-              <path d="M9 12a3 3 0 1 0 6 0a3 3 0 0 0 -6 0" />
-              <path d="M17 22l5 -3l-5 -3l0 6" />
-            </svg>
+
+          <!-- Top Middle -->
+          <div class="relative overflow-hidden rounded-2xl md:col-span-4">
+            <img src="https://images.unsplash.com/photo-1504593811423-6dd665756598?q=80&w=1200&auto=format&fit=crop"
+              alt="" class="h-full w-full object-cover" />
+
+            <div class="absolute inset-0 bg-black/10"></div>
+
+            <div class="absolute bottom-4 right-4">
+              <button class="inline-flex items-center gap-2 rounded-md bg-white px-4 py-2 text-sm font-medium text-black">
+                View Collection
+                <span>↗</span>
+              </button>
+            </div>
           </div>
-          <div class="bg-gray-100 rounded-lg p-4">
-            <h3 class="text-lg font-semibold mb-2 text-slate-700">Agricultural Robotics</h3>
-            <p class="text-gray-600">Robots designed for farming tasks such as planting, harvesting, and monitoring crops.
-            </p>
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-              stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-              class="h-14 w-auto text-gray-400 mt-4">
-              <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-              <path d="M5 3h4" />
-              <path d="M7 3v12" />
-              <path d="M4 15h6v3a3 3 0 0 1 -6 0v-3" />
-              <path d="M14 21v-3a3 3 0 0 1 6 0v3" />
-              <path d="M17 21v-18" />
-            </svg>
+
+          <!-- Top Right Black Card -->
+          <div class="flex flex-col justify-between rounded-2xl bg-black p-6 md:col-span-2">
+            <div class="text-sm text-white/70">
+              ⚽ Champions League
+            </div>
+
+            <div class="space-y-3">
+              <h3 class="text-2xl font-bold uppercase leading-tight text-white">
+                Champions League Jersey Collection
+              </h3>
+
+              <p class="text-sm text-white/70">
+                Explore our Champions League Jersey Edition now available in store.
+              </p>
+            </div>
           </div>
-          <div class="bg-gray-100 rounded-lg p-4">
-            <h3 class="text-lg font-semibold mb-2 text-slate-700">Drones</h3>
-            <p class="text-gray-600">Unmanned aerial vehicles used for surveillance, delivery, and recreational purposes.
-            </p>
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-              stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-              class="h-14 w-auto text-gray-400 mt-4">
-              <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-              <path d="M10 10h4v4h-4l0 -4" />
-              <path d="M10 10l-3.5 -3.5" />
-              <path d="M9.96 6a3.5 3.5 0 1 0 -3.96 3.96" />
-              <path d="M14 10l3.5 -3.5" />
-              <path d="M18 9.96a3.5 3.5 0 1 0 -3.96 -3.96" />
-              <path d="M14 14l3.5 3.5" />
-              <path d="M14.04 18a3.5 3.5 0 1 0 3.96 -3.96" />
-              <path d="M10 14l-3.5 3.5" />
-              <path d="M6 14.04a3.5 3.5 0 1 0 3.96 3.96" />
-            </svg>
+
+          <!-- Bottom Middle Black Card -->
+          <div class="flex flex-col justify-between rounded-2xl bg-black p-6 md:col-span-3">
+            <div>
+              <h3 class="text-3xl font-black uppercase leading-tight text-white">
+                Explore Jerseys From Every Team, Across Every League
+              </h3>
+            </div>
+
+            <div class="space-y-4">
+              <p class="text-sm text-white/70">
+                From every league, every club. Find the one that represents you.
+              </p>
+
+              <div class="flex flex-wrap gap-3 text-xs text-white/60">
+                <span>Premier League</span>
+                <span>La Liga</span>
+                <span>Serie A</span>
+                <span>Bundesliga</span>
+              </div>
+            </div>
           </div>
+
+          <!-- Bottom Right Image -->
+          <div class="relative overflow-hidden rounded-2xl md:col-span-3">
+            <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=1200&auto=format&fit=crop"
+              alt="" class="h-full w-full object-cover" />
+
+            <div class="absolute inset-0 bg-black/10"></div>
+
+            <div class="absolute bottom-4 right-4">
+              <button class="inline-flex items-center gap-2 rounded-md bg-white px-4 py-2 text-sm font-medium text-black">
+                View Collection
+                <span>↗</span>
+              </button>
+            </div>
+          </div>
+
         </div>
       </div>
     </section>
@@ -105,8 +146,7 @@
         <p class="text-xl md:text-3xl text-slate-700 font-bold">Our Products</p>
       </div>
       <div class="flex justify-between items-end">
-        <p class="text-3xl md:text-5xl max-w-2xl text-slate-600">Explore Our Diverse Range of Robotics and Drones
-          Products.</p>
+        <p class="text-3xl md:text-5xl max-w-2xl text-slate-600">Explore Diverse Range of Products.</p>
         <button class="hidden md:flex gap-2 items-center px-6 py-2 bg-sky-600 rounded-full text-white">
           <span>Explore More</span>
           <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
@@ -240,27 +280,30 @@
         <div class="bg-white rounded-2xl p-4 shadow-xl ring ring-slate-200">
           <img
             src="https://cdn.sanity.io/images/mgxz50fq/production-v3-red/208754dfdeecbaf983ffe7ad7c87d4c721aafbbe-3840x2160.png?w=3000&fit=max&auto=format"
-            alt="Blog 1" class="w-full object-cover mx-auto h-48 rounded-xl">
+            alt="Blog 1" class="w-full object-cover mx-auto h-56 rounded-xl">
           <div class="px-2 py-4">
-            <h3 class="text-xl font-semibold text-slate-700 hover:text-sky-600 cursor-pointer hover:underline">
+            <h3
+              class="line-clamp-3 text-xl font-semibold text-slate-700 hover:text-sky-600 cursor-pointer hover:underline">
               The Future of Robotics: Trends and Predictions for the Next Decade</h3>
             <p class="text-slate-600 mt-2">April 21, 2026</p>
           </div>
         </div>
         <div class="bg-white rounded-2xl p-4 shadow-xl ring ring-slate-200">
           <img src="https://cdn.pudutech.com/blog_82cccb7a7e.png" alt="Blog 1"
-            class="w-full object-cover mx-auto h-48 rounded-xl">
+            class="w-full object-cover mx-auto h-56 rounded-xl">
           <div class="px-2 py-4">
-            <h3 class="text-xl font-semibold text-slate-700 hover:text-sky-600 cursor-pointer hover:underline">
+            <h3
+              class="line-clamp-3 text-xl font-semibold text-slate-700 hover:text-sky-600 cursor-pointer hover:underline">
               Smart Factory's Backbone: How PUDU T300 AMR Powers Ennoconn Technologies' End-to-End EMS Logistics</h3>
             <p class="text-slate-600 mt-2">January 30, 2026</p>
           </div>
         </div>
         <div class="bg-white rounded-2xl p-4 shadow-xl ring ring-slate-200">
           <img src="https://www-cdn.djiits.com/cms/uploads/187cd6bd8123342f34a326d78ce3f85f@770*462.png" alt="Blog 1"
-            class="w-full object-cover mx-auto h-48 rounded-xl">
+            class="w-full object-cover mx-auto h-56 rounded-xl">
           <div class="px-2 py-4">
-            <h3 class="text-xl font-semibold text-slate-700 hover:text-sky-600 cursor-pointer hover:underline">
+            <h3
+              class="line-clamp-3 text-xl font-semibold text-slate-700 hover:text-sky-600 cursor-pointer hover:underline">
               DJI Releases Findings of the Most Comprehensive Independent Security Assessment of Its Drone Systems to Date
             </h3>
             <p class="text-slate-600 mt-2">Sept 1, 2025</p>
@@ -270,6 +313,49 @@
       </div>
     </section>
     {{-- Latest blog --}}
+
+    {{-- About Company --}}
+    <section class="relative h-[30rem] mx-auto mt-24 md:mt-80 px-2 md:px-0">
+
+      <div class="absolute inset-0 bg-sky-800 overflow-hidden z-0">
+        <div class="absolute -top-10 -left-10">
+          <x-icons.drone class="h-60 w-auto text-sky-900" />
+        </div>
+
+        <div class="absolute -right-8 -bottom-8">
+          <x-icons.drone class="h-60 w-auto text-sky-900" />
+        </div>
+      </div>
+
+      <div class="relative z-10 w-full h-full p-6 text-white container mx-auto flex flex-col">
+
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-8 -mt-40">
+          <img src="https://gbscooks.com/assets/img/about/1.png" class="w-full h-96 object-cover" alt="About Us">
+          <img src="https://gbscooks.com/assets/img/about/2.png" class="w-full h-96 object-cover" alt="About Us">
+          <img src="https://gbscooks.com/assets/img/about/3.png" class="w-full h-96 object-cover" alt="About Us">
+          <img src="https://gbscooks.com/assets/img/about/1.png" class="w-full h-96 object-cover" alt="About Us">
+        </div>
+
+        <div class="flex gap-4 items-start mt-auto">
+          <div class="space-y-6 w-1/3">
+            <h2 class="text-4xl font-medium font-jakarta">About Us <br />and Our Solutions</h2>
+            <a href="#produk"
+              class="bg-white px-5 py-2 rounded-full text-gray-800 font-semibold text-base inline-block">
+              Selengkapnya
+            </a>
+          </div>
+          <div class="flex-1">
+            <p class="text-xl leading-7">SPARK Robotics is a representative technology company founded in Indonesia by
+              Chinese entrepreneurs. The company serves as an authorized distributor of advanced Chinese technologies,
+              including DJI enterprise drones and Unitree robotics products, in the Indonesian market. With years of
+              experience in Indonesia, SPARK Robotics has developed strong localized service and technical support
+              capabilities across industries.</p>
+          </div>
+        </div>
+
+      </div>
+    </section>
+    {{-- About Company --}}
 
     {{-- CTA --}}
     <section class="container mx-auto my-24  md:my-48">

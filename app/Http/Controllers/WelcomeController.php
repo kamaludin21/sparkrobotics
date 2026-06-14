@@ -12,4 +12,13 @@ class WelcomeController extends Controller
         $data = Article::latest()->take(5)->get();
         return view('pages.index', compact('data'));
     }
+
+    public function products()
+    {
+        return view('pages.products.index');    
+    }
+    public function productDetail()
+    {
+        return view('pages.products.detail');    
+    }
 }
