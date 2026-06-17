@@ -1,7 +1,7 @@
 @extends('layout.app')
 
 @section('content')
-  <section class="container mx-auto px-2 sm:px-0 py-32 font-sans">
+  <main class="container mx-auto px-2 sm:px-0 py-32 font-sans">
     <div class="mb-8 flex flex-col md:flex-row md:items-end md:justify-between gap-4">
       <div class="font-jakarta">
         <h1 class="text-3xl font-bold text-slate-900 tracking-tight">Katalog Produk</h1>
@@ -14,21 +14,13 @@
           <input type="text" placeholder="Cari produk..."
             class="w-full pl-4 pr-10 py-2 border border-slate-300 rounded-lg focus:ring-2 focus:ring-sky-500 focus:border-sky-500 outline-none text-sm transition-all" />
         </div>
-        <select
-          class="px-4 py-2 border border-slate-300 rounded-lg focus:ring-2 focus:ring-sky-500 outline-none text-sm bg-white cursor-pointer appearance-none">
-          <option>Urutkan: A-Z</option>
-          <option>Urutkan: Z-A</option>
-        </select>
       </div>
     </div>
-
     <div class="flex flex-col lg:flex-row gap-8 items-start">
-
       <aside class="w-full lg:w-1/4 lg:sticky lg:top-20 shrink-0">
         <div class="bg-white rounded-xl shadow-sm border border-slate-100 p-6">
           <div class="mb-6 flex items-center justify-between">
             <h2 class="text-lg font-bold text-slate-900">Filter</h2>
-            <span class="text-xs font-semibold text-sky-700 bg-sky-50 px-2.5 py-1 rounded-full">15 Produk</span>
           </div>
 
           <div class="mb-6">
@@ -77,19 +69,23 @@
           <hr class="border-slate-100 mb-6" />
 
           <div>
-            <h3 class="text-xs font-bold text-slate-400 uppercase tracking-wider mb-4">Berdasarkan Solusi</h3>
+            <h3 class="text-xs font-bold text-slate-400 uppercase tracking-wider mb-4">Berdasarkan Brand</h3>
             <div class="space-y-3">
               <label class="flex items-center gap-3 cursor-pointer group">
                 <input type="checkbox"
                   class="w-4 h-4 text-sky-600 rounded border-slate-300 focus:ring-sky-500 cursor-pointer" />
-                <span class="text-sm font-medium text-slate-700 group-hover:text-slate-900 transition-colors">Pemetaan &
-                  Survei</span>
+                <span class="text-sm font-medium text-slate-700 group-hover:text-slate-900 transition-colors">DJI</span>
               </label>
               <label class="flex items-center gap-3 cursor-pointer group">
                 <input type="checkbox"
                   class="w-4 h-4 text-sky-600 rounded border-slate-300 focus:ring-sky-500 cursor-pointer" />
-                <span class="text-sm font-medium text-slate-700 group-hover:text-slate-900 transition-colors">Inspeksi &
-                  Termal</span>
+                <span
+                  class="text-sm font-medium text-slate-700 group-hover:text-slate-900 transition-colors">UNITREE</span>
+              </label>
+              <label class="flex items-center gap-3 cursor-pointer group">
+                <input type="checkbox"
+                  class="w-4 h-4 text-sky-600 rounded border-slate-300 focus:ring-sky-500 cursor-pointer" />
+                <span class="text-sm font-medium text-slate-700 group-hover:text-slate-900 transition-colors">EMLID</span>
               </label>
             </div>
           </div>
@@ -140,10 +136,6 @@
 
           <div
             class="bg-white rounded-2xl shadow-sm border border-slate-100 overflow-hidden group hover:shadow-xl transition-all duration-300 flex flex-col h-full relative">
-            <span
-              class="absolute top-4 right-4 z-10 bg-slate-900/80 backdrop-blur-md text-white text-[10px] font-bold px-2.5 py-1 rounded-md tracking-wider shadow-sm">
-              ECOSYSTEM
-            </span>
             <div class="h-72 bg-slate-50 relative overflow-hidden flex items-center justify-center">
               <img
                 src="https://geospatial.chcnav.com/dam/jcr:cf88547a-a8cb-4b7f-b4cc-ce0dd4840257/chcnav-apache-3-cost-effective-single-beam-usv-kv.png"
@@ -166,10 +158,6 @@
 
           <div
             class="bg-white rounded-2xl shadow-sm border border-slate-100 overflow-hidden group hover:shadow-xl transition-all duration-300 flex flex-col h-full relative">
-            <span
-              class="absolute top-4 right-4 z-10 bg-slate-900/80 backdrop-blur-md text-white text-[10px] font-bold px-2.5 py-1 rounded-md tracking-wider shadow-sm">
-              ECOSYSTEM
-            </span>
             <div class="h-72 bg-slate-50 relative overflow-hidden flex items-center justify-center">
               <img src="https://i0.wp.com/halorobotics.com/wp-content/uploads/2026/01/Unitree-R1.png" alt="DJI Mavic 3M"
                 class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-200" />
@@ -209,7 +197,55 @@
           </div>
 
         </div>
+        {{-- Pagination --}}
+        {{-- CUSTOM PAGINATION --}}
+        <div class="mt-16 pt-10 border-t border-slate-100 flex flex-col items-center gap-6">
+          <div class="flex justify-center items-center gap-2">
+            {{-- Previous --}}
+            {{-- <span
+              class="w-10 h-10 rounded-xl border border-slate-100 flex items-center justify-center text-slate-200 cursor-not-allowed">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+              </svg>
+            </span> --}}
+            <a href="#"
+              class="w-10 h-10 rounded-xl border border-slate-200 flex items-center justify-center text-slate-600 hover:bg-sky-600 hover:text-white transition-all shadow-sm">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+              </svg>
+            </a>
+
+            {{-- Page Numbers --}}
+            <span
+              class="w-10 h-10 rounded-xl bg-sky-600 flex items-center justify-center text-white font-bold shadow-md shadow-sky-100 ring-2 ring-sky-100">
+              1
+            </span>
+            <a href=""
+              class="w-10 h-10 rounded-xl border border-slate-200 flex items-center justify-center text-slate-600 hover:bg-sky-600 hover:text-white transition-all shadow-sm">
+              2
+            </a>
+            {{-- Next --}}
+
+            <a href="#"
+              class="w-10 h-10 rounded-xl border border-slate-200 flex items-center justify-center text-slate-600 hover:bg-sky-600 hover:text-white transition-all shadow-sm">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+              </svg>
+            </a>
+            {{-- <span
+              class="w-10 h-10 rounded-xl border border-slate-100 flex items-center justify-center text-slate-200 cursor-not-allowed">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+              </svg> --}}
+            </span>
+          </div>
+
+          <p class="text-[10px] text-slate-400 uppercase tracking-[0.2em] font-semibold">
+            Menampilkan 1 - 2 dari 10 Produk
+          </p>
+        </div>
+        {{-- Pagination --}}
       </main>
     </div>
-  </section>
+  </main>
 @endsection

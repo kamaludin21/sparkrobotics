@@ -3,22 +3,11 @@
       mobileMenuOpen: false,
       openMenu: null,
       menus: [
-          { title: 'Home', url: '#', is_active: true, children: [] },
-          {
-              title: 'Products',
-              url: '#',
-              is_active: false,
-              children: [
-                  { title: 'DJI Enterprise Flight Platforms', url: '#', is_active: false },
-                  { title: 'Unitree Robotics Ecosystem', url: '#', is_active: false },
-                  { title: 'Intelligent Payloads & Sensors', url: '#', is_active: false },
-                  { title: 'Automated Systems & Marine', url: '#', is_active: false },
-                  { title: 'Software Solutions', url: '#', is_active: false }
-              ]
-          },
-          { title: 'Solutions & Services', url: '#', is_active: false, children: [] },
-          { title: 'Article', url: '#', is_active: false, children: [] },
-          {
+          { title: 'Home', url: '/', is_active: false, children: [] },
+          { title: 'Products', url: '/products', is_active: false, children: [] },
+          { title: 'Solutions & Services', url: '/services', is_active: false, children: [] },
+          { title: 'News', url: '/news', is_active: false, children: [] },
+          {{-- {
               title: 'About Us',
               url: '#',
               is_active: false,
@@ -27,14 +16,14 @@
                   { title: 'Case Studies', url: '#', is_active: false },
                   { title: 'Contact', url: '#', is_active: false }
               ]
-          },
+          }, --}}
       ]
   }" class="bg-white border-b border-gray-200 py-3 relative z-50">
 
     <div class="container mx-auto px-2 md:px-4 lg:px-0 flex items-center justify-between relative z-50">
 
       <div class="flex items-center gap-8 text-slate-700 ">
-        <a href="#" class="font-light grid -space-y-2 relative z-50">
+        <a href="/" class="font-light grid -space-y-2 relative z-50">
           <img src="{{ asset('images/spark.png') }}" class="h-10 w-auto" alt="">
         </a>
 
@@ -46,7 +35,7 @@
                 <a :href="menu.url"
                   :class="menu.is_active ? 'text-sky-600 font-semibold relative' :
                       'hover:text-sky-600 transition-colors'">
-                  <span class="relative z-10" x-text="menu.title"></span>
+                  <span class="relative z-10 text-lg" x-text="menu.title"></span>
                   <template x-if="menu.is_active">
                     <div class="absolute -top-1 -left-1 w-4 h-4 rounded-full bg-amber-400 z-0"></div>
                   </template>
@@ -90,12 +79,17 @@
         </div>
       </div>
 
-      <div class="hidden lg:flex items-center gap-4">
+      <div class="hidden lg:flex items-center gap-2">
         <button
-          class="flex items-center gap-2 text-white px-5 py-2 bg-emerald-600 hover:bg-emerald-700 transition-colors rounded-full">
-          <x-icons.whatsapp class="h-6 w-auto" />
-          <span>Hubungi Kami</span>
+          class="group flex items-center gap-2 text-white pl-1 pr-3 py-2 bg-emerald-600 hover:bg-emerald-700 
+           rounded-xl transition-all duration-300 ease-out hover:pl-4 cursor-pointer">
+          <span
+            class="max-w-0 overflow-hidden group-hover:max-w-[120px] transition-all duration-300 ease-out whitespace-nowrap">
+            Contact Us
+          </span>
+          <x-icons.whatsapp class="h-6 w-auto transition-transform duration-300" />
         </button>
+
         <div class="flex items-center font-normal gap-1 text-base text-slate-600">
           <a href="#" class="leading-4 px-1 hover:text-sky-600 transition-colors"><span>IDN</span></a>
           <div class="h-4 w-[1.5px] bg-slate-600"></div>

@@ -9,27 +9,13 @@
     ],
 ])
 
-<section class="mx-auto container my-20 md:my-32 px-2 md:px-4 lg:px-0" x-data="{
-    playing: true,
-    toggleVideo() {
-        this.playing = !this.playing;
-        // Cari iframe di dalam section ini
-        let iframe = this.$el.querySelector('iframe');
-        if (iframe) {
-            // Kirim command via postMessage API YouTube
-            let action = this.playing ? 'playVideo' : 'pauseVideo';
-            iframe.contentWindow.postMessage(JSON.stringify({
-                event: 'command',
-                func: action,
-                args: []
-            }), '*');
-        }
-    }
-}">
+<section class="mx-auto container my-20 md:my-32 px-2 md:px-4 lg:px-0">
   <div class="relative flex h-[35rem] items-end overflow-hidden rounded-3xl">
     <div class="absolute inset-0 w-full h-full z-0 overflow-hidden bg-slate-900">
       @if (isset($background) && $background['type'] === 'video')
-        <x-ui.youtube-wrapper class="absolute top-1/2 left-1/2 w-[150%] h-[150%] -translate-x-1/2 -translate-y-1/2 object-cover pointer-events-none" :videoId="$background['src']" />
+        <x-ui.youtube-wrapper
+          class="absolute top-1/2 left-1/2 w-[150%] h-[150%] -translate-x-1/2 -translate-y-1/2 object-cover pointer-events-none"
+          :videoId="$background['src']" />
       @else
         <img src="{{ $background['src'] }}" alt="{{ $background['alt'] ?? 'Hero Background' }}"
           class="w-full h-full object-cover object-center" />
@@ -53,20 +39,20 @@
             </div>
           </button>
 
-          @if (isset($background) && $background['type'] === 'video')
+          {{-- @if (isset($background) && $background['type'] === 'video')
             <button @click="toggleVideo()"
               class="flex items-center gap-1 px-4 py-1.5 bg-white/30 backdrop-blur-md rounded-full ring ring-slate-200 text-slate-50 transition hover:bg-white/40">
               <div class="w-6 h-6 flex items-center justify-center">
-                <template x-if="!playing">
-                  <x-icons.play-video class="h-6 w-auto" />
-                </template>
                 <template x-if="playing">
                   <x-icons.pause-video class="h-6 w-auto" />
+                </template>
+                <template x-if="!playing">
+                  <x-icons.play-video class="h-6 w-auto" />
                 </template>
               </div>
               <span x-text="playing ? 'Pause Video' : 'Play Video'" class="text-base font-semibold"></span>
             </button>
-          @endif
+          @endif --}}
         </div>
       </div>
     </div>

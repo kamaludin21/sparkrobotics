@@ -29,71 +29,134 @@
     </section>
     {{-- CTA --}}
 
+    {{-- Slide logo Customer --}}
+    <section class="mx-auto mt-24 md:mt-48 gap-8 px-2 md:px-0 space-y-10">
+      <div class="w-full text-center space-y-4">
+        <p class="text-3xl text-slate-700 font-bold">Clients Across The Way</p>
+      </div>
+
+      <div class="w-full bg-white relative flex overflow-hidden py-8" x-data="{ hover: false }" @mouseenter="hover = true"
+        @mouseleave="hover = false">
+
+        <div class="flex whitespace-nowrap animate-marquee" :style="hover ? 'animation-play-state: paused;' : ''">
+
+          <div class="flex min-w-full shrink-0 items-center justify-around gap-8 px-4">
+            <div class="w-32 md:w-48 flex justify-center items-center">
+              <img src="https://static.diginusantara.com/2024/01/01/3684april-logo.png" alt="April Group"
+                class="h-8 md:h-10 object-contain transition-all duration-300">
+            </div>
+            <div class="w-32 md:w-48 flex justify-center items-center">
+              <img src="https://upload.wikimedia.org/wikipedia/commons/2/2f/Google_2015_logo.svg" alt="Google"
+                class="h-8 md:h-10 object-contain transition-all duration-300">
+            </div>
+            <div class="w-32 md:w-48 flex justify-center items-center">
+              <img src="https://www.conocophillips.com/images/logo-black.svg" alt="ConocoPhillips"
+                class="h-8 md:h-10 object-contain transition-all duration-300">
+            </div>
+            <div class="w-32 md:w-48 flex justify-center items-center">
+              <img src="https://upload.wikimedia.org/wikipedia/commons/4/44/Microsoft_logo.svg" alt="Microsoft"
+                class="h-8 md:h-10 object-contain transition-all duration-300">
+            </div>
+            <div class="w-32 md:w-48 flex justify-center items-center">
+              <img src="https://upload.wikimedia.org/wikipedia/commons/0/08/Netflix_2015_logo.svg" alt="Netflix"
+                class="h-8 md:h-10 object-contain transition-all duration-300">
+            </div>
+            <div class="w-32 md:w-48 flex justify-center items-center">
+              <img src="https://upload.wikimedia.org/wikipedia/commons/2/26/Spotify_logo_with_text.svg" alt="Spotify"
+                class="h-8 md:h-10 object-contain transition-all duration-300">
+            </div>
+          </div>
+          <div class="flex min-w-full shrink-0 items-center justify-around gap-8 px-4" aria-hidden="true">
+            <div class="w-32 md:w-48 flex justify-center items-center">
+              <img src="https://static.diginusantara.com/2024/01/01/3684april-logo.png" alt="April Group"
+                class="h-8 md:h-10 object-contain transition-all duration-300">
+            </div>
+            <div class="w-32 md:w-48 flex justify-center items-center">
+              <img src="https://upload.wikimedia.org/wikipedia/commons/2/2f/Google_2015_logo.svg" alt="Google"
+                class="h-8 md:h-10 object-contain transition-all duration-300">
+            </div>
+            <div class="w-32 md:w-48 flex justify-center items-center">
+              <img src="https://www.conocophillips.com/images/logo-black.svg" alt="ConocoPhillips"
+                class="h-8 md:h-10 object-contain transition-all duration-300">
+            </div>
+            <div class="w-32 md:w-48 flex justify-center items-center">
+              <img src="https://upload.wikimedia.org/wikipedia/commons/4/44/Microsoft_logo.svg" alt="Microsoft"
+                class="h-8 md:h-10 object-contain transition-all duration-300">
+            </div>
+            <div class="w-32 md:w-48 flex justify-center items-center">
+              <img src="https://upload.wikimedia.org/wikipedia/commons/0/08/Netflix_2015_logo.svg" alt="Netflix"
+                class="h-8 md:h-10 object-contain transition-all duration-300">
+            </div>
+            <div class="w-32 md:w-48 flex justify-center items-center">
+              <img src="https://upload.wikimedia.org/wikipedia/commons/2/26/Spotify_logo_with_text.svg" alt="Spotify"
+                class="h-8 md:h-10 object-contain transition-all duration-300">
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+    {{-- Slide Customer --}}
+
     {{-- Category --}}
     <section class="container mx-auto mt-24 md:mt-48 gap-8 px-2 md:px-0 space-y-16">
       <div class="w-full text-center space-y-4">
-        <p class="text-3xl text-slate-700 font-bold">Products Segment</p>
-        <p class="text-5xl text-slate-600">Our Wide Range of Robotics and Drones Segments.</p>
+        <p class="text-3xl text-slate-700 font-bold">Segment</p>
+        <p class="text-5xl text-slate-600">Wide Range of Robotics and Drones Segments.</p>
       </div>
       <div class="w-full bg-white">
-        <div class="grid grid-cols-1 gap-4 md:grid-cols-12 md:grid-rows-2">
+        <div class="grid grid-cols-2 gap-4 md:grid-cols-10 lg:grid-cols-12 md:grid-rows-2">
 
           <!-- Left Large Card -->
-          <div class="relative overflow-hidden rounded-2xl md:col-span-6 md:row-span-2">
-            <img src="https://images.unsplash.com/photo-1517466787929-bc90951d0974?q=80&w=1200&auto=format&fit=crop"
-              alt="" class="h-full w-full object-cover" />
+          <div class="relative overflow-hidden col-span-2 rounded-2xl md:col-span-4 lg:col-span-5 md:row-span-2 group">
+            <img src="https://www-cdn.djiits.com/dps/d5687107b6b51178f6491bf89a5e701f.jpg" alt=""
+              class="h-full w-full object-cover" />
 
             <div class="absolute inset-0 bg-black/30"></div>
 
             <div class="absolute bottom-0 left-0 flex h-full w-full flex-col justify-between p-6">
               <div class="text-4xl font-black leading-none text-white">
-                WE<br />
-                ARE<br />
-                RC
+                SPARK<br />
+                ROBOTICS<br />
               </div>
 
-              <div class="space-y-4">
-                <h2 class="max-w-xs text-2xl font-bold uppercase leading-tight text-white">
-                  A Special Away Jersey For Every Nation
-                </h2>
+              <div class="">
+                <a href="/products"
+                  class="inline-flex items-center gap-1.5 text-2xl font-bold uppercase leading-none font-bold tracking-tight border-b-2 border-b-transparent hover:border-white text-slate-100 hover:text-white uppercase hover:bg-slate-800/30 pl-2 cursor-pointer">
+                  FLIGHT PLATFORM
+                  <x-icons.arrow-up-right class="h-8 w-8" />
+                </a>
 
-                <button
-                  class="inline-flex items-center gap-2 rounded-md bg-white px-4 py-2 text-sm font-medium text-black">
-                  View Collection
-                  <span>↗</span>
-                </button>
               </div>
             </div>
           </div>
 
           <!-- Top Middle -->
-          <div class="relative overflow-hidden rounded-2xl md:col-span-4">
-            <img src="https://images.unsplash.com/photo-1504593811423-6dd665756598?q=80&w=1200&auto=format&fit=crop"
-              alt="" class="h-full w-full object-cover" />
-
+          <div class="relative overflow-hidden col-span-2 rounded-2xl md:col-span-3 lg:col-span-4">
+            <img src="https://stag-www-cdn.djiits.com/pre/dps/bedf44783ff5ebbb210ca39d68ead198.jpg" alt=""
+              class="h-full w-full object-cover" />
             <div class="absolute inset-0 bg-black/10"></div>
-
             <div class="absolute bottom-4 right-4">
-              <button class="inline-flex items-center gap-2 rounded-md bg-white px-4 py-2 text-sm font-medium text-black">
-                View Collection
-                <span>↗</span>
-              </button>
+              <a href="/products"
+                class="inline-flex items-center gap-1.5 text-2xl font-bold uppercase leading-none font-bold tracking-tight border-b-2 border-b-transparent hover:border-white text-slate-100 hover:text-white uppercase hover:bg-slate-800/30 pl-2 cursor-pointer">
+                Payloads
+                <x-icons.arrow-up-right class="h-8 w-8" />
+              </a>
             </div>
           </div>
 
           <!-- Top Right Black Card -->
-          <div class="flex flex-col justify-between rounded-2xl bg-black p-6 md:col-span-2">
-            <div class="text-sm text-white/70">
-              ⚽ Champions League
-            </div>
+          <div class="flex flex-col justify-between rounded-2xl bg-black p-6 md:col-span-3">
+            <h3 class="text-2xl font-bold uppercase leading-tight text-white">
+              DJI ECOSYSTEM EXPANSION
+            </h3>
 
             <div class="space-y-3">
-              <h3 class="text-2xl font-bold uppercase leading-tight text-white">
-                Champions League Jersey Collection
-              </h3>
+
 
               <p class="text-sm text-white/70">
-                Explore our Champions League Jersey Edition now available in store.
+                With a mission to promote technological openness, the DJI Enterprise Ecosystem aims to encourage more
+                developers to join, driving the drone industry forward for the benefit of all.
               </p>
             </div>
           </div>
@@ -102,36 +165,37 @@
           <div class="flex flex-col justify-between rounded-2xl bg-black p-6 md:col-span-3">
             <div>
               <h3 class="text-3xl font-black uppercase leading-tight text-white">
-                Explore Jerseys From Every Team, Across Every League
+                We have a strong ecosystem of partners and solutions
               </h3>
             </div>
 
             <div class="space-y-4">
               <p class="text-sm text-white/70">
-                From every league, every club. Find the one that represents you.
+                {{-- From every league, every club. Find the one that represents you. --}}
               </p>
 
               <div class="flex flex-wrap gap-3 text-xs text-white/60">
-                <span>Premier League</span>
-                <span>La Liga</span>
-                <span>Serie A</span>
-                <span>Bundesliga</span>
+                <span>DJI</span>
+                <span>UNITREE</span>
+                <span>EMLID</span>
+                <span>CHCNAV</span>
               </div>
             </div>
           </div>
 
           <!-- Bottom Right Image -->
-          <div class="relative overflow-hidden rounded-2xl md:col-span-3">
-            <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=1200&auto=format&fit=crop"
-              alt="" class="h-full w-full object-cover" />
+          <div class="relative overflow-hidden col-span-2 rounded-2xl md:col-span-3 lg:col-span-4">
+            <img src="https://www.unitree.com/images/eec8d82f279b440ea170982ffa80b3fa_3840x2160.jpg" alt=""
+              class="h-full w-full object-cover" />
 
             <div class="absolute inset-0 bg-black/10"></div>
 
-            <div class="absolute bottom-4 right-4">
-              <button class="inline-flex items-center gap-2 rounded-md bg-white px-4 py-2 text-sm font-medium text-black">
-                View Collection
-                <span>↗</span>
-              </button>
+            <div class="absolute bottom-4 left-4">
+              <a href="/products"
+                class="inline-flex items-center gap-1.5 text-2xl font-bold uppercase leading-none font-bold tracking-tight border-b-2 border-b-transparent hover:border-white text-slate-100 hover:text-white uppercase hover:bg-slate-800/30 pl-2 cursor-pointer">
+                Unitree Ecosystem
+                <x-icons.arrow-up-right class="h-8 w-8" />
+              </a>
             </div>
           </div>
 
@@ -141,29 +205,30 @@
     {{-- Category --}}
 
     {{-- Products --}}
-    <section id="produk" class="container mx-auto mt-24 md:mt-48 space-y-2 px-2 md:px-0">
-      <div class="mb-6">
-        <p class="text-xl md:text-3xl text-slate-700 font-bold">Our Products</p>
+    <section class="container mx-auto mt-24 md:mt-48 space-y-2 px-2 md:px-0">
+      <div class="mb-4">
+        <p class="text-xl md:text-3xl text-slate-700 font-bold">Products</p>
       </div>
-      <div class="flex justify-between items-end">
-        <p class="text-3xl md:text-5xl max-w-2xl text-slate-600">Explore Diverse Range of Products.</p>
-        <button class="hidden md:flex gap-2 items-center px-6 py-2 bg-sky-600 rounded-full text-white">
+      <div class="flex justify-between items-center">
+        <p class="text-3xl md:text-5xl max-w-2xl text-slate-600">Diverse Range of Products.</p>
+        <a href="/products" class="hidden md:flex gap-2 items-center px-6 py-2 bg-sky-600 rounded-full text-white">
           <span>Explore More</span>
           <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-            stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" class="h-7 w-auto">
+            stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"
+            class="h-7 w-auto">
             <path stroke="none" d="M0 0h24v24H0z" fill="none" />
             <path d="M5 12l14 0" />
             <path d="M15 16l4 -4" />
             <path d="M15 8l4 4" />
           </svg>
-        </button>
+        </a>
       </div>
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mt-12">
         <div class="bg-white rounded-2xl p-6 shadow-md">
           <img
             src="http://cdn.sanity.io/images/mgxz50fq/production-v3-red/cd1548472b57be4da19c8f202ba4cdfe3148f76b-2930x1120.png?w=2000&fit=max&auto=format"
             alt="Produk 1" class="w-auto mx-auto h-48 rounded-lg">
-          <a class="#" class="">
+          <a href="/products/detail" class="">
             <h3 class="text-2xl font-semibold mt-4 text-slate-700 hover:text-sky-600 cursor-pointer hover:underline">
               Skydio X10</h3>
           </a>
@@ -182,7 +247,7 @@
         <div class="bg-white rounded-xl p-6 shadow-md">
           <img src="https://i0.wp.com/halorobotics.com/wp-content/uploads/2026/03/unitree-g1-2.png?w=576&ssl=1"
             alt="Produk 1" class="w-auto mx-auto h-48 rounded-lg">
-          <a class="#" class="">
+          <a href="/products/detail" class="">
             <h3 class="text-2xl font-semibold mt-4 text-slate-700 hover:text-sky-600 cursor-pointer hover:underline">
               Unitree – G1 Edu Professional E</h3>
           </a>
@@ -190,7 +255,7 @@
         </div>
         <div class="bg-white rounded-xl p-6 shadow-md">
           <img src="{{ asset('images/S10-1-300x600.png') }}" alt="Produk 1" class="w-auto mx-auto h-48 rounded-lg">
-          <a class="#" class="">
+          <a href="/products/detail" class="">
             <h3 class="text-2xl font-semibold mt-4 text-slate-700 hover:text-sky-600 cursor-pointer hover:underline">
               FlashBot Arm</h3>
           </a>
@@ -201,7 +266,7 @@
           <img
             src="https://i0.wp.com/halorobotics.com/wp-content/uploads/2025/12/Dock3-%E5%B9%B3%E4%BE%A7-2-1.png?resize=394%2C394&ssl=1"
             alt="Produk 1" class="w-auto mx-auto h-48 rounded-lg">
-          <a class="#" class="">
+          <a href="/products/detail" class="">
             <h3 class="text-2xl font-semibold mt-4 text-slate-700 hover:text-sky-600 cursor-pointer hover:underline">
               DJI Dock 3
             </h3>
@@ -211,7 +276,7 @@
         <div class="bg-white rounded-xl p-6 shadow-md">
           <img src="https://cdn.pudutech.com/nav_pudu_d9_baa71e3b5b.png" alt="Produk 1"
             class="w-auto mx-auto h-48 rounded-lg">
-          <a class="#" class="">
+          <a href="/products/detail" class="">
             <h3 class="text-2xl font-semibold mt-4 text-slate-700 hover:text-sky-600 cursor-pointer hover:underline">
               PUDU D9
             </h3>
@@ -220,7 +285,8 @@
         </div>
 
       </div>
-      <button class="flex gap-2 items-center px-6 py-2 bg-sky-600 rounded-full text-white mx-auto mt-12">
+      <a href="/products"
+        class="flex md:hidden gap-2 items-center px-6 py-2 bg-sky-600 rounded-full text-white mx-auto mt-12">
         <span>Explore More</span>
         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
           stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" class="h-7 w-auto">
@@ -229,7 +295,7 @@
           <path d="M15 16l4 -4" />
           <path d="M15 8l4 4" />
         </svg>
-      </button>
+      </a>
     </section>
     {{-- Products --}}
 
@@ -260,12 +326,12 @@
     {{-- Latest blog --}}
     <section class="container mx-auto mt-24 md:mt-48 px-2 md:px-0">
       <div class="mb-6">
-        <p class="text-3xl text-slate-700 font-bold">Blog and Article</p>
+        <p class="text-3xl text-slate-700 font-bold">News</p>
       </div>
       <div class="flex justify-between items-end">
-        <p class="text-5xl max-w-2xl text-slate-600">Our recent blogs</p>
-        <button class="flex gap-2 items-center px-6 py-2 bg-sky-600 rounded-full text-white">
-          <span>Explore More</span>
+        <p class="text-5xl max-w-2xl text-slate-600">Recent release</p>
+        <a href="/news" class="flex gap-2 items-center px-6 py-2 bg-sky-600 rounded-full text-white">
+          <span>See More</span>
           <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
             stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"
             class="h-7 w-auto">
@@ -274,7 +340,7 @@
             <path d="M15 16l4 -4" />
             <path d="M15 8l4 4" />
           </svg>
-        </button>
+        </a>
       </div>
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mt-12">
         <div class="bg-white rounded-2xl p-4 shadow-xl ring ring-slate-200">
@@ -330,18 +396,22 @@
       <div class="relative z-10 w-full h-full p-6 text-white container mx-auto flex flex-col">
 
         <div class="grid grid-cols-1 md:grid-cols-4 gap-8 -mt-40">
-          <img src="https://gbscooks.com/assets/img/about/1.png" class="w-full h-96 object-cover" alt="About Us">
-          <img src="https://gbscooks.com/assets/img/about/2.png" class="w-full h-96 object-cover" alt="About Us">
-          <img src="https://gbscooks.com/assets/img/about/3.png" class="w-full h-96 object-cover" alt="About Us">
-          <img src="https://gbscooks.com/assets/img/about/1.png" class="w-full h-96 object-cover" alt="About Us">
+          <img src="https://gbscooks.com/assets/img/about/1.png"
+            class="w-full h-96 object-cover rounded-2xl shadow-lg hover:-mt-4 duration-200" alt="About Us">
+          <img src="https://gbscooks.com/assets/img/about/2.png"
+            class="w-full h-96 object-cover rounded-2xl shadow-lg hover:-mt-4 duration-200" alt="About Us">
+          <img src="https://gbscooks.com/assets/img/about/3.png"
+            class="w-full h-96 object-cover rounded-2xl shadow-lg hover:-mt-4 duration-200" alt="About Us">
+          <img src="https://gbscooks.com/assets/img/about/1.png"
+            class="w-full h-96 object-cover rounded-2xl shadow-lg hover:-mt-4 duration-200" alt="About Us">
         </div>
 
         <div class="flex gap-4 items-start mt-auto">
           <div class="space-y-6 w-1/3">
-            <h2 class="text-4xl font-medium font-jakarta">About Us <br />and Our Solutions</h2>
-            <a href="#produk"
+            <h2 class="text-4xl font-medium font-jakarta">Who We Are <br />and Our Solutions</h2>
+            <a href="#"
               class="bg-white px-5 py-2 rounded-full text-gray-800 font-semibold text-base inline-block">
-              Selengkapnya
+              Company Profile
             </a>
           </div>
           <div class="flex-1">
@@ -358,7 +428,7 @@
     {{-- About Company --}}
 
     {{-- CTA --}}
-    <section class="container mx-auto my-24  md:my-48">
+    <section class="container mx-auto my-24 md:my-48">
       <div
         class="bg-radial-[at_50%_75%] from-sky-400 via-sky-600 to-sky-800 to-90% container mx-auto px-6 py-12 rounded-none md:rounded-3xl text-center py-20">
         <h2 class="text-5xl font-medium font-jakarta text-slate-50 mb-4 max-w-3xl mx-auto">Ready to Elevate Your Robotics
@@ -368,10 +438,10 @@
           cutting-edge products
           can transform your operations and drive innovation.</p>
         <div class="flex justify-center gap-4">
-          <a href="#produk" class="bg-black px-5 py-2 rounded-full text-white   font-semibold text-base">
+          <a href="#" class="bg-black px-5 py-2 rounded-full text-white   font-semibold text-base">
             Contact Us
           </a>
-          <a href="#produk" class="bg-white px-5 py-2 rounded-full text-gray-800   font-semibold text-base">
+          <a href="#" class="bg-white px-5 py-2 rounded-full text-gray-800   font-semibold text-base">
             Explore Our Catalog
           </a>
         </div>

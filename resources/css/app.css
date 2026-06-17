@@ -8,6 +8,17 @@
 @theme {
     --font-sans: 'DM Sans', 'DM Sans Fallback: Arial', ui-sans-serif, system-ui, sans-serif;
     --font-jakarta: 'Plus Jakarta Sans', 'Plus Jakarta Sans Fallback: Arial', sans-serif;
+    --animate-marquee: marquee 25s linear infinite;
+
+    @keyframes marquee {
+        0% {
+            transform: translateX(0%);
+        }
+
+        100% {
+            transform: translateX(-50%);
+        }
+    }
 }
 
 .pattern-background {
@@ -22,6 +33,7 @@
     mask-repeat: no-repeat;
     -webkit-mask-repeat: no-repeat;
 }
+
 
 .no-scrollbar::-webkit-scrollbar {
     display: none;

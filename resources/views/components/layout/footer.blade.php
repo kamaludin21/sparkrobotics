@@ -48,11 +48,11 @@
       </div>
 
       <nav class="flex flex-wrap justify-center gap-6 text-sm text-gray-300">
-        <a href="#" class="transition hover:text-white">Home</a>
-        <a href="#" class="transition hover:text-white">Products</a>
-        <a href="#" class="transition hover:text-white">Solutions & Services</a>
-        <a href="#" class="transition hover:text-white">Article</a>
-        <a href="#" class="transition hover:text-white">About Us</a>
+        <a href="/" class="transition hover:text-white">Home</a>
+        <a href="/products" class="transition hover:text-white">Products</a>
+        <a href="/services" class="transition hover:text-white">Solutions & Services</a>
+        <a href="/news" class="transition hover:text-white">News</a>
+        {{-- <a href="#" class="transition hover:text-white">About Us</a> --}}
       </nav>
 
       <div class="flex gap-3">
@@ -90,7 +90,7 @@
     <hr class="my-8 border-gray-800" />
 
     <div class="flex flex-col items-center justify-between gap-4 text-sm text-gray-400 md:flex-row">
-      <p>&copy; 2024 Spark Robotics Inc. All rights reserved</p>
+      <p>&copy; 2026 Spark Robotics Inc. All rights reserved</p>
       <div class="flex gap-6">
         <a href="#" class="transition hover:text-white">Terms of Service</a>
         <a href="#" class="transition hover:text-white">Privacy Policy</a>
