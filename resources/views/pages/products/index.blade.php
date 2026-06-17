@@ -1,7 +1,7 @@
 @extends('layout.app')
 
 @section('content')
-  <main class="container mx-auto px-2 sm:px-0 py-32 font-sans">
+  <main class="container mx-auto px-4 sm:px-0 py-32 font-sans">
     <div class="mb-8 flex flex-col md:flex-row md:items-end md:justify-between gap-4">
       <div class="font-jakarta">
         <h1 class="text-3xl font-bold text-slate-900 tracking-tight">Katalog Produk</h1>

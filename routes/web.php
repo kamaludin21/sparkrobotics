@@ -16,6 +16,10 @@ Route::get('/news/download-center', function() {
     return view('pages.news.download-center');
 });
 
+Route::get('/about', function() {
+    return view('pages.about.company-profile');
+});
+
 Route::prefix('{locale}')
     ->whereIn('locale', ['id', 'en'])
     ->middleware('setLocale')

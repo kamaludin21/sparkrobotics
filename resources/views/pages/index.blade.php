@@ -30,7 +30,7 @@
     {{-- CTA --}}
 
     {{-- Slide logo Customer --}}
-    <section class="mx-auto mt-24 md:mt-48 gap-8 px-2 md:px-0 space-y-10">
+    <section class="mx-auto mt-24 md:mt-48 gap-8 px-4 lg:px-0 space-y-10">
       <div class="w-full text-center space-y-4">
         <p class="text-3xl text-slate-700 font-bold">Clients Across The Way</p>
       </div>
@@ -40,56 +40,64 @@
 
         <div class="flex whitespace-nowrap animate-marquee" :style="hover ? 'animation-play-state: paused;' : ''">
 
-          <div class="flex min-w-full shrink-0 items-center justify-around gap-8 px-4">
+          <div class="flex min-w-full shrink-0 items-center justify-around gap-2 px-2">
             <div class="w-32 md:w-48 flex justify-center items-center">
               <img src="https://static.diginusantara.com/2024/01/01/3684april-logo.png" alt="April Group"
-                class="h-8 md:h-10 object-contain transition-all duration-300">
+                class="h-12 md:h-14 object-contain transition-all duration-300">
             </div>
             <div class="w-32 md:w-48 flex justify-center items-center">
-              <img src="https://upload.wikimedia.org/wikipedia/commons/2/2f/Google_2015_logo.svg" alt="Google"
-                class="h-8 md:h-10 object-contain transition-all duration-300">
+              <img src="https://trellis.net/wp-content/uploads/2025/12/POWERCHINA-Logo.png" alt="Google"
+                class="h-12 md:h-14 object-contain transition-all duration-300">
             </div>
             <div class="w-32 md:w-48 flex justify-center items-center">
               <img src="https://www.conocophillips.com/images/logo-black.svg" alt="ConocoPhillips"
-                class="h-8 md:h-10 object-contain transition-all duration-300">
+                class="h-12 md:h-14 object-contain transition-all duration-300">
             </div>
             <div class="w-32 md:w-48 flex justify-center items-center">
-              <img src="https://upload.wikimedia.org/wikipedia/commons/4/44/Microsoft_logo.svg" alt="Microsoft"
-                class="h-8 md:h-10 object-contain transition-all duration-300">
+              <img src="https://www.bp.com/apps/settings/wcm/designs/refresh/bp/images/navigation/bp-logo.svg"
+                alt="Microsoft" class="h-12 md:h-14 object-contain transition-all duration-300">
             </div>
             <div class="w-32 md:w-48 flex justify-center items-center">
-              <img src="https://upload.wikimedia.org/wikipedia/commons/0/08/Netflix_2015_logo.svg" alt="Netflix"
-                class="h-8 md:h-10 object-contain transition-all duration-300">
+              <img src="https://www.ptsi.co.id/images/logo-footer-surveyor.png" alt="Netflix"
+                class="h-12 md:h-14 object-contain transition-all duration-300">
             </div>
             <div class="w-32 md:w-48 flex justify-center items-center">
-              <img src="https://upload.wikimedia.org/wikipedia/commons/2/26/Spotify_logo_with_text.svg" alt="Spotify"
-                class="h-8 md:h-10 object-contain transition-all duration-300">
+              <img src="https://adaroindonesia.com/theme/images/Logo-Adaro-Andalan-Indonesia-Color.png" alt="Spotify"
+                class="h-12 md:h-14 object-contain transition-all duration-300">
+            </div>
+            <div class="w-32 md:w-48 flex justify-center items-center">
+              <img src="https://career.inpex.co.id/img/logov2.png" alt="Spotify"
+                class="h-12 md:h-14 object-contain transition-all duration-300">
             </div>
           </div>
-          <div class="flex min-w-full shrink-0 items-center justify-around gap-8 px-4" aria-hidden="true">
+          <div class="flex min-w-full shrink-0 items-center justify-around gap-2 px-2" aria-hidden="true">
             <div class="w-32 md:w-48 flex justify-center items-center">
               <img src="https://static.diginusantara.com/2024/01/01/3684april-logo.png" alt="April Group"
-                class="h-8 md:h-10 object-contain transition-all duration-300">
+                class="h-12 md:h-14 object-contain transition-all duration-300">
             </div>
             <div class="w-32 md:w-48 flex justify-center items-center">
-              <img src="https://upload.wikimedia.org/wikipedia/commons/2/2f/Google_2015_logo.svg" alt="Google"
-                class="h-8 md:h-10 object-contain transition-all duration-300">
+              <img src="https://trellis.net/wp-content/uploads/2025/12/POWERCHINA-Logo.png" alt="Google"
+                class="h-12 md:h-14 object-contain transition-all duration-300">
             </div>
             <div class="w-32 md:w-48 flex justify-center items-center">
               <img src="https://www.conocophillips.com/images/logo-black.svg" alt="ConocoPhillips"
-                class="h-8 md:h-10 object-contain transition-all duration-300">
+                class="h-12 md:h-14 object-contain transition-all duration-300">
             </div>
             <div class="w-32 md:w-48 flex justify-center items-center">
-              <img src="https://upload.wikimedia.org/wikipedia/commons/4/44/Microsoft_logo.svg" alt="Microsoft"
-                class="h-8 md:h-10 object-contain transition-all duration-300">
+              <img src="https://www.bp.com/apps/settings/wcm/designs/refresh/bp/images/navigation/bp-logo.svg"
+                alt="Microsoft" class="h-12 md:h-14 object-contain transition-all duration-300">
             </div>
             <div class="w-32 md:w-48 flex justify-center items-center">
-              <img src="https://upload.wikimedia.org/wikipedia/commons/0/08/Netflix_2015_logo.svg" alt="Netflix"
-                class="h-8 md:h-10 object-contain transition-all duration-300">
+              <img src="https://www.ptsi.co.id/images/logo-footer-surveyor.png" alt="Netflix"
+                class="h-12 md:h-14 object-contain transition-all duration-300">
             </div>
             <div class="w-32 md:w-48 flex justify-center items-center">
-              <img src="https://upload.wikimedia.org/wikipedia/commons/2/26/Spotify_logo_with_text.svg" alt="Spotify"
-                class="h-8 md:h-10 object-contain transition-all duration-300">
+              <img src="https://adaroindonesia.com/theme/images/Logo-Adaro-Andalan-Indonesia-Color.png" alt="Spotify"
+                class="h-12 md:h-14 object-contain transition-all duration-300">
+            </div>
+            <div class="w-32 md:w-48 flex justify-center items-center">
+              <img src="https://career.inpex.co.id/img/logov2.png" alt="Spotify"
+                class="h-12 md:h-14 object-contain transition-all duration-300">
             </div>
           </div>
 
@@ -99,10 +107,10 @@
     {{-- Slide Customer --}}
 
     {{-- Category --}}
-    <section class="container mx-auto mt-24 md:mt-48 gap-8 px-2 md:px-0 space-y-16">
+    <section class="container mx-auto mt-24 md:mt-48 gap-8 px-4 lg:px-0 space-y-16">
       <div class="w-full text-center space-y-4">
-        <p class="text-3xl text-slate-700 font-bold">Segment</p>
-        <p class="text-5xl text-slate-600">Wide Range of Robotics and Drones Segments.</p>
+        <p class="text-3xl text-slate-700 font-bold">Product Segments</p>
+        <p class="text-5xl text-slate-600">A Wide Range of Robots and Drones</p>
       </div>
       <div class="w-full bg-white">
         <div class="grid grid-cols-2 gap-4 md:grid-cols-10 lg:grid-cols-12 md:grid-rows-2">
@@ -205,13 +213,13 @@
     {{-- Category --}}
 
     {{-- Products --}}
-    <section class="container mx-auto mt-24 md:mt-48 space-y-2 px-2 md:px-0">
+    <section class="container mx-auto mt-24 md:mt-48 space-y-2 px-4 lg:px-0">
       <div class="mb-4">
-        <p class="text-xl md:text-3xl text-slate-700 font-bold">Products</p>
+        <p class="text-3xl text-slate-700 font-bold">Products</p>
       </div>
       <div class="flex justify-between items-center">
-        <p class="text-3xl md:text-5xl max-w-2xl text-slate-600">Diverse Range of Products.</p>
-        <a href="/products" class="hidden md:flex gap-2 items-center px-6 py-2 bg-sky-600 rounded-full text-white">
+        <p class="text-5xl max-w-2xl text-slate-600">A Diverse Range of Products</p>
+        <a href="/products" class="hidden lg:flex gap-2 items-center px-6 py-2 bg-sky-600 rounded-full text-white">
           <span>Explore More</span>
           <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
             stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"
@@ -223,70 +231,151 @@
           </svg>
         </a>
       </div>
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mt-12">
-        <div class="bg-white rounded-2xl p-6 shadow-md">
-          <img
-            src="http://cdn.sanity.io/images/mgxz50fq/production-v3-red/cd1548472b57be4da19c8f202ba4cdfe3148f76b-2930x1120.png?w=2000&fit=max&auto=format"
-            alt="Produk 1" class="w-auto mx-auto h-48 rounded-lg">
-          <a href="/products/detail" class="">
-            <h3 class="text-2xl font-semibold mt-4 text-slate-700 hover:text-sky-600 cursor-pointer hover:underline">
-              Skydio X10</h3>
-          </a>
-          <p class="text-slate-600 mt-2">Packing more megapixels and better optics than any drone its size.</p>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mt-12">
+        <div class="group flex h-full flex-col overflow-hidden rounded-2xl bg-white ring-1 ring-slate-200">
+          <div class="relative h-56 overflow-hidden bg-slate-100 bg-slate-100">
+            <img
+              src="http://cdn.sanity.io/images/mgxz50fq/production-v3-red/cd1548472b57be4da19c8f202ba4cdfe3148f76b-2930x1120.png"
+              alt=""
+              class="absolute inset-0 h-full w-full object-contain object-center transition-transform duration-500 group-hover:scale-105">
+          </div>
+          <div class="flex flex-1 flex-col p-6 border-t-1 border-slate-200">
+            <div>
+              <h3 class="text-2xl font-semibold text-slate-700 transition-colors group-hover:text-sky-600">
+                Skydio X10
+              </h3>
+              <p class="mt-2 text-slate-600">
+                Packing more megapixels and better optics than any drone its size.
+              </p>
+            </div>
+            <div class="mt-auto pt-6">
+              <a href="/products/detail"
+                class="block w-full rounded-lg bg-slate-100 px-4 py-2 text-center text-sm font-semibold text-slate-700 ring-1 ring-slate-200 transition-colors duration-300 group-hover:bg-sky-600 group-hover:text-white">
+                View Details
+              </a>
+            </div>
+          </div>
         </div>
-        <div class="bg-white rounded-xl p-6 shadow-md">
-          <img
-            src="https://i0.wp.com/halorobotics.com/wp-content/uploads/2026/04/unitree-go2-edu-plus-robotic-dog-mid-360.webp?resize=768%2C768&ssl=1"
-            alt="Produk 1" class="w-auto mx-auto h-48 rounded-lg">
-          <a class="#" class="">
-            <h3 class="text-2xl font-semibold mt-4 text-slate-700 hover:text-sky-600 cursor-pointer hover:underline">
-              Unitree Go2 Edu Plus</h3>
-          </a>
-          <p class="text-slate-600 mt-2">The robot navigation algorithms are currently in a pilot phase.</p>
+        <div class="group flex h-full flex-col overflow-hidden rounded-2xl bg-white ring-1 ring-slate-200">
+          <div class="relative h-56 overflow-hidden bg-slate-100">
+            <img
+              src="https://i0.wp.com/halorobotics.com/wp-content/uploads/2026/04/unitree-go2-edu-plus-robotic-dog-mid-360.webp"
+              alt=""
+              class="absolute inset-0 h-full w-full object-contain object-center transition-transform duration-500 group-hover:scale-105">
+          </div>
+          <div class="flex flex-1 flex-col p-6 border-t-1 border-slate-200">
+            <div>
+              <h3 class="text-2xl font-semibold text-slate-700 transition-colors group-hover:text-sky-600">
+                Unitree Go2 Edu Plus
+              </h3>
+              <p class="mt-2 text-slate-600">
+                The robot navigation algorithms are currently in a pilot phase
+              </p>
+            </div>
+            <div class="mt-auto pt-6">
+              <a href="/products/detail"
+                class="block w-full rounded-lg bg-slate-100 px-4 py-2 text-center text-sm font-semibold text-slate-700 ring-1 ring-slate-200 transition-colors duration-300 group-hover:bg-sky-600 group-hover:text-white">
+                View Details
+              </a>
+            </div>
+          </div>
         </div>
-        <div class="bg-white rounded-xl p-6 shadow-md">
-          <img src="https://i0.wp.com/halorobotics.com/wp-content/uploads/2026/03/unitree-g1-2.png?w=576&ssl=1"
-            alt="Produk 1" class="w-auto mx-auto h-48 rounded-lg">
-          <a href="/products/detail" class="">
-            <h3 class="text-2xl font-semibold mt-4 text-slate-700 hover:text-sky-600 cursor-pointer hover:underline">
-              Unitree – G1 Edu Professional E</h3>
-          </a>
-          <p class="text-slate-600 mt-2">The robot navigation algorithms are currently in a pilot phase.</p>
+        <div class="group flex h-full flex-col overflow-hidden rounded-2xl bg-white ring-1 ring-slate-200">
+          <div class="relative h-56 overflow-hidden bg-slate-100">
+            <img src="https://i0.wp.com/halorobotics.com/wp-content/uploads/2026/03/unitree-g1-2.png" alt=""
+              class="absolute inset-0 h-full w-full object-contain object-center transition-transform duration-500 group-hover:scale-105">
+          </div>
+          <div class="flex flex-1 flex-col p-6 border-t-1 border-slate-200">
+            <div>
+              <h3 class="text-2xl font-semibold text-slate-700 transition-colors group-hover:text-sky-600">
+                Unitree G1 Edu Professional E
+              </h3>
+              <p class="mt-2 text-slate-600">
+                The robot navigation algorithms are currently in a pilot phase
+              </p>
+            </div>
+            <div class="mt-auto pt-6">
+              <a href="/products/detail"
+                class="block w-full rounded-lg bg-slate-100 px-4 py-2 text-center text-sm font-semibold text-slate-700 ring-1 ring-slate-200 transition-colors duration-300 group-hover:bg-sky-600 group-hover:text-white">
+                View Details
+              </a>
+            </div>
+          </div>
         </div>
-        <div class="bg-white rounded-xl p-6 shadow-md">
-          <img src="{{ asset('images/S10-1-300x600.png') }}" alt="Produk 1" class="w-auto mx-auto h-48 rounded-lg">
-          <a href="/products/detail" class="">
-            <h3 class="text-2xl font-semibold mt-4 text-slate-700 hover:text-sky-600 cursor-pointer hover:underline">
-              FlashBot Arm</h3>
-          </a>
-          <p class="text-slate-600 mt-2">
-            Semi-Humanoid Embodied AI Service Robot</p>
+
+        <div class="group flex h-full flex-col overflow-hidden rounded-2xl bg-white ring-1 ring-slate-200">
+          <div class="relative h-56 overflow-hidden bg-slate-100">
+            <img src="{{ asset('images/S10-1-300x600.png') }}" alt=""
+              class="absolute inset-0 h-full w-full object-contain object-center transition-transform duration-500 group-hover:scale-105">
+          </div>
+          <div class="flex flex-1 flex-col p-6 border-t-1 border-slate-200">
+            <div>
+              <h3 class="text-2xl font-semibold text-slate-700 transition-colors group-hover:text-sky-600">
+                FlashBot Arm
+              </h3>
+              <p class="mt-2 text-slate-600">
+                Semi-Humanoid Embodied AI Service Robot
+              </p>
+            </div>
+            <div class="mt-auto pt-6">
+              <a href="/products/detail"
+                class="block w-full rounded-lg bg-slate-100 px-4 py-2 text-center text-sm font-semibold text-slate-700 ring-1 ring-slate-200 transition-colors duration-300 group-hover:bg-sky-600 group-hover:text-white">
+                View Details
+              </a>
+            </div>
+          </div>
         </div>
-        <div class="bg-white rounded-xl p-6 shadow-md">
-          <img
-            src="https://i0.wp.com/halorobotics.com/wp-content/uploads/2025/12/Dock3-%E5%B9%B3%E4%BE%A7-2-1.png?resize=394%2C394&ssl=1"
-            alt="Produk 1" class="w-auto mx-auto h-48 rounded-lg">
-          <a href="/products/detail" class="">
-            <h3 class="text-2xl font-semibold mt-4 text-slate-700 hover:text-sky-600 cursor-pointer hover:underline">
-              DJI Dock 3
-            </h3>
-          </a>
-          <p class="text-slate-600 mt-2">DJI Dock 3 is DJI's first Dock to support mobile vehicle-mounted deployment.</p>
+        <div class="group flex h-full flex-col overflow-hidden rounded-2xl bg-white ring-1 ring-slate-200">
+          <div class="relative h-56 overflow-hidden bg-slate-100">
+            <img
+              src="https://i0.wp.com/halorobotics.com/wp-content/uploads/2025/12/Dock3-%E5%B9%B3%E4%BE%A7-2-1.png?resize=394%2C394&ssl=1"
+              alt=""
+              class="absolute inset-0 h-full w-full object-contain object-center transition-transform duration-500 group-hover:scale-105">
+          </div>
+          <div class="flex flex-1 flex-col p-6 border-t-1 border-slate-200">
+            <div>
+              <h3 class="text-2xl font-semibold text-slate-700 transition-colors group-hover:text-sky-600">
+                DJI Dock 3
+              </h3>
+              <p class="mt-2 text-slate-600">
+                DJI's first Dock to support mobile vehicle-mounted deployment
+              </p>
+            </div>
+            <div class="mt-auto pt-6">
+              <a href="/products/detail"
+                class="block w-full rounded-lg bg-slate-100 px-4 py-2 text-center text-sm font-semibold text-slate-700 ring-1 ring-slate-200 transition-colors duration-300 group-hover:bg-sky-600 group-hover:text-white">
+                View Details
+              </a>
+            </div>
+          </div>
         </div>
-        <div class="bg-white rounded-xl p-6 shadow-md">
-          <img src="https://cdn.pudutech.com/nav_pudu_d9_baa71e3b5b.png" alt="Produk 1"
-            class="w-auto mx-auto h-48 rounded-lg">
-          <a href="/products/detail" class="">
-            <h3 class="text-2xl font-semibold mt-4 text-slate-700 hover:text-sky-600 cursor-pointer hover:underline">
-              PUDU D9
-            </h3>
-          </a>
-          <p class="text-slate-600 mt-2">The First Full-sized Bipedal Humanoid Robot by Pudu Robotics</p>
+        <div class="group flex h-full flex-col overflow-hidden rounded-2xl bg-white ring-1 ring-slate-200">
+          <div class="relative h-56 overflow-hidden bg-slate-100">
+            <img src="https://cdn.pudutech.com/nav_pudu_d9_baa71e3b5b.png" alt=""
+              class="absolute inset-0 h-full w-full object-contain object-center transition-transform duration-500 group-hover:scale-105">
+          </div>
+          <div class="flex flex-1 flex-col p-6 border-t-1 border-slate-200">
+            <div>
+              <h3 class="text-2xl font-semibold text-slate-700 transition-colors group-hover:text-sky-600">
+                PUDU D9
+              </h3>
+              <p class="mt-2 text-slate-600">
+                The First Full-sized Bipedal Humanoid Robot by Pudu Robotics
+              </p>
+            </div>
+            <div class="mt-auto pt-6">
+              <a href="/products/detail"
+                class="block w-full rounded-lg bg-slate-100 px-4 py-2 text-center text-sm font-semibold text-slate-700 ring-1 ring-slate-300 transition-colors duration-300 group-hover:bg-sky-600 group-hover:text-white">
+                View Details
+              </a>
+            </div>
+          </div>
         </div>
+
 
       </div>
       <a href="/products"
-        class="flex md:hidden gap-2 items-center px-6 py-2 bg-sky-600 rounded-full text-white mx-auto mt-12">
+        class="flex lg:hidden gap-2 w-fit justify-center items-center px-6 py-2 bg-sky-600 rounded-full text-white mx-auto mt-12">
         <span>Explore More</span>
         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
           stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" class="h-7 w-auto">
@@ -301,7 +390,7 @@
 
     {{-- BRAND --}}
     <section class="bg-slate-100 mt-24 md:mt-48">
-      <div class="container py-12 text-center mx-auto space-y-12 px-2 md:px-0">
+      <div class="container py-12 text-center mx-auto space-y-12 px-4 lg:px-0">
         <div class="text-center">
           <p class="text-2xl text-slate-700 font-semibold">Various Premium Brands</p>
         </div>
@@ -324,7 +413,7 @@
     {{-- BRAND --}}
 
     {{-- Latest blog --}}
-    <section class="container mx-auto mt-24 md:mt-48 px-2 md:px-0">
+    <section class="container mx-auto mt-24 md:mt-48 px-4 lg:px-0">
       <div class="mb-6">
         <p class="text-3xl text-slate-700 font-bold">News</p>
       </div>
@@ -381,9 +470,8 @@
     {{-- Latest blog --}}
 
     {{-- About Company --}}
-    <section class="relative h-[30rem] mx-auto mt-24 md:mt-80 px-2 md:px-0">
-
-      <div class="absolute inset-0 bg-sky-800 overflow-hidden z-0">
+    <section class="relative mx-auto mt-24 h-auto px-4 pb-10 lg:mt-80 lg:h-[30rem] lg:pb-0 lg:px-0">
+      <div class="absolute inset-0 z-0 overflow-hidden bg-sky-800">
         <div class="absolute -top-10 -left-10">
           <x-icons.drone class="h-60 w-auto text-sky-900" />
         </div>
@@ -393,38 +481,64 @@
         </div>
       </div>
 
-      <div class="relative z-10 w-full h-full p-6 text-white container mx-auto flex flex-col">
+      <div class="relative z-10 container mx-auto flex h-full w-full flex-col gap-8 p-6 text-white lg:gap-0">
+        <div class="relative -mt-14 lg:-mt-40" x-data="{
+            scrollNext() { $refs.slider.scrollBy({ left: $refs.slider.clientWidth * 0.85, behavior: 'smooth' }); },
+                scrollPrev() { $refs.slider.scrollBy({ left: -($refs.slider.clientWidth * 0.85), behavior: 'smooth' }); }
+        }">
+          <div x-ref="slider"
+            class="flex snap-x snap-mandatory [scrollbar-width:'none'] gap-4 overflow-x-auto [-ms-overflow-style:'none'] lg:grid lg:grid-cols-4 lg:gap-8 lg:overflow-visible [&::-webkit-scrollbar]:hidden">
+            <img src="https://gbscooks.com/assets/img/about/1.png"
+              class="h-72 w-[85%] shrink-0 snap-center rounded-2xl object-cover shadow-lg duration-200 lg:h-96 lg:w-full hover:lg:-mt-4"
+              alt="About Us" />
+            <img src="https://gbscooks.com/assets/img/about/2.png"
+              class="h-72 w-[85%] shrink-0 snap-center rounded-2xl object-cover shadow-lg duration-200 lg:h-96 lg:w-full hover:lg:-mt-4"
+              alt="About Us" />
+            <img src="https://gbscooks.com/assets/img/about/3.png"
+              class="h-72 w-[85%] shrink-0 snap-center rounded-2xl object-cover shadow-lg duration-200 lg:h-96 lg:w-full hover:lg:-mt-4"
+              alt="About Us" />
+            <img src="https://gbscooks.com/assets/img/about/1.png"
+              class="h-72 w-[85%] shrink-0 snap-center rounded-2xl object-cover shadow-lg duration-200 lg:h-96 lg:w-full hover:lg:-mt-4"
+              alt="About Us" />
+          </div>
 
-        <div class="grid grid-cols-1 md:grid-cols-4 gap-8 -mt-40">
-          <img src="https://gbscooks.com/assets/img/about/1.png"
-            class="w-full h-96 object-cover rounded-2xl shadow-lg hover:-mt-4 duration-200" alt="About Us">
-          <img src="https://gbscooks.com/assets/img/about/2.png"
-            class="w-full h-96 object-cover rounded-2xl shadow-lg hover:-mt-4 duration-200" alt="About Us">
-          <img src="https://gbscooks.com/assets/img/about/3.png"
-            class="w-full h-96 object-cover rounded-2xl shadow-lg hover:-mt-4 duration-200" alt="About Us">
-          <img src="https://gbscooks.com/assets/img/about/1.png"
-            class="w-full h-96 object-cover rounded-2xl shadow-lg hover:-mt-4 duration-200" alt="About Us">
+          <div class="mt-6 flex justify-center gap-4 lg:hidden">
+            <button @click="scrollPrev"
+              class="rounded-full bg-white/20 p-3 backdrop-blur-sm transition hover:bg-white/40">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2"
+                stroke="currentColor" class="h-5 w-5">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5" />
+              </svg>
+            </button>
+            <button @click="scrollNext"
+              class="rounded-full bg-white/20 p-3 backdrop-blur-sm transition hover:bg-white/40">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2"
+                stroke="currentColor" class="h-5 w-5">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
+              </svg>
+            </button>
+          </div>
         </div>
 
-        <div class="flex gap-4 items-start mt-auto">
-          <div class="space-y-6 w-1/3">
-            <h2 class="text-4xl font-medium font-jakarta">Who We Are <br />and Our Solutions</h2>
+        <div class="mt-auto flex flex-col items-start gap-6 pt-4 lg:mt-auto lg:flex-row lg:gap-4">
+          <div class="w-full space-y-4 lg:w-1/3 lg:space-y-6">
+            <h2 class="font-jakarta leading-tight font-medium text-4xl">Who We Are <br class="hidden lg:block" />and Our
+              Solutions</h2>
             <a href="#"
-              class="bg-white px-5 py-2 rounded-full text-gray-800 font-semibold text-base inline-block">
-              Company Profile
+              class="inline-block rounded-full bg-white px-5 py-2 text-base font-semibold text-gray-800"> Company Profile
             </a>
           </div>
           <div class="flex-1">
-            <p class="text-xl leading-7">SPARK Robotics is a representative technology company founded in Indonesia by
-              Chinese entrepreneurs. The company serves as an authorized distributor of advanced Chinese technologies,
-              including DJI enterprise drones and Unitree robotics products, in the Indonesian market. With years of
-              experience in Indonesia, SPARK Robotics has developed strong localized service and technical support
-              capabilities across industries.</p>
+            <p class="text-lg leading-7 text-white/90 lg:text-xl">SPARK Robotics is a representative technology company
+              founded in Indonesia by Chinese entrepreneurs. The company serves as an authorized distributor of advanced
+              Chinese technologies, including DJI enterprise drones and Unitree robotics products, in the Indonesian
+              market. With years of experience in Indonesia, SPARK Robotics has developed strong localized service and
+              technical support capabilities across industries.</p>
           </div>
         </div>
-
       </div>
     </section>
+
     {{-- About Company --}}
 
     {{-- CTA --}}

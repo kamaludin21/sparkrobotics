@@ -7,16 +7,16 @@
           { title: 'Products', url: '/products', is_active: false, children: [] },
           { title: 'Solutions & Services', url: '/services', is_active: false, children: [] },
           { title: 'News', url: '/news', is_active: false, children: [] },
-          {{-- {
+          {
               title: 'About Us',
-              url: '#',
+              url: 'about',
               is_active: false,
               children: [
-                  { title: 'Company Profile', url: '#', is_active: true },
+                  { title: 'Company Profile', url: '/about', is_active: false   },
                   { title: 'Case Studies', url: '#', is_active: false },
                   { title: 'Contact', url: '#', is_active: false }
               ]
-          }, --}}
+          },
       ]
   }" class="bg-white border-b border-gray-200 py-3 relative z-50">
 

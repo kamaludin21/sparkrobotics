@@ -27,7 +27,7 @@
           </button>
         </div>
       </form>
-    </section>
+    </section>  
     <section class="py-10 space-y-6">
       <p class="text-3xl font-bold text-slate-700">News</p>
 
