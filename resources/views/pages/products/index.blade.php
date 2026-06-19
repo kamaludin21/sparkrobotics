@@ -1,10 +1,10 @@
-@extends('layout.app')
+@extends('layout.app', ['activePage' => 'products'])
 
 @section('content')
-  <main class="container mx-auto px-4 sm:px-0 py-32 font-sans">
+  <main class="main-wrapper px-4 py-24 md:py-32">
     <div class="mb-8 flex flex-col md:flex-row md:items-end md:justify-between gap-4">
-      <div class="font-jakarta">
-        <h1 class="text-3xl font-bold text-slate-900 tracking-tight">Katalog Produk</h1>
+      <div class="space-y-2">
+        <h2 class="text-4xl md:text-5xl font-bold text-slate-700 font-jakarta">Katalog Produk</h2>
         <p class="text-slate-500 mt-2 text-sm md:text-base">Eksplorasi solusi drone enterprise, payload, dan perangkat
           lunak
           pemetaan.</p>
@@ -18,26 +18,37 @@
     </div>
     <div class="flex flex-col lg:flex-row gap-8 items-start">
       <aside class="w-full lg:w-1/4 lg:sticky lg:top-20 shrink-0">
-        <div class="bg-white rounded-xl shadow-sm border border-slate-100 p-6">
+        <div class="bg-white rounded-xl shadow-sm ring-1 ring-slate-200 p-6">
           <div class="mb-6 flex items-center justify-between">
             <h2 class="text-lg font-bold text-slate-900">Filter</h2>
           </div>
 
           <div class="mb-6">
-            <h3 class="text-xs font-bold text-slate-400 uppercase tracking-wider mb-4">Berdasarkan Kategori</h3>
+            <h3 class="text-xs font-bold text-slate-400 uppercase tracking-wider mb-4">BY Categories</h3>
             <div class="space-y-3">
               <label class="flex items-center gap-3 cursor-pointer group">
                 <input type="checkbox" checked
                   class="w-4 h-4 text-sky-600 rounded border-slate-300 focus:ring-sky-500 cursor-pointer" />
-                <span class="text-sm font-medium text-slate-700 group-hover:text-slate-900 transition-colors">Flight
-                  Platform</span>
+                <span class="text-sm font-medium text-slate-700 group-hover:text-slate-900 transition-colors">Air
+                  Craft</span>
               </label>
-
               <label class="flex items-center gap-3 cursor-pointer group">
                 <input type="checkbox"
                   class="w-4 h-4 text-sky-600 rounded border-slate-300 focus:ring-sky-500 cursor-pointer" />
-                <span class="text-sm font-medium text-slate-700 group-hover:text-slate-900 transition-colors">Payloads &
-                  Sensors</span>
+                <span class="text-sm font-medium text-slate-700 group-hover:text-slate-900 transition-colors">DJI
+                  Dock</span>
+              </label>
+              <label class="flex items-center gap-3 cursor-pointer group">
+                <input type="checkbox"
+                  class="w-4 h-4 text-sky-600 rounded border-slate-300 focus:ring-sky-500 cursor-pointer" />
+                <span class="text-sm font-medium text-slate-700 group-hover:text-slate-900 transition-colors">Accessories
+                </span>
+              </label>
+              <label class="flex items-center gap-3 cursor-pointer group">
+                <input type="checkbox"
+                  class="w-4 h-4 text-sky-600 rounded border-slate-300 focus:ring-sky-500 cursor-pointer" />
+                <span
+                  class="text-sm font-medium text-slate-700 group-hover:text-slate-900 transition-colors">Payload</span>
               </label>
               <label class="flex items-center gap-3 cursor-pointer group">
                 <input type="checkbox"
@@ -54,12 +65,6 @@
               <label class="flex items-center gap-3 cursor-pointer group">
                 <input type="checkbox"
                   class="w-4 h-4 text-sky-600 rounded border-slate-300 focus:ring-sky-500 cursor-pointer" />
-                <span class="text-sm font-medium text-slate-700 group-hover:text-slate-900 transition-colors">DJI
-                  Dock</span>
-              </label>
-              <label class="flex items-center gap-3 cursor-pointer group">
-                <input type="checkbox"
-                  class="w-4 h-4 text-sky-600 rounded border-slate-300 focus:ring-sky-500 cursor-pointer" />
                 <span class="text-sm font-medium text-slate-700 group-hover:text-slate-900 transition-colors">Software &
                   Ecosystem</span>
               </label>
@@ -69,23 +74,19 @@
           <hr class="border-slate-100 mb-6" />
 
           <div>
-            <h3 class="text-xs font-bold text-slate-400 uppercase tracking-wider mb-4">Berdasarkan Brand</h3>
+            <h3 class="text-xs font-bold text-slate-400 uppercase tracking-wider mb-4">By Brand</h3>
             <div class="space-y-3">
               <label class="flex items-center gap-3 cursor-pointer group">
                 <input type="checkbox"
                   class="w-4 h-4 text-sky-600 rounded border-slate-300 focus:ring-sky-500 cursor-pointer" />
-                <span class="text-sm font-medium text-slate-700 group-hover:text-slate-900 transition-colors">DJI</span>
+                <span class="text-sm font-medium text-slate-700 group-hover:text-slate-900 transition-colors">DJI
+                  Enterprise</span>
               </label>
               <label class="flex items-center gap-3 cursor-pointer group">
                 <input type="checkbox"
                   class="w-4 h-4 text-sky-600 rounded border-slate-300 focus:ring-sky-500 cursor-pointer" />
                 <span
                   class="text-sm font-medium text-slate-700 group-hover:text-slate-900 transition-colors">UNITREE</span>
-              </label>
-              <label class="flex items-center gap-3 cursor-pointer group">
-                <input type="checkbox"
-                  class="w-4 h-4 text-sky-600 rounded border-slate-300 focus:ring-sky-500 cursor-pointer" />
-                <span class="text-sm font-medium text-slate-700 group-hover:text-slate-900 transition-colors">EMLID</span>
               </label>
             </div>
           </div>
@@ -94,103 +95,168 @@
 
       <main class="w-full lg:w-3/4">
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 items-start">
-
-          <div
-            class="bg-white rounded-2xl shadow-sm border border-slate-100 overflow-hidden group hover:shadow-xl transition-all duration-300 flex flex-col h-full relative">
-            <div class="h-72 bg-slate-50 relative overflow-hidden flex items-center justify-center">
-              <img src="https://www-cdn.djiits.com/dps/45196aac8f231fe2ae211c76a473212b.jpg" alt="DJI Mavic 3M"
-                class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-200" />
+          <div class="group flex h-full flex-col overflow-hidden rounded-2xl bg-white ring-1 ring-slate-200">
+            <div class="relative h-56 overflow-hidden bg-slate-100 bg-slate-100">
+              <img src="https://fujishop.id/wp-content/uploads/2025/11/DJI-Dock-3-Overseas-Edition-01.jpg" alt=""
+                class="absolute inset-0 h-full w-full object-cover object-center transition-transform duration-500 group-hover:scale-105">
             </div>
-            <div class="p-5 flex flex-col flex-grow bg-white">
-              <span class="text-[11px] font-bold text-sky-600 uppercase tracking-widest mb-1.5">Flight Platform</span>
-              <h3 class="text-lg font-bold text-slate-900 leading-tight mb-1">DJI Mavic 3M</h3>
-              <p class="text-sm text-slate-500 line-clamp-1 mb-5">Multispectral Mapping Drone</p>
-
-              <div class="mt-auto border-t border-slate-50 pt-4">
+            <div class="flex flex-1 flex-col p-6 border-t-1 border-slate-200">
+              <div>
+                <h3 class="text-2xl font-semibold text-slate-700 transition-colors group-hover:text-sky-600">
+                  DJI Dock 3
+                </h3>
+                <p class="mt-2 text-slate-600">
+                  DJI's First Dock Adaptable for Vehicle Mounting
+                </p>
+              </div>
+              <div class="mt-auto pt-6">
                 <a href="/products/detail"
-                  class="block w-full text-center px-4 py-2 bg-slate-50 text-slate-700 text-sm font-semibold rounded-xl group-hover:bg-sky-600 group-hover:text-white transition-colors duration-300">
-                  Lihat Spesifikasi
+                  class="block w-full rounded-lg bg-slate-100 px-4 py-2 text-center text-sm font-semibold text-slate-700 ring-1 ring-slate-200 transition-colors duration-300 group-hover:bg-sky-600 group-hover:text-white">
+                  View Details
                 </a>
               </div>
             </div>
           </div>
-          <div
-            class="bg-white rounded-2xl shadow-sm border border-slate-100 overflow-hidden group hover:shadow-xl transition-all duration-300 flex flex-col h-full relative">
-            <div class="h-72 bg-slate-50 relative overflow-hidden flex items-center justify-center">
-              <img src="https://www-cdn.djiits.com/cms/uploads/2d815a0c623a62addfc4bf4c992c9d2a.png" alt="DJI Mavic 3M"
-                class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-200" />
-            </div>
-            <div class="p-5 flex flex-col flex-grow bg-white">
-              <span class="text-[11px] font-bold text-sky-600 uppercase tracking-widest mb-1.5">Payloads</span>
-              <h3 class="text-lg font-bold text-slate-900 leading-tight mb-1">DJI Zenmuse L2</h3>
-              <p class="text-sm text-slate-500 line-clamp-1 mb-5">High-Accuracy LiDAR Sensor</p>
-
-              <div class="mt-auto border-t border-slate-50 pt-4">
-                <a href="/products/detail"
-                  class="block w-full text-center px-4 py-2 bg-slate-50 text-slate-700 text-sm font-semibold rounded-xl group-hover:bg-sky-600 group-hover:text-white transition-colors duration-300">
-                  Lihat Spesifikasi
-                </a>
-              </div>
-            </div>
-          </div>
-
-          <div
-            class="bg-white rounded-2xl shadow-sm border border-slate-100 overflow-hidden group hover:shadow-xl transition-all duration-300 flex flex-col h-full relative">
-            <div class="h-72 bg-slate-50 relative overflow-hidden flex items-center justify-center">
+          <div class="group flex h-full flex-col overflow-hidden rounded-2xl bg-white ring-1 ring-slate-200">
+            <div class="relative h-56 overflow-hidden bg-slate-100 bg-slate-100">
               <img
-                src="https://geospatial.chcnav.com/dam/jcr:cf88547a-a8cb-4b7f-b4cc-ce0dd4840257/chcnav-apache-3-cost-effective-single-beam-usv-kv.png"
-                alt="DJI Mavic 3M"
-                class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-200" />
+                src="https://se-cdn.djiits.com/tpc/uploads/spu_bundle/cover/a717e6dca76e821a0b6569e764cbf64f@ultra.webp"
+                alt=""
+                class="absolute inset-0 h-full w-full object-cover object-center transition-transform duration-500 group-hover:scale-105">
             </div>
-            <div class="p-5 flex flex-col flex-grow bg-white">
-              <span class="text-[11px] font-bold text-sky-600 uppercase tracking-widest mb-1.5">Marine Drone</span>
-              <h3 class="text-lg font-bold text-slate-900 leading-tight mb-1">CHCNAV Apache 3</h3>
-              <p class="text-sm text-slate-500 line-clamp-1 mb-5">Compact USV untuk Batimetri</p>
-
-              <div class="mt-auto border-t border-slate-50 pt-4">
+            <div class="flex flex-1 flex-col p-6 border-t-1 border-slate-200">
+              <div>
+                <h3 class="text-2xl font-semibold text-slate-700 transition-colors group-hover:text-sky-600">
+                  DJI Matrice 400
+                </h3>
+                <p class="mt-2 text-slate-600">
+                  Long-Endurance Drone Platform With Power-Line-Level Obstacle Sensing
+                </p>
+              </div>
+              <div class="mt-auto pt-6">
                 <a href="/products/detail"
-                  class="block w-full text-center px-4 py-2 bg-slate-50 text-slate-700 text-sm font-semibold rounded-xl group-hover:bg-sky-600 group-hover:text-white transition-colors duration-300">
-                  Lihat Spesifikasi
+                  class="block w-full rounded-lg bg-slate-100 px-4 py-2 text-center text-sm font-semibold text-slate-700 ring-1 ring-slate-200 transition-colors duration-300 group-hover:bg-sky-600 group-hover:text-white">
+                  View Details
                 </a>
               </div>
             </div>
           </div>
-
-          <div
-            class="bg-white rounded-2xl shadow-sm border border-slate-100 overflow-hidden group hover:shadow-xl transition-all duration-300 flex flex-col h-full relative">
-            <div class="h-72 bg-slate-50 relative overflow-hidden flex items-center justify-center">
-              <img src="https://i0.wp.com/halorobotics.com/wp-content/uploads/2026/01/Unitree-R1.png" alt="DJI Mavic 3M"
-                class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-200" />
+          <div class="group flex h-full flex-col overflow-hidden rounded-2xl bg-white ring-1 ring-slate-200">
+            <div class="relative h-56 overflow-hidden bg-slate-100 bg-slate-100">
+              <img
+                src="https://www-cdn.djiits.com/dps/5168f7ff8f661a008798e1bd23e15d3c.jpg"
+                alt=""
+                class="absolute inset-0 h-full w-full object-cover object-center transition-transform duration-500 group-hover:scale-105">
             </div>
-            <div class="p-5 flex flex-col flex-grow bg-white">
-              <span class="text-[11px] font-bold text-sky-600 uppercase tracking-widest mb-1.5">Humanoid Series</span>
-              <h3 class="text-lg font-bold text-slate-900 leading-tight mb-1">Unitree R1</h3>
-              <p class="text-sm text-slate-500 line-clamp-1 mb-5">Research Cobot</p>
-
-              <div class="mt-auto border-t border-slate-50 pt-4">
+            <div class="flex flex-1 flex-col p-6 border-t-1 border-slate-200">
+              <div>
+                <h3 class="text-2xl font-semibold text-slate-700 transition-colors group-hover:text-sky-600">
+                  DJI Matrice 4 Series
+                </h3>
+                <p class="mt-2 text-slate-600">
+                  Long-Endurance Drone Platform With Power-Line-Level Obstacle Sensing
+                </p>
+              </div>
+              <div class="mt-auto pt-6">
                 <a href="/products/detail"
-                  class="block w-full text-center px-4 py-2 bg-slate-50 text-slate-700 text-sm font-semibold rounded-xl group-hover:bg-sky-600 group-hover:text-white transition-colors duration-300">
-                  Lihat Spesifikasi
+                  class="block w-full rounded-lg bg-slate-100 px-4 py-2 text-center text-sm font-semibold text-slate-700 ring-1 ring-slate-200 transition-colors duration-300 group-hover:bg-sky-600 group-hover:text-white">
+                  View Details
                 </a>
               </div>
             </div>
           </div>
-
-          <div
-            class="bg-white rounded-2xl shadow-sm border border-slate-100 overflow-hidden group hover:shadow-xl transition-all duration-300 flex flex-col h-full relative">
-            <div class="h-72 bg-slate-50 relative overflow-hidden flex items-center justify-center">
-              <img src="https://www.unitree.com/images/0dd70ad4f1e74e6097a38585a99666aa_800x800.png" alt="DJI Mavic 3M"
-                class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-200" />
+          <div class="group flex h-full flex-col overflow-hidden rounded-2xl bg-white ring-1 ring-slate-200">
+            <div class="relative h-56 overflow-hidden bg-slate-100 bg-slate-100">
+              <img
+                src="https://www-cdn.djiits.com/dps/e5c6077a1fe201229f8fd0ca7e043ccf.png?w=780&h=600"
+                alt=""
+                class="absolute inset-0 h-full w-full object-cover object-center transition-transform duration-500 group-hover:scale-105">
             </div>
-            <div class="p-5 flex flex-col flex-grow bg-white">
-              <span class="text-[11px] font-bold text-sky-600 uppercase tracking-widest mb-1.5">Quadruped Series</span>
-              <h3 class="text-lg font-bold text-slate-900 leading-tight mb-1">Unitree B2</h3>
-              <p class="text-sm text-slate-500 line-clamp-1 mb-5">Flagship Industrial</p>
-
-              <div class="mt-auto border-t border-slate-50 pt-4">
+            <div class="flex flex-1 flex-col p-6 border-t-1 border-slate-200">
+              <div>
+                <h3 class="text-2xl font-semibold text-slate-700 transition-colors group-hover:text-sky-600">
+                  Zenmuse L3
+                </h3>
+                <p class="mt-2 text-slate-600">
+                  Long-Endurance Drone Platform With Power-Line-Level Obstacle Sensing
+                </p>
+              </div>
+              <div class="mt-auto pt-6">
                 <a href="/products/detail"
-                  class="block w-full text-center px-4 py-2 bg-slate-50 text-slate-700 text-sm font-semibold rounded-xl group-hover:bg-sky-600 group-hover:text-white transition-colors duration-300">
-                  Lihat Spesifikasi
+                  class="block w-full rounded-lg bg-slate-100 px-4 py-2 text-center text-sm font-semibold text-slate-700 ring-1 ring-slate-200 transition-colors duration-300 group-hover:bg-sky-600 group-hover:text-white">
+                  View Details
+                </a>
+              </div>
+            </div>
+          </div>
+          <div class="group flex h-full flex-col overflow-hidden rounded-2xl bg-white ring-1 ring-slate-200">
+            <div class="relative h-56 overflow-hidden bg-slate-100 bg-slate-100">
+              <img
+                src="https://shop.unitree.com/cdn/shop/files/2_3769ceea-b323-4ebc-a1f4-e27a9624706b_900x.jpg?v=1717575246"
+                alt=""
+                class="absolute inset-0 h-full w-full object-cover object-center transition-transform duration-500 group-hover:scale-105">
+            </div>
+            <div class="flex flex-1 flex-col p-6 border-t-1 border-slate-200">
+              <div>
+                <h3 class="text-2xl font-semibold text-slate-700 transition-colors group-hover:text-sky-600">
+                  Unitree G1
+                </h3>
+                <p class="mt-2 text-slate-600">
+                  Long-Endurance Drone Platform With Power-Line-Level Obstacle Sensing
+                </p>
+              </div>
+              <div class="mt-auto pt-6">
+                <a href="/products/detail"
+                  class="block w-full rounded-lg bg-slate-100 px-4 py-2 text-center text-sm font-semibold text-slate-700 ring-1 ring-slate-200 transition-colors duration-300 group-hover:bg-sky-600 group-hover:text-white">
+                  View Details
+                </a>
+              </div>
+            </div>
+          </div>
+          <div class="group flex h-full flex-col overflow-hidden rounded-2xl bg-white ring-1 ring-slate-200">
+            <div class="relative h-56 overflow-hidden bg-slate-100 bg-slate-100">
+              <img
+                src="https://shop.unitree.com/cdn/shop/files/df9f333424ff6cc6164ce421b019fb94_a6f832b0-479e-4294-ac75-6516208b91f4_900x.png?v=1718274082"
+                alt=""
+                class="absolute inset-0 h-full w-full object-cover object-center transition-transform duration-500 group-hover:scale-105">
+            </div>
+            <div class="flex flex-1 flex-col p-6 border-t-1 border-slate-200">
+              <div>
+                <h3 class="text-2xl font-semibold text-slate-700 transition-colors group-hover:text-sky-600">
+                  Unitree Go2
+                </h3>
+                <p class="mt-2 text-slate-600">
+                  Long-Endurance Drone Platform With Power-Line-Level Obstacle Sensing
+                </p>
+              </div>
+              <div class="mt-auto pt-6">
+                <a href="/products/detail"
+                  class="block w-full rounded-lg bg-slate-100 px-4 py-2 text-center text-sm font-semibold text-slate-700 ring-1 ring-slate-200 transition-colors duration-300 group-hover:bg-sky-600 group-hover:text-white">
+                  View Details
+                </a>
+              </div>
+            </div>
+          </div>
+          <div class="group flex h-full flex-col overflow-hidden rounded-2xl bg-white ring-1 ring-slate-200">
+            <div class="relative h-56 overflow-hidden bg-slate-100 bg-slate-100">
+              <img
+                src="https://shop.unitree.com/cdn/shop/files/7_715e53a1-4b3d-493a-bcfa-e3bc4c123e98_900x.jpg?v=1769774094"
+                alt=""
+                class="absolute inset-0 h-full w-full object-cover object-center transition-transform duration-500 group-hover:scale-105">
+            </div>
+            <div class="flex flex-1 flex-col p-6 border-t-1 border-slate-200">
+              <div>
+                <h3 class="text-2xl font-semibold text-slate-700 transition-colors group-hover:text-sky-600">
+                  Unitree A2
+                </h3>
+                <p class="mt-2 text-slate-600">
+                  Long-Endurance Drone Platform With Power-Line-Level Obstacle Sensing
+                </p>
+              </div>
+              <div class="mt-auto pt-6">
+                <a href="/products/detail"
+                  class="block w-full rounded-lg bg-slate-100 px-4 py-2 text-center text-sm font-semibold text-slate-700 ring-1 ring-slate-200 transition-colors duration-300 group-hover:bg-sky-600 group-hover:text-white">
+                  View Details
                 </a>
               </div>
             </div>

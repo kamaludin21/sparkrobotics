@@ -9,15 +9,35 @@ Route::get('/products/detail', [App\Http\Controllers\WelcomeController::class, '
 Route::get('/services', function() {
     return view('pages.services.index');
 });
+
+// News
 Route::get('/news', function() {
     return view('pages.news.index');
+});
+Route::get('/news/blog', function() {
+    return view('pages.news.blog');
 });
 Route::get('/news/download-center', function() {
     return view('pages.news.download-center');
 });
+Route::get('/news/detail', function() {
+    return view('pages.news.slug');
+});
 
-Route::get('/about', function() {
+Route::get('/about-us', function() {
     return view('pages.about.company-profile');
+});
+Route::get('/about-us/case-study', function() {
+    return view('pages.about.case-studies');
+});
+Route::get('/about-us/case-study', function() {
+    return view('pages.about.case-studies');
+});
+Route::get('/about-us/case-study/detail', function() {
+    return view('pages.about.case-study');
+});
+Route::get('/about-us/contact', function() {
+    return view('pages.about.contact');
 });
 
 Route::prefix('{locale}')

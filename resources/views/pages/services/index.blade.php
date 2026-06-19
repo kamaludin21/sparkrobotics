@@ -1,12 +1,12 @@
-@extends('layout.app')
+@extends('layout.app', ['activePage' => 'services'])
 
 @section('content')
-  <section class="py-20 bg-slate-50 relative" x-data="layananSpark()">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+  <section class="py-24 md:py-32 bg-slate-50 relative" x-data="layananSpark()">
+    <div class="main-wrapper px-4">
 
-      <div class="my-16 flex flex-col lg:flex-row lg:items-end justify-between gap-6 lg:gap-12">
+      <div class="mb-16 flex flex-col lg:flex-row lg:items-end justify-between gap-6 lg:gap-12">
         <div class="w-full lg:max-w-2xl space-y-4">
-          <h2 class="text-4xl lg:text-5xl font-semibold text-slate-800 tracking-tight">Solutions and Services</h2>
+          <h2 class="text-4xl md:text-5xl font-bold text-slate-700 font-jakarta">Solutions and Services</h2>
           <p class="text-lg text-slate-600 leading-relaxed">
             Solusi komprehensif kami memanfaatkan teknologi UAV, LiDAR, dan fotogrametri terdepan untuk menghadirkan
             akurasi dan efisiensi maksimal pada setiap tahap proyek industri Anda.
@@ -14,7 +14,7 @@
         </div>
 
         <div class="shrink-0">
-          <a href="#kontak"
+          <a href="/about-us/contact"
             class="inline-flex items-center justify-center px-7 py-3.5 text-base font-semibold text-white bg-sky-600 rounded-xl shadow-sm hover:bg-slate-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-sky-600 transition-all duration-300 group">
             Konsultasi Sekarang
             <svg class="w-5 h-5 ml-2.5 transform group-hover:translate-x-1.5 transition-transform duration-300"

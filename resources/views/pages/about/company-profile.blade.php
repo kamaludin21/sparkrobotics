@@ -1,4 +1,4 @@
-@extends('layout.app')
+@extends('layout.app', ['activePage' => 'about'])
 
 @section('content')
   <main class="w-full bg-white antialiased">
@@ -28,8 +28,7 @@
         <div class="mb-8 flex justify-center">
           <div
             class="relative rounded-full px-3 py-1 text-sm leading-6 text-gray-600 ring-1 ring-gray-900/10 hover:ring-gray-900/20 bg-white/50 backdrop-blur-sm">
-            Inovasi Drone Industri.
-            {{-- <a href="#" class="font-semibold text-blue-600"><span class="absolute inset-0" aria-hidden="true"></span>Pelajari lebih lanjut <span aria-hidden="true">&rarr;</span></a> --}}
+            Expertise Meets Excellence
           </div>
         </div>
 
@@ -37,7 +36,7 @@
           SPARK <span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-cyan-500">Robotics</span>
         </h1>
         <p class="mt-6 text-xl font-semibold leading-8 text-blue-600 uppercase tracking-[0.3em]">
-          Industrial Drone Solution Provider
+          Authorized Reseller of DJI Enterprise and Unitree
         </p>
         <p class="mt-4 text-lg leading-8 text-gray-600 max-w-2xl mx-auto">
           Distributor resmi teknologi <strong>DJI Enterprise</strong> dan <strong>Unitree Robotics</strong> di Indonesia.
@@ -46,7 +45,7 @@
       </div>
     </section>
 
-    <section class="max-w-7xl mx-auto grid grid-cols-3 gap-6 bg-white p-4">
+    {{-- <section class="max-w-7xl mx-auto grid grid-cols-3 gap-6 bg-white p-4">
 
       <div class="group relative flex w-full cursor-pointer flex-col overflow-hidden bg-slate-200 rounded-2xl">
         <div
@@ -95,9 +94,9 @@
         </div>
       </div>
 
-    </section>
+    </section> --}}
 
-    <section class="mx-auto max-w-7xl px-6 py-16 sm:py-24 lg:px-8">
+    <section class="main-wrapper px-4 py-16 sm:py-24">
       <div class="grid grid-cols-1 gap-y-16 lg:grid-cols-2 lg:gap-x-16 lg:items-center">
         <div>
           <h2 class="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">Siapa Kami?</h2>
@@ -131,7 +130,7 @@
     </section>
 
     <section class="bg-gray-900 py-16 sm:py-24">
-      <div class="mx-auto max-w-7xl px-6 lg:px-8">
+      <div class="main-wrapper px-4">
         <div class="mx-auto max-w-2xl lg:text-center">
           <h2 class="text-base font-semibold leading-7 text-blue-400">Jangkauan Layanan</h2>
           <p class="mt-2 text-3xl font-bold tracking-tight text-white sm:text-4xl">Industri yang Kami Dukung</p>
@@ -177,7 +176,7 @@
     </section>
 
     <section class="py-16 sm:py-24 bg-white">
-      <div class="mx-auto max-w-7xl px-6 lg:px-8">
+      <div class="main-wrapper px-4">
         <h2 class="text-center text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">Dipercaya Oleh</h2>
         <p class="mt-4 text-center text-lg leading-8 text-gray-600 max-w-3xl mx-auto">
           Hingga saat ini, SPARK Robotics telah memberikan layanan dan solusi terbaik kepada berbagai organisasi
@@ -218,9 +217,6 @@
           <img class="w-auto h-14" src="https://www.conocophillips.com/images/logo-black.svg" alt="">
           <img class="w-auto h-14" src="https://www.ptsi.co.id/images/logo-footer-surveyor.png" alt="">
           <img class="w-auto h-14" src="https://career.inpex.co.id/img/logov2.png" alt="">
-          <img class="w-auto h-14"
-            src="https://mnmd-api.pgn.co.id/prod-pgn-smart-access/strapi-assets/pln_92147f1c22.png?AWSAccessKeyId=8F0YlbLyrRp2LmwMTk6k&Expires=1781677595&Signature=9PdmGjswEiaNMFoIgfoj%2FI9mkTA%3D"
-            alt="">
           <img class="w-auto h-14"
             src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT8LFzAPCkw_tfzzIMnvr7OWh6_6LUp3L7MmA&s"
             alt="">

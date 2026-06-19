@@ -5,147 +5,24 @@
       'alt' => 'The New Generation Unitree Go2',
   ];
 @endphp
-@extends('layout.app')
-
+@extends('layout.app', ['activePage' => 'products'])
 @section('content')
   <main>
     <x-sections.hero title="The New Generation Unitree Go2" subtitle="A smart and improved partner"
       inquiryText="Place an Inquiry" :background="$bgImage" />
 
     {{-- Showcase --}}
-    {{-- <section class="my-32">
-      <div class="mx-auto container mb-4 px-2 md:px-4 lg:px-0">
-        <p class="text-6xl text-slate-700 font-semibold">Product</p>
-      </div>
-      <div class="bg-sky-600 py-6 md:py-4 px-2 md:px-4 lg:px-0">
-        <div class="container mx-auto grid grid-cols-1 md:grid-cols-4 gap-4 md:gap-2" x-data="{
-            isDown: false,
-            startX: 0,
-            scrollLeft: 0,
-            startDragging(e) {
-                this.isDown = true;
-                const pageX = e.pageX || (e.touches && e.touches[0].pageX);
-                this.startX = pageX - this.$refs.slider.offsetLeft;
-                this.scrollLeft = this.$refs.slider.scrollLeft;
-            },
-            stopDragging() {
-                this.isDown = false;
-            },
-            drag(e) {
-                if (!this.isDown) return;
-                e.preventDefault();
-                const pageX = e.pageX || (e.touches && e.touches[0].pageX);
-                const x = pageX - this.$refs.slider.offsetLeft;
-                const walk = (x - this.startX) * 1.5;
-                this.$refs.slider.scrollLeft = this.scrollLeft - walk;
-            },
-            slidePrev() {
-                // Bergeser dinamis mengikuti lebar item + gap (16px)
-                const itemWidth = this.$refs.slider.firstElementChild.offsetWidth + 16;
-                this.$refs.slider.scrollBy({ left: -itemWidth, behavior: 'smooth' });
-            },
-            slideNext() {
-                const itemWidth = this.$refs.slider.firstElementChild.offsetWidth + 16;
-                this.$refs.slider.scrollBy({ left: itemWidth, behavior: 'smooth' });
-            }
-        }">
-          <div class="h-auto md:h-72 w-full flex flex-col justify-between md:col-span-1">
-            <p class="text-6xl font-semibold text-white">Showcase</p>
-
-            <div class="hidden md:flex gap-2">
-              <button @click="slidePrev()"
-                class="bg-white rounded-full p-2 ring-1 ring-slate-700 hover:bg-slate-100 transition-colors">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
-                  class="h-8 w-auto rotate-180 text-slate-700">
-                  <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                  <path
-                    d="M9.707 5.293l6 6a1 1 0 0 1 0 1.414l-6 6a1 1 0 1 1 -1.414 -1.414l5.293 -5.293l-5.293 -5.293a1 1 0 0 1 1.414 -1.414" />
-                </svg>
-              </button>
-
-              <button @click="slideNext()"
-                class="bg-white rounded-full p-2 ring-1 ring-slate-700 hover:bg-slate-100 transition-colors">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
-                  class="h-8 w-auto text-slate-700">
-                  <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                  <path
-                    d="M9.707 5.293l6 6a1 1 0 0 1 0 1.414l-6 6a1 1 0 1 1 -1.414 -1.414l5.293 -5.293l-5.293 -5.293a1 1 0 0 1 1.414 -1.414" />
-                </svg>
-              </button>
-            </div>
-          </div>
-
-          <div
-            class="md:col-span-3 flex gap-4 overflow-x-auto no-scrollbar cursor-grab active:cursor-grabbing pb-2 md:pb-0"
-            x-ref="slider" @mousedown="startDragging" @mouseleave="stopDragging" @mouseup="stopDragging" @mousemove="drag"
-            @touchstart="startDragging" @touchend="stopDragging" @touchmove="drag">
-
-            <div
-              class="h-64 md:h-72 w-[85%] md:w-auto md:min-w-[calc(32%-1rem)] shrink-0 rounded-3xl overflow-hidden select-none bg-slate-200/30">
-              <img
-                src="https://shop.unitree.com/cdn/shop/files/df9f333424ff6cc6164ce421b019fb94_a6f832b0-479e-4294-ac75-6516208b91f4_900x.png"
-                draggable="false" class="w-full h-full object-cover pointer-events-none">
-            </div>
-
-            <div
-              class="h-64 md:h-72 w-[85%] md:w-auto md:min-w-[calc(32%-1rem)] shrink-0 rounded-3xl overflow-hidden select-none bg-slate-200/30">
-              <img src="https://shop.unitree.com/cdn/shop/files/24_900x.png?v=1718274083" draggable="false"
-                class="w-full h-full object-cover pointer-events-none">
-            </div>
-
-            <div
-              class="h-64 md:h-72 w-[85%] md:w-auto md:min-w-[calc(32%-1rem)] shrink-0 rounded-3xl overflow-hidden select-none bg-slate-200/30">
-              <img src="https://shop.unitree.com/cdn/shop/files/23_900x.png?v=1718274083" draggable="false"
-                class="w-full h-full object-cover pointer-events-none">
-            </div>
-
-            <div
-              class="h-64 md:h-72 w-[85%] md:w-auto md:min-w-[calc(32%-1rem)] shrink-0 rounded-3xl overflow-hidden select-none bg-slate-200/30">
-              <img src="https://shop.unitree.com/cdn/shop/files/21_900x.png?v=1718274083" draggable="false"
-                class="w-full h-full object-cover pointer-events-none">
-            </div>
-
-          </div>
-
-          <div class="flex gap-4 md:hidden justify-center items-center mt-2">
-            <button @click="slidePrev()"
-              class="bg-white rounded-full p-2 ring-1 ring-slate-700 active:bg-slate-100 transition-colors">
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
-                class="h-8 w-auto rotate-180 text-slate-700">
-                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                <path
-                  d="M9.707 5.293l6 6a1 1 0 0 1 0 1.414l-6 6a1 1 0 1 1 -1.414 -1.414l5.293 -5.293l-5.293 -5.293a1 1 0 0 1 1.414 -1.414" />
-              </svg>
-            </button>
-
-            <button @click="slideNext()"
-              class="bg-white rounded-full p-2 ring-1 ring-slate-700 active:bg-slate-100 transition-colors">
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
-                class="h-8 w-auto text-slate-700">
-                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                <path
-                  d="M9.707 5.293l6 6a1 1 0 0 1 0 1.414l-6 6a1 1 0 1 1 -1.414 -1.414l5.293 -5.293l-5.293 -5.293a1 1 0 0 1 1.414 -1.414" />
-              </svg>
-            </button>
-          </div>
-
-        </div>
-      </div>
-    </section> --}}
-
-    {{-- Showcase --}}
-    <section class="my-20 md:my-32 w-full bg-sky-600">
-      <!-- Product -->
+    <section class="mt-24 w-full overflow-x-hidden bg-sky-600 md:mt-32">
       <div class="bg-white pb-3">
-        <div class="container mx-auto px-2 md:px-4 lg:px-0">
-          <p class="text-6xl font-semibold text-slate-700">Product</p>
+        <div class="mx-auto w-full px-4 md:max-w-4xl lg:max-w-7xl">
+          <p class="text-5xl font-semibold text-slate-700 md:text-6xl">Product</p>
         </div>
       </div>
-      <!-- Showcase hidden below lg:-->
-      <div class="bg-sky-600 py-3 container mx-auto px-2 md:px-4 lg:px-0">
-        <p class="text-6xl font-semibold text-white">Showcase</p>
+      <div class="mx-auto w-full bg-sky-600 px-4 py-3 md:max-w-4xl lg:max-w-7xl">
+        <p class="text-5xl font-semibold text-white md:text-6xl">Showcase</p>
       </div>
-      <div class="container mx-auto flex flex-col lg:flex-row gap-3 lg:gap-12 pb-4 pl-2 md:pl-4 lg:pl-0"
+
+      <div class="mx-auto flex w-full flex-col gap-3 pb-4 pl-4 md:max-w-4xl lg:max-w-7xl lg:flex-row lg:gap-12"
         x-data="{
             isDown: false,
             startX: 0,
@@ -177,9 +54,8 @@
                 this.$refs.slider.scrollBy({ left: itemWidth, behavior: 'smooth' });
             }
         }">
-        <!-- Product Slide -->
         <div
-          class="no-scrollbar order-1 mt-0 flex w-full cursor-grab gap-4 overflow-x-auto pb-2 active:cursor-grabbing lg:order-2 lg:col-span-3 lg:-mt-12 lg:w-3/4 lg:pb-0"
+          class="no-scrollbar order-1 mt-0 -mr-[calc(50vw-50%)] flex w-auto gap-4 overflow-x-auto pr-4 pb-2 lg:order-2 lg:-mt-12 lg:flex-1 lg:pb-0"
           x-ref="slider" @mousedown="startDragging" @mouseleave="stopDragging" @mouseup="stopDragging" @mousemove="drag"
           @touchstart="startDragging" @touchend="stopDragging" @touchmove="drag">
           <div
@@ -195,6 +71,11 @@
           </div>
           <div
             class="h-72 w-[85%] shrink-0 overflow-hidden rounded-3xl bg-slate-200/30 select-none md:h-72 md:w-auto md:min-w-[calc(32%-1rem)]">
+            <img src="https://www.unitree.com/images/ea2d2b637df84e3bacd508cd1f2711e5_2744x1596.jpg" draggable="false"
+              class="pointer-events-none h-full w-full object-cover" />
+          </div>
+          <div
+            class="h-72 w-[85%] shrink-0 overflow-hidden rounded-3xl bg-slate-200/30 select-none md:h-72 md:w-auto md:min-w-[calc(32%-1rem)]">
             <img src="https://shop.unitree.com/cdn/shop/files/23_900x.png" draggable="false"
               class="pointer-events-none h-full w-full object-cover" />
           </div>
@@ -203,13 +84,8 @@
             <img src="https://shop.unitree.com/cdn/shop/files/21_900x.png" draggable="false"
               class="pointer-events-none h-full w-full object-cover" />
           </div>
-          <div
-            class="h-72 w-[85%] shrink-0 overflow-hidden rounded-3xl bg-slate-200/30 select-none md:h-72 md:w-auto md:min-w-[calc(32%-1rem)]">
-            <img src="https://www.unitree.com/images/ea2d2b637df84e3bacd508cd1f2711e5_2744x1596.jpg" draggable="false"
-              class="pointer-events-none h-full w-full object-cover" />
-          </div>
         </div>
-        <!-- Button -->
+
         <div class="flex-justify-between order-2 flex w-full items-end gap-2 lg:order-1 lg:w-1/4">
           <button @click="slidePrev()"
             class="rounded-full bg-white p-2 ring-1 ring-slate-700 transition-colors hover:bg-slate-100">
@@ -233,12 +109,13 @@
         </div>
       </div>
     </section>
+
     {{-- Showcase --}}
 
     {{-- Fitur --}}
-    <section class="container mx-auto my-20 md:my-32 px-2 md:px-4 lg:px-0">
+    <section class="main-wrapper mt-24 md:mt-32 px-4">
       <div class="max-w-2xl mx-auto text-center mb-6">
-        <p class="text-6xl text-slate-700 font-semibold">Rich of Features</p>
+        <p class="text-5xl md:text-6xl text-slate-700 font-semibold">Rich of Features</p>
       </div>
       <div class="bg-slate-200 p-6 rounded-4xl">
         <div class="columns-1 gap-4 sm:columns-2">
@@ -267,9 +144,9 @@
     </section>
 
     {{-- Product Spec: ref -> https://emlid.com/reachrs4pro/ --}}
-    <section class="container mx-auto my-20 md:my-32 flex flex-col md:flex-row gap-6 px-2 md:px-4 lg:px-0">
+    <section class="main-wrapper mt-24 md:mt-32 flex flex-col md:flex-row gap-6 px-4">
       <div class="w-full mb-0 md:mb-6 space-y-4 md:w-1/2 ">
-        <p class="text-6xl text-slate-800 font-semibold">Specification</p>
+        <p class="text-5xl md:text-6xl text-slate-700 font-semibold">Specification</p>
         <div class="text-base text-slate-600 font-medium">
           <div
             class="border-b hover:bg-slate-300 cursor-pointer border-slate-400 border-dashed w-fit flex items-center gap-1">
@@ -379,8 +256,8 @@
       </div>
     </section>
 
-    <section class="py-20 md:py-32 bg-slate-50">
-      <div class="container mx-auto px-2 md:px-4 lg:px-0" x-data="{
+    <section class="py-20 md:py-32 bg-slate-100">
+      <div class="main-wrapper px-4" x-data="{
           isDown: false,
           startX: 0,
           scrollLeft: 0,
@@ -415,7 +292,7 @@
 
         <div class="flex items-end justify-between mb-8">
           <div>
-            <p class="text-6xl text-slate-800 font-semibold">Featured Models</p>
+            <p class="text-5xl md:text-6xl text-slate-700 font-semibold">Featured Models</p>
           </div>
 
           <div class="flex gap-2 lg:hidden">
@@ -442,17 +319,20 @@
 
           <div
             class="w-full shrink-0 h-full flex flex-col bg-white border border-slate-200 rounded-3xl overflow-hidden group select-none transition hover:shadow-lg hover:border-sky-200">
-            <div class="h-56 shrink-0 bg-slate-100 overflow-hidden relative">
-              <img src="https://shop.unitree.com/cdn/shop/files/df9f333424ff6cc6164ce421b019fb94_a6f832b0-479e-4294-ac75-6516208b91f4_900x.png" alt="Unitree Aliengo"
+            <div class="h-56 shrink-0 bg-slate-200 overflow-hidden relative">
+              <img
+                src="https://shop.unitree.com/cdn/shop/files/df9f333424ff6cc6164ce421b019fb94_a6f832b0-479e-4294-ac75-6516208b91f4_900x.png"
+                alt="Unitree Aliengo"
                 class="w-full h-full object-cover pointer-events-none transition-transform duration-500 group-hover:scale-105">
             </div>
             <div class="p-6 flex-1 flex flex-col justify-between">
               <div>
                 <h3 class="text-xl font-bold text-slate-800 mb-1">Unitree Go2 Pro</h3>
-                <p class="text-slate-500 text-sm mb-4 line-clamp-2">The next generation standard for bionic quadruped robots</p>
+                <p class="text-slate-500 text-sm mb-4 line-clamp-2">The next generation standard for bionic quadruped
+                  robots</p>
               </div>
               <button
-                class="text-sm font-semibold text-slate-800 bg-slate-100 px-4 py-2 rounded-full hover:bg-slate-200 transition self-start">
+                class="text-sm font-semibold text-slate-800 bg-slate-200 px-4 py-2 rounded-full hover:bg-slate-200 transition self-start">
                 Detail
               </button>
             </div>
@@ -460,17 +340,18 @@
 
           <div
             class="w-full shrink-0 h-full flex flex-col bg-white border border-slate-200 rounded-3xl overflow-hidden group select-none transition hover:shadow-lg hover:border-sky-200">
-            <div class="h-56 shrink-0 bg-slate-100 overflow-hidden relative">
+            <div class="h-56 shrink-0 bg-slate-200 overflow-hidden relative">
               <img src="https://shop.unitree.com/cdn/shop/files/24_900x.png" alt="Unitree Aliengo"
                 class="w-full h-full object-cover pointer-events-none transition-transform duration-500 group-hover:scale-105">
             </div>
             <div class="p-6 flex-1 flex flex-col justify-between">
               <div>
                 <h3 class="text-xl font-bold text-slate-800 mb-1">Unitree B2</h3>
-                <p class="text-slate-500 text-sm mb-4 line-clamp-2">Industrial grade robot dog built for extreme performance</p>
+                <p class="text-slate-500 text-sm mb-4 line-clamp-2">Industrial grade robot dog built for extreme
+                  performance</p>
               </div>
               <button
-                class="text-sm font-semibold text-slate-800 bg-slate-100 px-4 py-2 rounded-full hover:bg-slate-200 transition self-start">
+                class="text-sm font-semibold text-slate-800 bg-slate-200 px-4 py-2 rounded-full hover:bg-slate-200 transition self-start">
                 Detail
               </button>
             </div>
@@ -478,7 +359,7 @@
 
           <div
             class="w-full shrink-0 h-full flex flex-col bg-white border border-slate-200 rounded-3xl overflow-hidden group select-none transition hover:shadow-lg hover:border-sky-200">
-            <div class="h-56 shrink-0 bg-slate-100 overflow-hidden relative">
+            <div class="h-56 shrink-0 bg-slate-200 overflow-hidden relative">
               <img src="https://shop.unitree.com/cdn/shop/files/23_900x.png" alt="Unitree Aliengo"
                 class="w-full h-full object-cover pointer-events-none transition-transform duration-500 group-hover:scale-105">
             </div>
@@ -488,7 +369,7 @@
                 <p class="text-slate-500 text-sm mb-4 line-clamp-2">General-purpose humanoid robot with highest speed</p>
               </div>
               <button
-                class="text-sm font-semibold text-slate-800 bg-slate-100 px-4 py-2 rounded-full hover:bg-slate-200 transition self-start">
+                class="text-sm font-semibold text-slate-800 bg-slate-200 px-4 py-2 rounded-full hover:bg-slate-200 transition self-start">
                 Detail
               </button>
             </div>
@@ -496,7 +377,7 @@
 
           <div
             class="w-full shrink-0 h-full flex flex-col bg-white border border-slate-200 rounded-3xl overflow-hidden group select-none transition hover:shadow-lg hover:border-sky-200">
-            <div class="h-56 shrink-0 bg-slate-100 overflow-hidden relative">
+            <div class="h-56 shrink-0 bg-slate-200 overflow-hidden relative">
               <img src="https://shop.unitree.com/cdn/shop/files/21_900x.png?v=1718274083" alt="Unitree Aliengo"
                 class="w-full h-full object-cover pointer-events-none transition-transform duration-500 group-hover:scale-105">
             </div>
@@ -506,7 +387,7 @@
                 <p class="text-slate-500 text-sm mb-4 line-clamp-2">Robust AI robot for advanced research.</p>
               </div>
               <button
-                class="text-sm font-semibold text-slate-800 bg-slate-100 px-4 py-2 rounded-full hover:bg-slate-200 transition self-start">
+                class="text-sm font-semibold text-slate-800 bg-slate-200 px-4 py-2 rounded-full hover:bg-slate-200 transition self-start">
                 Detail
               </button>
             </div>
@@ -515,9 +396,8 @@
         </div>
       </div>
     </section>
-
-    <section class="bg-radial-[at_50%_75%] from-sky-400 via-sky-600 to-sky-800 to-90% py-20 md:py-32 px-2 md:px-4 lg:px-0">
-      <div class="flex flex-col lg:flex-row gap-6 items-center justify-between container mx-auto">
+    <section class="bg-radial-[at_50%_75%] from-sky-400 via-sky-600 to-sky-800 to-90% py-20 md:py-32 px-4">
+      <div class="flex flex-col lg:flex-row gap-6 items-center justify-between main-wrapper ">
         <div class="max-w-xl">
           <h2 class="text-5xl font-medium font-jakarta text-slate-50 mb-4 max-w-3xl mx-auto">Experience the Product in
             Action</h2>
@@ -526,11 +406,8 @@
             designed to support your daily needs.</p>
         </div>
         <div class="flex justify-center gap-4">
-          <a href="#produk" class="bg-black px-5 py-2 rounded-full text-white font-semibold text-base">
-            Contact Us
-          </a>
-          <a href="#produk" class="bg-white px-5 py-2 rounded-full text-slate-800 font-semibold text-base">
-            Explore Our Catalog
+          <a href="/about-us/contact" class="bg-black px-5 py-2 rounded-full text-white font-semibold text-base">
+            Place an Inquiry
           </a>
         </div>
       </div>
