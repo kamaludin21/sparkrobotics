@@ -217,7 +217,6 @@
         </a>
       </div>
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mt-12">
-
         <div class="group flex h-full flex-col overflow-hidden rounded-2xl bg-white ring-1 ring-slate-200">
           <div class="relative h-56 overflow-hidden bg-slate-100 bg-slate-100">
             <img src="https://fujishop.id/wp-content/uploads/2025/11/DJI-Dock-3-Overseas-Edition-01.jpg" alt=""
@@ -285,7 +284,6 @@
             </div>
           </div>
         </div>
-
         {{-- <div class="group flex h-full flex-col overflow-hidden rounded-2xl bg-white ring-1 ring-slate-200">
           <div class="relative h-56 overflow-hidden bg-slate-100">
             <img src="{{ asset('images/S10-1-300x600.png') }}" alt=""
@@ -354,7 +352,6 @@
             </div>
           </div>
         </div> --}}
-
       </div>
       <a href="/products"
         class="flex lg:hidden gap-2 w-fit justify-center items-center px-6 py-2 bg-sky-600 rounded-full text-white mx-auto mt-6">
@@ -371,7 +368,7 @@
     {{-- Products --}}
 
     {{-- Why Choose Us --}}
-    <section class="bg-white pt-16 antialiased sm:pt-24">
+    <section class="bg-white mt-24 md:mt-32 antialiased">
       <div class="main-wrapper px-4">
         <div class="max-w-2xl">
           <p class="text-2xl text-slate-500 font-normal tracking-tight">Why Choose Us</p>
@@ -502,7 +499,7 @@
     {{-- Why Choose Us --}}
 
     {{-- About Company --}}
-    <section class="relative mx-auto mt-24 h-auto px-4 pb-10 lg:mt-72 lg:h-[30rem]">
+    <section class="relative mx-auto mt-48 h-auto px-4 pb-10 lg:mt-72 lg:h-[30rem]">
       <div class="absolute inset-0 z-0 overflow-hidden bg-sky-800">
         <div class="absolute -top-10 -left-10">
           <x-icons.drone class="h-60 w-auto text-sky-900" />
