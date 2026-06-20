@@ -117,7 +117,7 @@
       <div class="max-w-2xl mx-auto text-center mb-6">
         <p class="text-5xl md:text-6xl text-slate-700 font-semibold">Rich of Features</p>
       </div>
-      <div class="bg-slate-200 p-6 rounded-4xl">
+      <div class="bg-slate-200 p-4 md:p-6 rounded-4xl">
         <div class="columns-1 gap-4 sm:columns-2">
           <div class="mb-4 break-inside-avoid">
             <img src="https://www.unitree.com/images/b5fffd3e4fc04e6f9fcafedb9516b341_3840x2146.jpg" alt="Gallery 1"

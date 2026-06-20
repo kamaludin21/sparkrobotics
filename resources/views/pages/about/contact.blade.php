@@ -62,7 +62,7 @@
         </div>
       </div>
 
-      <div class="relative overflow-hidden rounded-2xl bg-white p-8 text-slate-800 shadow-2xl sm:p-12">
+      <div class="relative overflow-hidden rounded-2xl bg-white p-4 text-slate-800 shadow-2xl sm:p-12">
         <svg class="pointer-events-none absolute top-0 right-0 translate-x-1/2 -translate-y-1/2 transform text-slate-200"
           width="250" height="250" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
           <circle cx="100" cy="100" r="60" stroke="currentColor" stroke-width="1.5" opacity="0.5" />
@@ -102,7 +102,7 @@
                       <polyline points="22,6 12,13 2,6"></polyline>
                     </svg>
                   </div>
-                  <input type="email" placeholder="olivia@untitledui.com"
+                  <input type="email" placeholder="olivia@company.com"
                     class="w-full rounded-lg border border-slate-300 py-3 pr-4 pl-10 placeholder-slate-400 transition-all outline-none focus:border-transparent focus:ring-2 focus:ring-sky-600" />
                 </div>
               </div>
@@ -110,15 +110,6 @@
                 <label class="block text-sm font-medium text-slate-700">Phone number</label>
                 <div
                   class="flex overflow-hidden rounded-lg border border-slate-300 transition-all focus-within:ring-2 focus-within:ring-sky-600">
-                  <div
-                    class="flex items-center gap-1 border-r border-slate-300 bg-white px-3 py-3 text-sm font-medium text-slate-600">
-                    ID
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24"
-                      fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                      stroke-linejoin="round">
-                      <polyline points="6 9 12 15 18 9"></polyline>
-                    </svg>
-                  </div>
                   <input type="tel" placeholder="+62 812 0000 0000"
                     class="w-full px-4 py-3 placeholder-slate-400 outline-none" />
                 </div>

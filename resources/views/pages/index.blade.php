@@ -6,8 +6,8 @@
     <section class="main-wrapper pt-14 md:pt-24 px-4">
       <div
         class="bg-radial-[at_50%_75%] from-sky-400 via-sky-600 to-sky-900 to-90% h-auto flex items-center rounded-3xl flex-col justify-between ">
-        <div class="max-w-2xl mx-auto px-6 py-12 rounded-lg text-center">
-          <div class="inline-flex items-center gap-2 px-3 py-1 mb-6 rounded-md bg-slate-900/30">
+        <div class="max-w-2xl mx-auto px-3 md:px-6 py-12 rounded-lg text-center">
+          <div class="inline-flex items-center gap-2 px-2 py-1 mb-6 rounded-md bg-slate-900/30">
             <span class="w-2 h-2 rounded-full bg-blue-500 animate-pulse"></span>
             <span class="text-xs font-jakarta text-slate-200 uppercase tracking-wider font-semibold">
               Authorized Reseller of DJI & Unitree
@@ -15,18 +15,18 @@
           </div>
           <h2 class="text-5xl md:text-6xl font-medium font-jakarta text-white mb-4 ">Spark Robotics</h2>
           <p class="text-xl font-jakarta text-slate-100 italic mb-6">Expertise Meets Excellence</p>
-          <div class="flex justify-center gap-4">
+          <div class="flex justify-center gap-2 md:gap-4">
             <a href="/about-us/contact" class="bg-slate-800 px-5 py-2 rounded-full text-white font-semibold text-base">
               Contact Us
             </a>
             <a href="/products" class="bg-white px-5 py-2 rounded-full text-slate-800   font-semibold text-base">
-              See Catalogues
+              See Catalogs
             </a>
           </div>
         </div>
         <div class="flex justify-center items-end">
           <img src="{{ asset('images/robotic.png') }}" alt="Hero Image"
-            class="w-full h-72 object-contain md:object-cover object-bottom">
+            class="w-full h-44 md:h-72 object-contain md:object-cover object-bottom">
         </div>
       </div>
     </section>
@@ -148,14 +148,11 @@
           </div>
 
           <!-- Top Right Black Card -->
-          <div class="flex flex-col justify-between rounded-2xl bg-black p-6 md:col-span-3">
-            <h3 class="text-2xl font-bold uppercase leading-tight text-white">
+          <div class="flex flex-col justify-between rounded-2xl bg-black p-4 md:p-6 md:col-span-3">
+            <h3 class="text-xl md:text-2xl font-bold uppercase leading-tight text-white">
               DJI ECOSYSTEM EXPANSION
             </h3>
-
             <div class="space-y-3">
-
-
               <p class="text-sm text-white/70">
                 With a mission to promote technological openness, the DJI Enterprise Ecosystem aims to encourage more
                 developers to join, driving the drone industry forward for the benefit of all.
@@ -164,12 +161,10 @@
           </div>
 
           <!-- Bottom Middle Black Card -->
-          <div class="flex flex-col justify-between rounded-2xl bg-black p-6 md:col-span-3">
-            <div>
-              <h3 class="text-2xl md:text-3xl font-black uppercase leading-tight text-white">
+          <div class="flex flex-col justify-between rounded-2xl bg-black p-4 md:p-6 md:col-span-3">
+            <h3 class="text-xl md:text-3xl font-bold md:font-black uppercase leading-tight text-white">
                 We have a strong ecosystem of partners and solutions
               </h3>
-            </div>
 
             <div class="space-y-4">
               <p class="text-sm text-white/70">
@@ -188,9 +183,7 @@
           <div class="relative overflow-hidden col-span-2 rounded-2xl md:col-span-3 lg:col-span-4">
             <img src="https://www.unitree.com/images/eec8d82f279b440ea170982ffa80b3fa_3840x2160.jpg" alt=""
               class="h-full w-full object-cover" />
-
             <div class="absolute inset-0 bg-black/10"></div>
-
             <div class="absolute bottom-4 left-4">
               <p
                 class="inline-flex items-center text-2xl font-bold leading-none font-bold tracking-tight text-slate-100 uppercase">
@@ -364,7 +357,7 @@
 
       </div>
       <a href="/products"
-        class="flex lg:hidden gap-2 w-fit justify-center items-center px-6 py-2 bg-sky-600 rounded-full text-white mx-auto mt-12">
+        class="flex lg:hidden gap-2 w-fit justify-center items-center px-6 py-2 bg-sky-600 rounded-full text-white mx-auto mt-6">
         <span>Explore More</span>
         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
           stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" class="h-7 w-auto">
@@ -474,19 +467,19 @@
         <div class="mt-10 space-y-8">
           <p class="text-center text-2xl font-semibold text-slate-700">Trusted Global Brands</p>
           <!-- Brands & Clients Logos (Tab-Style) -->
-          <div class="flex flex-wrap items-center justify-center gap-6 md:gap-12">
+          <div class="flex flex-wrap items-center justify-center gap-4 md:gap-12">
             <img src="https://www-cdn.djiits.com/dps/ff086756c6f7151c92080074044f7ac3.svg" alt="DJI"
-              class="h-10 w-auto duration-300 hover:scale-105" />
+              class="h-6 md:h-10 w-auto duration-300 hover:scale-105" />
             <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/fc/Unitree.svg/1280px-Unitree.svg.png"
-              alt="Unitree" class="h-10 w-auto duration-300 hover:scale-105" />
+              alt="Unitree" class="h-6 md:h-10 w-auto duration-300 hover:scale-105" />
             <img src="https://docs.emlid.com/emlid-studio/img/logo.svg" alt="EMLID"
-              class="h-10 w-auto duration-300 hover:scale-105" />
+              class="h-6 md:h-10 w-auto duration-300 hover:scale-105" />
             <img src="https://11918092.s21i.faiusr.com/4/ABUIABAEGAAgicK1lgYo_czmvQcwpQc4wQE.png" alt="EMLID"
-              class="h-10 w-auto duration-300 hover:scale-105" />
+              class="h-6 md:h-10 w-auto duration-300 hover:scale-105" />
             <img src="https://topodrone.com/upload/iblock/aa2/3p692r723ddh9bu0tqfwvjc94z2reb5p.png" alt="EMLID"
-              class="h-10 w-auto duration-300 hover:scale-105" />
+              class="h-6 md:h-10 w-auto duration-300 hover:scale-105" />
             <img src="https://upload.wikimedia.org/wikipedia/commons/8/83/Pix4D_logo.png" alt="EMLID"
-              class="h-10 w-auto duration-300 hover:scale-105" />
+              class="h-6 md:h-10 w-auto duration-300 hover:scale-105" />
             <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT2jzYEIgkzPiMS_O0Rk7PFUFmZ8v7BFizUVQ&s"
               alt="EMLID" class="h-10 w-auto duration-300 hover:scale-105" />
             {{-- SKYDIO --}}
@@ -509,7 +502,7 @@
     {{-- Why Choose Us --}}
 
     {{-- About Company --}}
-    <section class="relative mx-auto mt-24 h-auto px-4 pb-10 lg:mt-72 lg:h-[30rem] lg:pb-0 lg:px-0">
+    <section class="relative mx-auto mt-24 h-auto px-4 pb-10 lg:mt-72 lg:h-[30rem]">
       <div class="absolute inset-0 z-0 overflow-hidden bg-sky-800">
         <div class="absolute -top-10 -left-10">
           <x-icons.drone class="h-60 w-auto text-sky-900" />
@@ -519,7 +512,7 @@
           <x-icons.drone class="h-60 w-auto text-sky-900" />
         </div>
       </div>
-      <div class="relative z-10 main-wrapper flex h-auto lg:h-full w-full flex-col gap-8 p-6 text-white lg:gap-0">
+      <div class="relative z-10 main-wrapper flex h-auto lg:h-full w-full flex-col gap-8 text-white lg:gap-0">
         <div class="relative -mt-14 lg:-mt-40" x-data="{
             scrollNext() { $refs.slider.scrollBy({ left: $refs.slider.clientWidth * 0.85, behavior: 'smooth' }); },
                 scrollPrev() { $refs.slider.scrollBy({ left: -($refs.slider.clientWidth * 0.85), behavior: 'smooth' }); }
@@ -574,13 +567,13 @@
     {{-- About Company --}}
 
     {{-- Latest blog --}}
-    <section class="main-wrapper mt-24 md:mt-32 px-4">
+    <section class="main-wrapper py-24 md:py-32 px-4">
       <div class="mb-2">
         <p class="text-2xl text-slate-500 font-normal tracking-tight">News</p>
       </div>
       <div class="flex justify-between items-end">
         <p class="text-4xl font-semibold text-slate-700 font-jakarta">Recent release</p>
-        <a href="/news" class="flex gap-2 items-center px-6 py-2 bg-sky-600 rounded-full text-white">
+        <a href="/news" class="hidden md:flex gap-2 items-center px-6 py-2 bg-sky-600 rounded-full text-white">
           <span>See More</span>
           <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
             stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"
@@ -627,6 +620,17 @@
         </div>
 
       </div>
+      <a href="/news" class="flex md:hidden gap-2 items-center px-6 py-2 bg-sky-600 rounded-full text-white mt-6 w-fit mx-auto">
+          <span>See More</span>
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+            stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"
+            class="h-7 w-auto">
+            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+            <path d="M5 12l14 0" />
+            <path d="M15 16l4 -4" />
+            <path d="M15 8l4 4" />
+          </svg>
+        </a>
     </section>
     {{-- Latest blog --}}
 
@@ -640,12 +644,12 @@
         <p class="text-xl font-jakarta text-slate-100 mb-6 max-w-3xl mx-auto">Contact us today to discover how our
           products
           can transform your operations and drive innovation</p>
-        <div class="flex justify-center gap-4">
-          <a href="/about-us/contact" class="bg-black px-5 py-2 rounded-full text-white   font-semibold text-base">
+        <div class="flex justify-center gap-2 md:gap-4">
+          <a href="/about-us/contact" class="bg-black px-3 md:px-5 py-2 rounded-full text-white   font-semibold text-base">
             Contact Us
           </a>
-          <a href="/products" class="bg-white px-5 py-2 rounded-full text-slate-800   font-semibold text-base">
-            Explore Our Catalog
+          <a href="/products" class="bg-white px-3 md:px-5 py-2 rounded-full text-slate-800   font-semibold text-base">
+            Explore Catalogs
           </a>
         </div>
       </div>
