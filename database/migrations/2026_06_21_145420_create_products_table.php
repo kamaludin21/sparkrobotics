@@ -11,19 +11,19 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('articles', function (Blueprint $table) {
+        Schema::create('products', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
         });
 
-        Schema::create('article_translations', function (Blueprint $table) {
+        Schema::create('product_translations', function (Blueprint $table) {
             $table->increments('id');
-            $table->unsignedBigInteger('article_id');
+            $table->unsignedBigInteger('product_id');
             $table->string('locale')->index();
             $table->string('title');
             $table->text('content');
-            $table->unique(['article_id', 'locale']);
-            $table->foreign('article_id')->references('id')->on('articles')->onDelete('cascade');
+            $table->unique(['product_id', 'locale']);
+            $table->foreign('product_id')->references('id')->on('products')->onDelete('cascade');
         });
     }
 
@@ -32,6 +32,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('articles');
+        Schema::dropIfExists('products');
     }
 };

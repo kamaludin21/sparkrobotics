@@ -44,59 +44,7 @@
         </p>
       </div>
     </section>
-
-    {{-- <section class="max-w-7xl mx-auto grid grid-cols-3 gap-6 bg-white p-4">
-
-      <div class="group relative flex w-full cursor-pointer flex-col overflow-hidden bg-slate-200 rounded-2xl">
-        <div
-          class="absolute top-1/2 left-1/2 z-0 aspect-square w-[250%] -translate-x-1/2 -translate-y-1/2 scale-0 rounded-full bg-sky-600 transition-transform duration-500 ease-out group-hover:scale-100">
-        </div>
-
-        <div class="relative z-10 mx-auto flex h-full w-fit flex-col pt-6">
-          <div class="mx-auto w-fit py-6">
-            <p class="text-7xl font-bold text-slate-900 transition-colors duration-300 group-hover:text-white">2001</p>
-          </div>
-          <div class="mx-auto mt-auto w-fit bg-sky-600 px-2 py-1 ">
-            <p class="text-lg font-medium text-white">Established</p>
-          </div>
-        </div>
-      </div>
-
-      <div class="group relative flex w-full cursor-pointer flex-col overflow-hidden bg-slate-200 rounded-2xl">
-        <div
-          class="absolute top-1/2 left-1/2 z-0 aspect-square w-[250%] -translate-x-1/2 -translate-y-1/2 scale-0 rounded-full bg-cyan-500 transition-transform duration-500 ease-out group-hover:scale-100">
-        </div>
-
-        <div class="relative z-10 mx-auto flex h-full w-fit flex-col pt-6">
-          <div class="mx-auto w-fit py-6">
-            <p class="text-7xl font-bold text-slate-900 transition-colors duration-300 group-hover:text-white">300+</p>
-          </div>
-
-          <div class="mx-auto mt-auto w-fit bg-cyan-500 px-2 py-1">
-            <p class="text-lg font-medium text-white">Client</p>
-          </div>
-        </div>
-      </div>
-
-      <div class="group relative flex w-full cursor-pointer flex-col overflow-hidden bg-slate-200 rounded-2xl">
-        <div
-          class="absolute top-1/2 left-1/2 z-0 aspect-square w-[250%] -translate-x-1/2 -translate-y-1/2 scale-0 rounded-full bg-orange-500 transition-transform duration-500 ease-out group-hover:scale-100">
-        </div>
-
-        <div class="relative z-10 mx-auto flex h-full w-fit flex-col pt-6">
-          <div class="mx-auto w-fit py-6">
-            <p class="text-7xl font-bold text-slate-900 transition-colors duration-300 group-hover:text-white">100+</p>
-          </div>
-
-          <div class="mx-auto mt-auto w-fit bg-orange-500 px-2 py-1">
-            <p class="text-lg font-medium text-white">Services</p>
-          </div>
-        </div>
-      </div>
-
-    </section> --}}
-
-    <section class="main-wrapper px-4 py-16 sm:py-24">
+    <section class="main-wrapper px-4 py-16">
       <div class="grid grid-cols-1 gap-y-16 lg:grid-cols-2 lg:gap-x-16 lg:items-center">
         <div>
           <h2 class="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">Siapa Kami?</h2>
