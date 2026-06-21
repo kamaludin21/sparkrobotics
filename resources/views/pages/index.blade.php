@@ -10,17 +10,17 @@
           <div class="inline-flex items-center gap-2 px-2 py-1 mb-6 rounded-md bg-slate-900/30">
             <span class="w-2 h-2 rounded-full bg-blue-500 animate-pulse"></span>
             <span class="text-xs font-jakarta text-slate-200 uppercase tracking-wider font-semibold">
-              Authorized Reseller of DJI & Unitree
+              {{ t('home_title') }}
             </span>
           </div>
-          <h2 class="text-5xl md:text-6xl font-medium font-jakarta text-white mb-4 ">Spark Robotics</h2>
-          <p class="text-xl font-jakarta text-slate-100 italic mb-6">Expertise Meets Excellence</p>
+          <h2 class="text-5xl md:text-6xl font-medium font-jakarta text-white mb-4 ">{{ t('brand_spark_robotics') }}</h2>
+          <p class="text-xl font-jakarta text-slate-100 italic mb-6">{{ t('home_cta_tagline') }}</p>
           <div class="flex justify-center gap-2 md:gap-4">
-            <a href="/about-us/contact" class="bg-slate-800 px-5 py-2 rounded-full text-white font-semibold text-base">
-              Contact Us
+            <a href="{{ locale_route('about.contact') }}" class="bg-slate-800 px-5 py-2 rounded-full text-white font-semibold text-base">
+              {{ t('home_cta_contact') }}
             </a>
-            <a href="/products" class="bg-white px-5 py-2 rounded-full text-slate-800   font-semibold text-base">
-              See Catalogs
+            <a href="{{ locale_route('products.index') }}" class="bg-white px-5 py-2 rounded-full text-slate-800   font-semibold text-base">
+              {{ t('home_cta_catalogs') }}
             </a>
           </div>
         </div>
@@ -105,8 +105,8 @@
     {{-- Category --}}
     <section class="main-wrapper mt-24 md:mt-32 gap-8 px-4 space-y-12">
       <div class="w-full text-center space-y-2">
-        <p class="text-2xl text-slate-500 font-normal tracking-tight">Product Segments</p>
-        <p class="text-4xl font-semibold text-slate-700 font-jakarta">A Wide Range of Robots and Drones</p>
+        <p class="text-2xl text-slate-500 font-normal tracking-tight">{{ t('segment_subtitle') }}</p>
+        <p class="text-4xl font-semibold text-slate-700 font-jakarta">{{ t('segment_title') }}</p>
       </div>
       <div class="w-full bg-white">
         <div class="grid grid-cols-2 gap-4 md:grid-cols-10 lg:grid-cols-12 md:grid-rows-2">
@@ -119,15 +119,14 @@
             <div class="absolute inset-0 bg-black/30"></div>
 
             <div class="absolute bottom-0 left-0 flex h-full w-full flex-col justify-between p-6">
-              <div class="text-4xl font-black leading-none text-white">
-                SPARK<br />
-                ROBOTICS<br />
+              <div class="text-4xl font-black leading-none text-white uppercase w-min">
+                {{ t('brand_spark_robotics') }}
               </div>
 
               <div class="">
                 <p
                   class="inline-flex items-center text-2xl font-bold uppercase leading-none font-bold tracking-tight text-slate-100 uppercase">
-                  FLIGHT PLATFORM
+                  {{ t('segment_title_first') }}
                 </p>
 
               </div>
@@ -142,7 +141,7 @@
             <div class="absolute bottom-4 right-4">
               <p
                 class="inline-flex items-center text-2xl font-bold uppercase leading-none font-bold tracking-tight text-slate-100">
-                Payloads
+                {{ t('segment_title_second') }}
               </p>
             </div>
           </div>
@@ -150,32 +149,24 @@
           <!-- Top Right Black Card -->
           <div class="flex flex-col justify-between rounded-2xl bg-black p-4 md:p-6 md:col-span-3">
             <h3 class="text-xl md:text-2xl font-bold uppercase leading-tight text-white">
-              DJI ECOSYSTEM EXPANSION
+              {{ t('segment_dji_title') }}
             </h3>
             <div class="space-y-3">
               <p class="text-sm text-white/70">
-                With a mission to promote technological openness, the DJI Enterprise Ecosystem aims to encourage more
-                developers to join, driving the drone industry forward for the benefit of all.
+                {{ t('segment_dji_description') }}
               </p>
             </div>
           </div>
 
           <!-- Bottom Middle Black Card -->
-          <div class="flex flex-col justify-between rounded-2xl bg-black p-4 md:p-6 md:col-span-3">
+          <div class="flex flex-col justify-between rounded-2xl bg-black space-y-4 p-4 md:p-6 md:col-span-3">
             <h3 class="text-xl md:text-3xl font-bold md:font-black uppercase leading-tight text-white">
-                We have a strong ecosystem of partners and solutions
-              </h3>
-
-            <div class="space-y-4">
-              <p class="text-sm text-white/70">
-                {{-- From every league, every club. Find the one that represents you. --}}
-              </p>
-
-              <div class="flex flex-wrap gap-3 text-xs text-white/60">
-                <span>DJI ENTERPRISE</span>
-                <span>UNITREE</span>
-                <span>CHCNAV</span>
-              </div>
+              {{ t('segment_ecosystem_slogan') }}
+            </h3>
+            <div class="flex flex-wrap gap-3 text-xs text-white/60">
+              <span>DJI ENTERPRISE</span>
+              <span>UNITREE</span>
+              <span>CHCNAV</span>
             </div>
           </div>
 
@@ -187,7 +178,7 @@
             <div class="absolute bottom-4 left-4">
               <p
                 class="inline-flex items-center text-2xl font-bold leading-none font-bold tracking-tight text-slate-100 uppercase">
-                Unitree Ecosystem
+                {{ t('segment_title_third') }}
               </p>
             </div>
           </div>
@@ -611,23 +602,23 @@
             <a href="/news/detail"
               class="line-clamp-3 text-xl font-semibold text-slate-700 hover:text-sky-600 cursor-pointer hover:underline">
               DJI Releases Findings of the Most Comprehensive Independent Security Assessment of Its Drone Systems to Date
-          </a>
+            </a>
             <p class="text-slate-600 mt-2">Sept 1, 2025</p>
           </div>
         </div>
 
       </div>
-      <a href="/news" class="flex md:hidden gap-2 items-center px-6 py-2 bg-sky-600 rounded-full text-white mt-6 w-fit mx-auto">
-          <span>See More</span>
-          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-            stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"
-            class="h-7 w-auto">
-            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-            <path d="M5 12l14 0" />
-            <path d="M15 16l4 -4" />
-            <path d="M15 8l4 4" />
-          </svg>
-        </a>
+      <a href="/news"
+        class="flex md:hidden gap-2 items-center px-6 py-2 bg-sky-600 rounded-full text-white mt-6 w-fit mx-auto">
+        <span>See More</span>
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+          stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" class="h-7 w-auto">
+          <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+          <path d="M5 12l14 0" />
+          <path d="M15 16l4 -4" />
+          <path d="M15 8l4 4" />
+        </svg>
+      </a>
     </section>
     {{-- Latest blog --}}
 
@@ -642,7 +633,8 @@
           products
           can transform your operations and drive innovation</p>
         <div class="flex justify-center gap-2 md:gap-4">
-          <a href="/about-us/contact" class="bg-black px-3 md:px-5 py-2 rounded-full text-white   font-semibold text-base">
+          <a href="/about-us/contact"
+            class="bg-black px-3 md:px-5 py-2 rounded-full text-white   font-semibold text-base">
             Contact Us
           </a>
           <a href="/products" class="bg-white px-3 md:px-5 py-2 rounded-full text-slate-800   font-semibold text-base">

@@ -1,18 +1,66 @@
 @php
+  $locale = app()->getLocale();
+  $prefix = $locale === 'en' ? '' : 'id';
+  $isId = $locale === 'id';
+
   $menus = [
-      ['title' => 'Home', 'url' => '/', 'active_key' => 'home', 'children' => []],
-      ['title' => 'Products', 'url' => '/products', 'active_key' => 'products', 'children' => []],
-      ['title' => 'Solutions', 'url' => '/services', 'active_key' => 'services', 'children' => []],
-      ['title' => 'News', 'url' => '/news', 'active_key' => 'news', 'children' => []],
+      // Beranda
       [
-          'title' => 'About Us',
-          'url' => '#',
+          'title' => $isId ? 'Beranda' : 'Home',
+          'url' => $locale === 'en' ? route('en.home') : route('id.home', ['locale' => $locale]),
+          'active_key' => 'home',
+          'children' => [],
+      ],
+      // Produk
+      [
+          'title' => $isId ? 'Produk' : 'Products',
+          'url' => $locale === 'en' ? route('en.products.index') : route('id.products.index', ['locale' => $locale]),
+          'active_key' => 'products',
+          'children' => [],
+      ],
+      // Solusi
+      [
+          'title' => $isId ? 'Solusi' : 'Solutions',
+          'url' => $locale === 'en' ? route('en.services.index') : route('id.services.index', ['locale' => $locale]),
+          'active_key' => 'services',
+          'children' => [],
+      ],
+      // Berita
+      [
+          'title' => $isId ? 'Berita' : 'News',
+          'url' => $locale === 'en' ? route('en.news.index') : route('id.news.index', ['locale' => $locale]),
+          'active_key' => 'news',
+          'children' => [],
+      ],
+      // Tentang Kami / About Us
+      [
+          'title' => $isId ? 'Tentang Kami' : 'About Us',
+          'url' => '#', // Induk tidak dapat di-klik langsung jika berupa dropdown
           'active_key' => ['about', 'case-studies', 'contact'],
           'children' => [
-              ['title' => 'Company Profile', 'url' => '/about-us', 'active_key' => 'about'],
-              ['title' => 'Case Studies', 'url' => '/about-us/case-study', 'active_key' => 'case-studies'],
-              ['title' => 'Contact', 'url' => '/about-us/contact', 'active_key' => 'contact'],
-        ],
+              // Profil Perusahaan
+              [
+                  'title' => $isId ? 'Profil Perusahaan' : 'Company Profile',
+                  'url' => $locale === 'en' ? route('en.about.index') : route('id.about.index', ['locale' => $locale]),
+                  'active_key' => 'about',
+              ],
+              // Studi Kasus
+              [
+                  'title' => $isId ? 'Studi Kasus' : 'Case Studies',
+                  'url' =>
+                      $locale === 'en'
+                          ? route('en.about.case_study')
+                          : route('id.about.case_study', ['locale' => $locale]),
+                  'active_key' => 'case-studies',
+              ],
+              // Kontak
+              [
+                  'title' => $isId ? 'Kontak' : 'Contact',
+                  'url' =>
+                      $locale === 'en' ? route('en.about.contact') : route('id.about.contact', ['locale' => $locale]),
+                  'active_key' => 'contact',
+              ],
+          ],
       ],
   ];
 @endphp
@@ -94,10 +142,15 @@
         </a>
 
         <div class="flex items-center font-normal gap-1 text-base text-slate-600">
-          <a href="#" class="leading-4 px-1 hover:text-sky-600 transition-colors"><span>IDN</span></a>
+          <a href="{{ switch_language_url('id') }}"
+            class="leading-4 flex items-center gap-0.5 px-1 hover:text-sky-600 transition-colors {{ app()->getLocale() === 'id' ? 'text-sky-600 font-medium' : '' }}">
+            <span>IDN</span>
+            <x-icons.language class="h-5 w-auto {{ app()->getLocale() === 'id' ? 'block' : 'hidden' }}" />
+          </a>
           <div class="h-4 w-[1.5px] bg-slate-600"></div>
-          <a href="#" class="text-sky-600 px-1 flex items-center gap-0.5 font-medium">
-            <x-icons.language class="h-5 w-auto" />
+          <a href="{{ switch_language_url('en') }}"
+            class="px-1 flex items-center gap-0.5 transition-colors hover:text-sky-600 {{ app()->getLocale() === 'en' ? 'text-sky-600 font-medium' : '' }}">
+            <x-icons.language class="h-5 w-auto {{ app()->getLocale() !== 'id' ? 'block' : 'hidden' }}" />
             <span class="leading-4">ENG</span>
           </a>
         </div>
@@ -141,7 +194,7 @@
 
             <div class="flex flex-col gap-2">
               @if (empty($menu['children']))
-                <a href="{{ $menu['url'] }}"
+                <a href="{{ $menu['url'] === '#' ? '#' : url(app()->getLocale() . ($menu['url'] === '/' ? '' : $menu['url'])) }}"
                   class="inline-block w-max {{ $isParentActive ? 'text-sky-600 font-semibold relative' : 'text-slate-700 hover:text-sky-600 transition-colors' }}">
                   <span class="relative z-10">{{ $menu['title'] }}</span>
                   @if ($isParentActive)

@@ -4,6 +4,7 @@ namespace App\Filament\Resources\Translations;
 
 use App\Filament\Resources\Translations\Pages\CreateTranslation;
 use App\Filament\Resources\Translations\Pages\EditTranslation;
+use App\Filament\Resources\Translations\Pages\Languages;
 use App\Filament\Resources\Translations\Pages\ListTranslations;
 use App\Filament\Resources\Translations\Schemas\TranslationForm;
 use App\Filament\Resources\Translations\Tables\TranslationsTable;
@@ -42,9 +43,10 @@ class TranslationResource extends Resource
     public static function getPages(): array
     {
         return [
-            'index' => ListTranslations::route('/'),
+            'index' => Languages::route('/'),
+            // 'index' => ListTranslations::route('/'),
             'create' => CreateTranslation::route('/create'),
-            'edit' => EditTranslation::route('/{record}/edit'),
+            // 'edit' => EditTranslation::route('/{record}/edit'),
         ];
     }
 }
