@@ -2,8 +2,8 @@
 
 return [
     'products'                => 'products',
-    'products_detail'         => 'products/detail',
-    'services'                => 'services',
+    'products_detail'         => 'products/{slug}',
+    'solutions'                => 'solutions',
     'news'                    => 'news',
     'news_blog'               => 'news/blog',
     'news_download_center'    => 'news/download-center',

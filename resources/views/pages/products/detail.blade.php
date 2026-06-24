@@ -1,21 +1,50 @@
 @php
+  $mediaType = $product->hero_media_type ?? 'image';
+
+  // Tentukan sumber (src) berdasarkan tipe media yang dipilih
+  if ($mediaType === 'image') {
+      $src = $product->hero_image_path ? Storage::url($product->hero_image_path) : null;
+  } else {
+      $src = $product->video_id;
+  }
+
   $bgImage = [
-      'type' => 'video',
-      'src' => '6zPvT0ig1VM',
-      'alt' => 'The New Generation Unitree Go2',
+      'type' => $mediaType,
+      'src' => $src,
+      'alt' => $product->title ?? 'Product Media',
   ];
 @endphp
 @extends('layout.app', ['activePage' => 'products'])
 @section('content')
   <main>
-    <x-sections.hero title="The New Generation Unitree Go2" subtitle="A smart and improved partner"
-      inquiryText="Place an Inquiry" :background="$bgImage" />
+    <x-sections.hero :title="$product->title_section" :subtitle="$product->subtitle_section" inquiryText="Place an Inquiry" :background="$bgImage" />
+    {{-- Product Description --}}
+    <section class="main-wrapper mt-24 md:mt-32 px-4">
+      <div class="max-w-4xl mx-auto text-center mb-6">
+        <p
+          class="bg-linear-to-r from-sky-600 to-teal-500 bg-clip-text text-5xl font-semibold text-transparent md:text-6xl">
+        </p>
+        <div class="w-full text-center space-y-4">
+          <p
+            class="bg-linear-to-r from-sky-600 to-teal-500 bg-clip-text text-5xl font-semibold text-transparent md:text-6xl">
+            {{ $product->title }}</p>
+
+          <div class="text-lg font-medium text-slate-700">
+            {!! $product->content !!}
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+    {{-- Product Description --}}
 
     {{-- Showcase --}}
     <section class="mt-24 w-full overflow-x-hidden bg-sky-600 md:mt-32">
       <div class="bg-white pb-3">
         <div class="mx-auto w-full px-4 md:max-w-4xl lg:max-w-7xl">
           <p class="text-5xl font-semibold text-slate-700 md:text-6xl">Product</p>
+
         </div>
       </div>
       <div class="mx-auto w-full bg-sky-600 px-4 py-3 md:max-w-4xl lg:max-w-7xl">
@@ -58,53 +87,24 @@
           class="no-scrollbar order-1 mt-0 -mr-[calc(50vw-50%)] flex w-auto gap-4 overflow-x-auto pr-4 pb-2 lg:order-2 lg:-mt-12 lg:flex-1 lg:pb-0"
           x-ref="slider" @mousedown="startDragging" @mouseleave="stopDragging" @mouseup="stopDragging" @mousemove="drag"
           @touchstart="startDragging" @touchend="stopDragging" @touchmove="drag">
-          <div
-            class="h-72 w-[85%] shrink-0 overflow-hidden rounded-3xl bg-slate-200/30 select-none md:h-72 md:w-auto md:min-w-[calc(32%-1rem)]">
-            <img
-              src="https://shop.unitree.com/cdn/shop/files/df9f333424ff6cc6164ce421b019fb94_a6f832b0-479e-4294-ac75-6516208b91f4_900x.png"
-              draggable="false" class="pointer-events-none h-full w-full object-cover" />
-          </div>
-          <div
-            class="h-72 w-[85%] shrink-0 overflow-hidden rounded-3xl bg-slate-200/30 select-none md:h-72 md:w-auto md:min-w-[calc(32%-1rem)]">
-            <img src="https://shop.unitree.com/cdn/shop/files/24_900x.png" draggable="false"
-              class="pointer-events-none h-full w-full object-cover" />
-          </div>
-          <div
-            class="h-72 w-[85%] shrink-0 overflow-hidden rounded-3xl bg-slate-200/30 select-none md:h-72 md:w-auto md:min-w-[calc(32%-1rem)]">
-            <img src="https://www.unitree.com/images/ea2d2b637df84e3bacd508cd1f2711e5_2744x1596.jpg" draggable="false"
-              class="pointer-events-none h-full w-full object-cover" />
-          </div>
-          <div
-            class="h-72 w-[85%] shrink-0 overflow-hidden rounded-3xl bg-slate-200/30 select-none md:h-72 md:w-auto md:min-w-[calc(32%-1rem)]">
-            <img src="https://shop.unitree.com/cdn/shop/files/23_900x.png" draggable="false"
-              class="pointer-events-none h-full w-full object-cover" />
-          </div>
-          <div
-            class="h-72 w-[85%] shrink-0 overflow-hidden rounded-3xl bg-slate-200/30 select-none md:h-72 md:w-auto md:min-w-[calc(32%-1rem)]">
-            <img src="https://shop.unitree.com/cdn/shop/files/21_900x.png" draggable="false"
-              class="pointer-events-none h-full w-full object-cover" />
-          </div>
+          @foreach ($product->showcase_images as $item)
+            <div
+              class="h-72 w-[85%] shrink-0 overflow-hidden rounded-3xl bg-slate-200/30 select-none md:h-72 md:w-auto md:min-w-[calc(32%-1rem)]">
+              <img src="{{ Storage::url($item) }}" draggable="false"
+                class="pointer-events-none h-full w-full object-cover" />
+            </div>
+          @endforeach
         </div>
 
         <div class="flex-justify-between order-2 flex w-full items-end gap-2 lg:order-1 lg:w-1/4">
           <button @click="slidePrev()"
             class="rounded-full bg-white p-2 ring-1 ring-slate-700 transition-colors hover:bg-slate-100">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
-              class="h-8 w-auto rotate-180 text-slate-700">
-              <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-              <path
-                d="M9.707 5.293l6 6a1 1 0 0 1 0 1.414l-6 6a1 1 0 1 1 -1.414 -1.414l5.293 -5.293l-5.293 -5.293a1 1 0 0 1 1.414 -1.414" />
-            </svg>
+            <x-icons.chevron-right class="h-8 w-auto rotate-180 text-slate-700" />
           </button>
 
           <button @click="slideNext()"
             class="rounded-full bg-white p-2 ring-1 ring-slate-700 transition-colors hover:bg-slate-100">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
-              class="h-8 w-auto text-slate-700">
-              <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-              <path
-                d="M9.707 5.293l6 6a1 1 0 0 1 0 1.414l-6 6a1 1 0 1 1 -1.414 -1.414l5.293 -5.293l-5.293 -5.293a1 1 0 0 1 1.414 -1.414" />
-            </svg>
+            <x-icons.chevron-right class="h-8 w-auto text-slate-700" />
           </button>
         </div>
       </div>
@@ -119,25 +119,12 @@
       </div>
       <div class="bg-slate-200 p-4 md:p-6 rounded-4xl">
         <div class="columns-1 gap-4 sm:columns-2">
-          <div class="mb-4 break-inside-avoid">
-            <img src="https://www.unitree.com/images/b5fffd3e4fc04e6f9fcafedb9516b341_3840x2146.jpg" alt="Gallery 1"
-              class="h-auto w-full rounded-xl shadow-md transition-shadow duration-300 hover:shadow-xl" />
-          </div>
-
-          <div class="mb-4 break-inside-avoid">
-            <img src="https://www.unitree.com/images/c2555e3813074ba6a1f2e124ee7e90cf_3840x2160.jpg" alt="Gallery 2"
-              class="h-auto w-full rounded-xl shadow-md transition-shadow duration-300 hover:shadow-xl" />
-          </div>
-
-          <div class="mb-4 break-inside-avoid">
-            <img src="https://oss-global-cdn.unitree.com/static/ce0f65bf7c214e40922591ff7ef16f2f_2944x1540.jpg"
-              alt="Gallery 3" class="h-auto w-full rounded-xl shadow-md transition-shadow duration-300 hover:shadow-xl" />
-          </div>
-
-          <div class="mb-4 break-inside-avoid">
-            <img src="https://www.unitree.com/images/e41651fe455e463bb25f1ef33ece3809_1920x1370.jpg" alt="Gallery 4"
-              class="h-auto w-full rounded-xl shadow-md transition-shadow duration-300 hover:shadow-xl" />
-          </div>
+          @foreach ($product->features_images as $item)
+            <div class="mb-4 break-inside-avoid">
+              <img src="{{ Storage::url($item) }}" alt=""
+                class="h-auto w-full rounded-xl shadow-md transition-shadow duration-300 hover:shadow-xl" />
+            </div>
+          @endforeach
         </div>
       </div>
 
@@ -148,110 +135,45 @@
       <div class="w-full mb-0 md:mb-6 space-y-4 md:w-1/2 ">
         <p class="text-5xl md:text-6xl text-slate-700 font-semibold">Specification</p>
         <div class="text-base text-slate-600 font-medium">
-          <div
-            class="border-b hover:bg-slate-300 cursor-pointer border-slate-400 border-dashed w-fit flex items-center gap-1">
-            Reach <span class="italic">Unitree Go2</span> Datasheet <span>
-              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-                stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"
-                class="h-5 w-auto">
-                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                <path d="M4 17v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2 -2v-2" />
-                <path d="M7 11l5 5l5 -5" />
-                <path d="M12 4l0 12" />
-              </svg>
-            </span>
-          </div>
-          <div class="">
-            2.4 MB
+          <a href="{{ Storage::url($product->datasheet_file_path) }}" download>
+            <div
+              class="border-b hover:bg-slate-300 cursor-pointer border-slate-400 border-dashed w-fit flex items-center gap-1">
+              Reach <span class="italic">{{ $product->title }}</span> Datasheet <span>
+                <x-icons.download class="h-5 w-auto" />
+              </span>
+            </div>
+          </a>
+          <div class="font-mono">
+            {{ $product->size }}
           </div>
         </div>
       </div>
-      <div x-data="{ activeTab: 'mechanical' }" class="w-full md:w-2/3 overflow-hidden">
-
+      <div x-data="{ activeTab: 0 }" class="w-full md:w-2/3 overflow-hidden">
         <div class="flex flex-nowrap overflow-x-auto no-scrollbar border-b border-slate-800">
-          <button @click="activeTab = 'mechanical'"
-            :class="activeTab === 'mechanical' ? 'border-slate-900' :
-                'text-slate-600 border-transparent hover:text-slate-500 hover:bg-slate-800/30'"
-            class="flex-1 text-left px-6 py-4 text-sm font-medium border transition-all whitespace-nowrap">
-            Mechanical & Physical
-          </button>
-          <button @click="activeTab = 'electrical'"
-            :class="activeTab === 'electrical' ? 'border-slate-900' :
-                'text-slate-600 border-transparent hover:text-slate-500 hover:bg-slate-800/30'"
-            class="flex-1 text-left px-6 py-4 text-sm font-medium border transition-all whitespace-nowrap">
-            Electrical & Power
-          </button>
-          <button @click="activeTab = 'sensors'"
-            :class="activeTab === 'sensors' ? 'border-slate-900' :
-                'text-slate-600 border-transparent hover:text-slate-500 hover:bg-slate-800/30'"
-            class="flex-1 text-left px-6 py-4 text-sm font-medium border transition-all whitespace-nowrap">
-            Sensors & Compute
-          </button>
+          @foreach ($product->specifications as $index => $specGroup)
+            <button @click="activeTab = {{ $index }}"
+              :class="activeTab === {{ $index }} ? 'border-slate-900' :
+                  'text-slate-600 border-transparent hover:text-slate-500 hover:bg-slate-800/30'"
+              class="flex-1 text-left px-6 py-4 text-sm font-medium border transition-all whitespace-nowrap">
+              {{ $specGroup['title'] }}
+            </button>
+          @endforeach
         </div>
-
         <div class="relative min-h-[300px]">
-
-          <div x-show="activeTab === 'mechanical'" x-transition:enter="transition ease-out duration-300"
-            x-transition:enter-start="opacity-0 translate-y-2" x-transition:enter-end="opacity-100 translate-y-0"
-            class="absolute inset-0 py-6 md:py-8" style="display: none;">
-            <div class="grid grid-cols-1 gap-x-12 gap-y-2 text-slate-800">
-              <div class="flex justify-between py-3 border-b border-slate-800/50">
-                <span class="text-slate-600">Dimensions (H x W x D)</span>
-                <span class="text-right font-medium">1750 x 550 x 300 mm</span>
-              </div>
-              <div class="flex justify-between py-3 border-b border-slate-800/50">
-                <span class="text-slate-600">Total Weight</span>
-                <span class="text-right font-medium">45 kg</span>
-              </div>
-              <div class="flex justify-between py-3 border-b border-slate-800/50">
-                <span class="text-slate-600">Degrees of Freedom (DoF)</span>
-                <span class="text-right font-medium">32 DoF Total</span>
-              </div>
-              <div class="flex justify-between py-3 border-b border-slate-800/50">
-                <span class="text-slate-600">Actuator Type</span>
-                <span class="text-right font-medium">Quasi-Direct Drive (QDD)</span>
+          @foreach ($product->specifications as $index => $specGroup)
+            <div x-show="activeTab === {{ $index }}" x-transition:enter="transition ease-out duration-300"
+              x-transition:enter-start="opacity-0 translate-y-2" x-transition:enter-end="opacity-100 translate-y-0"
+              class="absolute inset-0 py-6 md:py-8" style="display: none;">
+              <div class="grid grid-cols-1 gap-x-12 gap-y-2 text-slate-800">
+                @foreach ($specGroup['items'] as $item)
+                  <div class="flex justify-between py-3 border-b border-slate-800/50">
+                    <span class="text-slate-600">{{ $item['label'] }}</span>
+                    <span class="text-right font-medium">{{ $item['value'] }}</span>
+                  </div>
+                @endforeach
               </div>
             </div>
-          </div>
-
-          <div x-show="activeTab === 'electrical'" x-transition:enter="transition ease-out duration-300"
-            x-transition:enter-start="opacity-0 translate-y-2" x-transition:enter-end="opacity-100 translate-y-0"
-            class="absolute inset-0 py-6 md:py-8" style="display: none;">
-            <div class="grid grid-cols-1 gap-x-12 gap-y-2 text-slate-800">
-              <div class="flex justify-between py-3 border-b border-slate-800/50">
-                <span class="text-slate-600">Operating Voltage</span>
-                <span class="text-right font-medium">48V DC Nominal</span>
-              </div>
-              <div class="flex justify-between py-3 border-b border-slate-800/50">
-                <span class="text-slate-600">Battery Type</span>
-                <span class="text-right font-medium">Li-ion 12S 20Ah Swappable</span>
-              </div>
-              <div class="flex justify-between py-3 border-b border-slate-800/50">
-                <span class="text-slate-600">Continuous Running Time</span>
-                <span class="text-right font-medium">~4.5 Hours</span>
-              </div>
-            </div>
-          </div>
-
-          <div x-show="activeTab === 'sensors'" x-transition:enter="transition ease-out duration-300"
-            x-transition:enter-start="opacity-0 translate-y-2" x-transition:enter-end="opacity-100 translate-y-0"
-            class="absolute inset-0 py-6 md:py-8" style="display: none;">
-            <div class="grid grid-cols-1 gap-x-12 gap-y-2 text-slate-800">
-              <div class="flex justify-between py-3 border-b border-slate-800/50">
-                <span class="text-slate-600">Vision System</span>
-                <span class="text-right font-medium">2x RGB-D Intel RealSense</span>
-              </div>
-              <div class="flex justify-between py-3 border-b border-slate-800/50">
-                <span class="text-slate-600">Lidar</span>
-                <span class="text-right font-medium">360° 3D Lidar (100m Range)</span>
-              </div>
-              <div class="flex justify-between py-3 border-b border-slate-800/50">
-                <span class="text-slate-600">Main Processor</span>
-                <span class="text-right font-medium">NVIDIA Jetson Orin AGX</span>
-              </div>
-            </div>
-          </div>
-
+          @endforeach
         </div>
       </div>
     </section>
@@ -305,8 +227,8 @@
             </button>
             <button @click="slideNext()"
               class="p-2 bg-white rounded-full ring-1 ring-slate-300 hover:bg-slate-100 transition">
-              <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-slate-700" fill="none"
-                viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-slate-700" fill="none" viewBox="0 0 24 24"
+                stroke="currentColor" stroke-width="2">
                 <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
               </svg>
             </button>

@@ -128,3 +128,34 @@ if (! function_exists('switch_language_url')) {
     return route($targetLocale . '.' . $baseName, $parameters);
   }
 }
+
+if (! function_exists('localized_route')) {
+  /**
+   * Generate a localized URL to a named route.
+   *
+   * @param  string  $name (contoh: 'products.show')
+   * @param  mixed  $parameters (contoh: $item->slug atau ['slug' => $item->slug])
+   * @param  bool  $absolute
+   * @return string
+   */
+  function localized_route($name, $parameters = [], $absolute = true)
+  {
+    $locale = app()->getLocale();
+
+    // Gabungkan locale dengan nama rute (contoh: 'id' . '.' . 'products.show' => 'id.products.show')
+    $routeName = $locale . '.' . $name;
+
+    // Ubah parameter menjadi array jika user hanya mengirim string tunggal (seperti $item->slug)
+    if (! is_array($parameters)) {
+      $parameters = [$parameters];
+    }
+
+    // Jika bahasa BUKAN 'en' (berarti 'id' yang butuh parameter {locale}), sisipkan locale ke dalam parameter
+    if ($locale !== 'en') {
+      $parameters = array_merge(['locale' => $locale], $parameters);
+    }
+
+    // Kembalikan route bawaan Laravel
+    return route($routeName, $parameters, $absolute);
+  }
+}

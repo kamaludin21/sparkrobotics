@@ -13,8 +13,8 @@ return [
     |
     */
     'locales' => [
-        'id',
         'en',
+        'id',
     ],
 
     /*

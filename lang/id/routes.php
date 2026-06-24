@@ -2,8 +2,8 @@
 
 return [
     'products'                => 'produk',
-    'products_detail'         => 'produk/detail',
-    'services'                => 'solusi',
+    'products_detail'         => 'produk/{slug}',
+    'solutions'               => 'solusi',
     'news'                    => 'berita',
     'news_blog'               => 'berita/blog',
     'news_download_center'    => 'berita/pusat-unduhan',

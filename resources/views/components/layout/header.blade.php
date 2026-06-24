@@ -18,11 +18,11 @@
           'active_key' => 'products',
           'children' => [],
       ],
-      // Solusi
+      // Solusi routes.solutions
       [
           'title' => $isId ? 'Solusi' : 'Solutions',
-          'url' => $locale === 'en' ? route('en.services.index') : route('id.services.index', ['locale' => $locale]),
-          'active_key' => 'services',
+          'url' => $locale === 'en' ? route('en.solutions.index') : route('id.solutions.index', ['locale' => $locale]),
+          'active_key' => 'solutions',
           'children' => [],
       ],
       // Berita

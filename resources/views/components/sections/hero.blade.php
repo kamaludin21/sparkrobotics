@@ -21,15 +21,12 @@
           class="w-full h-full object-cover object-center" />
       @endif
     </div>
-
     <div class="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent z-10">
     </div>
-
     <div class="relative z-20 w-fit p-6 md:p-10">
       <div class="space-y-2 w-full md:max-w-1/2">
         <h1 class="text-5xl md:text-6xl font-medium font-jakarta text-white">{{ $title }}</h1>
         <p class="text-xl font-medium text-slate-100">{{ $subtitle }}</p>
-
         <div class="flex gap-2 items-center pt-2">
           <button
             class="flex items-center gap-2 text-white px-1 py-1 bg-white rounded-full ring ring-slate-300 transition hover:bg-slate-50">
@@ -38,21 +35,6 @@
               <x-icons.narrow-right class="h-6 w-auto" />
             </div>
           </button>
-
-          {{-- @if (isset($background) && $background['type'] === 'video')
-            <button @click="toggleVideo()"
-              class="flex items-center gap-1 px-4 py-1.5 bg-white/30 backdrop-blur-md rounded-full ring ring-slate-200 text-slate-50 transition hover:bg-white/40">
-              <div class="w-6 h-6 flex items-center justify-center">
-                <template x-if="playing">
-                  <x-icons.pause-video class="h-6 w-auto" />
-                </template>
-                <template x-if="!playing">
-                  <x-icons.play-video class="h-6 w-auto" />
-                </template>
-              </div>
-              <span x-text="playing ? 'Pause Video' : 'Play Video'" class="text-base font-semibold"></span>
-            </button>
-          @endif --}}
         </div>
       </div>
     </div>

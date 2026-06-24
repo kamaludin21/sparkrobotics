@@ -26,7 +26,6 @@ class CategoryForm
                             ->maxLength(250)
                             ->rows(1)
                             ->live(onBlur: true)
-                            // Perbaikan ada di baris ini:
                             ->afterStateUpdated(fn(Set $set, ?string $state) => $set($tab->makeName('slug'), Str::slug($state)))
                             ->required(),
 
@@ -43,12 +42,10 @@ class CategoryForm
 
                                     // 1. Batasi pengecekan unique hanya pada locale yang sedang aktif
                                     $rule->where('locale', $locale);
-
                                     // 2. Jika sedang mode Edit (record ada), abaikan data translasi milik Kategori ini
                                     if ($record) {
                                         $rule->whereNot('category_id', $record->id);
                                     }
-
                                     return $rule;
                                 }
                             )

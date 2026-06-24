@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\ProductController;
+use App\Http\Controllers\SolutionController;
 use App\Http\Controllers\WelcomeController;
 use Illuminate\Support\Facades\Route;
 
@@ -11,13 +13,11 @@ Route::name('en.')->group(function () {
     Route::get('/', [WelcomeController::class, 'index'])->name('home');
 
     // Products
-    Route::get(trans('routes.products', [], 'en'), [WelcomeController::class, 'products'])->name('products.index');
-    Route::get(trans('routes.products_detail', [], 'en'), [WelcomeController::class, 'productDetail'])->name('products.detail');
+    Route::get(trans('routes.products', locale: 'en'), [ProductController::class, 'index'])->name('products.index');
+    Route::get(trans('routes.products_detail', locale: 'en'), [ProductController::class, 'show'])->name('products.show');
 
     // Services
-    Route::get(trans('routes.services', [], 'en'), function () {
-        return view('pages.services.index');
-    })->name('services.index');
+    Route::get(trans('routes.solutions', locale: 'en'), [SolutionController::class, 'index'])->name('solutions.index');
 
     // News
     Route::get(trans('routes.news', [], 'en'), function () {
@@ -59,21 +59,19 @@ Route::name('en.')->group(function () {
 // 2. LOCALIZED ROUTES (BAHASA INDONESIA PREFIX)
 // ==========================================
 Route::prefix('{locale}')
-    ->whereIn('locale', ['id'])
+    ->where(['locale' => 'id'])
     ->middleware('setLocale')
     ->name('id.') // Prefix name agar tidak bentrok dengan route EN (contoh: jadi 'id.products.index')
     ->group(function () {
 
         Route::get('/', [WelcomeController::class, 'index'])->name('home');
-
         // Produk
-        Route::get(trans('routes.products', [], 'id'), [WelcomeController::class, 'products'])->name('products.index');
-        Route::get(trans('routes.products_detail', [], 'id'), [WelcomeController::class, 'productDetail'])->name('products.detail');
+        Route::get(trans('routes.products', locale: 'id'), [ProductController::class, 'index'])->name('products.index');
+        Route::get(trans('routes.products_detail', locale: 'id'), [ProductController::class, 'show'])->name('products.show');
+
 
         // Solusi
-        Route::get(trans('routes.services', [], 'id'), function () {
-            return view('pages.services.index');
-        })->name('services.index');
+        Route::get(trans('routes.solutions', locale: 'id'), [SolutionController::class, 'index'])->name('solutions.index');
 
         // Berita
         Route::get(trans('routes.news', [], 'id'), function () {
