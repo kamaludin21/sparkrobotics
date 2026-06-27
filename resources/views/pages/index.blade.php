@@ -3,7 +3,7 @@
 @section('content')
   <main class="">
     {{-- CTA --}}
-    <section class="main-wrapper pt-14 md:pt-24 px-4">
+    <section class="main-wrapper pt-24 md:pt-24 px-4">
       <div
         class="bg-radial-[at_50%_75%] from-sky-400 via-sky-600 to-sky-900 to-90% h-auto flex items-center rounded-3xl flex-col justify-between ">
         <div class="max-w-2xl mx-auto px-3 md:px-6 py-12 rounded-lg text-center">
@@ -16,10 +16,12 @@
           <h2 class="text-5xl md:text-6xl font-medium font-jakarta text-white mb-4 ">{{ t('brand_spark_robotics') }}</h2>
           <p class="text-xl font-jakarta text-slate-100 italic mb-6">{{ t('home_cta_tagline') }}</p>
           <div class="flex justify-center gap-2 md:gap-4">
-            <a href="{{ locale_route('about.contact') }}" class="bg-slate-800 px-5 py-2 rounded-full text-white font-semibold text-base">
+            <a href="{{ locale_route('about.contact') }}"
+              class="bg-slate-800 px-5 py-2 rounded-full text-white font-semibold text-base">
               {{ t('home_cta_contact') }}
             </a>
-            <a href="{{ locale_route('products.index') }}" class="bg-white px-5 py-2 rounded-full text-slate-800   font-semibold text-base">
+            <a href="{{ locale_route('products.index') }}"
+              class="bg-white px-5 py-2 rounded-full text-slate-800   font-semibold text-base">
               {{ t('home_cta_catalogs') }}
             </a>
           </div>
@@ -191,12 +193,13 @@
     {{-- Products --}}
     <section class="main-wrapper mt-24 md:mt-32 space-y-2 px-4">
       <div class="mb-2">
-        <p class="text-2xl text-slate-500 font-normal tracking-tight">Products</p>
+        <p class="text-2xl text-slate-500 font-normal tracking-tight">{{ t('productsIndex_title') }}</p>
       </div>
       <div class="flex justify-between items-center">
-        <p class="text-4xl font-semibold text-slate-700 font-jakarta">A Diverse Range of Products</p>
-        <a href="/products" class="hidden lg:flex gap-2 items-center px-6 py-2 bg-sky-600 rounded-full text-white">
-          <span>Explore More</span>
+        <p class="text-4xl font-semibold text-slate-700 font-jakarta">{{ t('productsIndex_subtitle') }}</p>
+        <a href="{{ localized_route('products.index') }}"
+          class="hidden lg:flex gap-2 items-center px-6 py-2 bg-sky-600 rounded-full text-white">
+          <span>{{ t('productsIndex_btn_more') }}</span>
           <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
             stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"
             class="h-7 w-auto">
@@ -208,149 +211,59 @@
         </a>
       </div>
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mt-12">
-        <div class="group flex h-full flex-col overflow-hidden rounded-2xl bg-white ring-1 ring-slate-200">
-          <div class="relative h-56 overflow-hidden bg-slate-100 bg-slate-100">
-            <img src="https://fujishop.id/wp-content/uploads/2025/11/DJI-Dock-3-Overseas-Edition-01.jpg" alt=""
-              class="absolute inset-0 h-full w-full object-cover object-center transition-transform duration-500 group-hover:scale-105">
-          </div>
-          <div class="flex flex-1 flex-col p-6 border-t-1 border-slate-200">
-            <div>
-              <h3 class="text-2xl font-semibold text-slate-700 transition-colors group-hover:text-sky-600">
-                DJI Dock 3
-              </h3>
-              <p class="mt-2 text-slate-600">
-                Packing more megapixels and better optics than any drone its size.
-              </p>
+        @forelse ($products as $item)
+          <article class="group flex h-full flex-col overflow-hidden rounded-2xl bg-white ring-1 ring-slate-200">
+            <div class="relative h-56 overflow-hidden bg-slate-100">
+              @if (!empty($item->showcase_images) && isset($item->showcase_images[0]))
+                <img src="{{ Storage::url($item->showcase_images[0]) }}" alt="{{ $item->title }}" loading="lazy"
+                  class="absolute inset-0 h-full w-full object-cover object-center transition-transform duration-500 group-hover:scale-105">
+              @else
+                <div class="absolute inset-0 flex items-center justify-center bg-slate-200 text-slate-400">
+                  <span class="text-sm">No Image</span>
+                </div>
+              @endif
             </div>
-            <div class="mt-auto pt-6">
-              <a href="/products/detail"
-                class="block w-full rounded-lg bg-slate-100 px-4 py-2 text-center text-sm font-semibold text-slate-700 ring-1 ring-slate-200 transition-colors duration-300 group-hover:bg-sky-600 group-hover:text-white">
-                View Details
-              </a>
+            <div class="flex flex-1 flex-col p-6 border-t border-slate-200">
+              <div>
+                <h3 class="text-2xl font-semibold text-slate-700 transition-colors group-hover:text-sky-600">
+                  <a href="{{ localized_route('products.show', $item->slug) }}">{{ $item->title }}</a>
+                </h3>
+                <p class="mt-2 text-slate-600 line-clamp-3">
+                  {{ $item->title_section }}
+                </p>
+              </div>
+              <div class="mt-auto pt-6">
+                <a href="{{ localized_route('products.show', $item->slug) }}"
+                  aria-label="Lihat detail untuk {{ $item->title }}"
+                  class="block w-full rounded-lg bg-slate-100 px-4 py-2 text-center text-sm font-semibold text-slate-700 ring-1 ring-slate-200 transition-colors duration-300 group-hover:bg-sky-600 group-hover:text-white">
+                  {{ t('productsIndex_detail_button') }}
+                </a>
+              </div>
             </div>
+          </article>
+        @empty
+          <div
+            class="col-span-full bg-white border border-dashed border-slate-300 rounded-2xl py-16 text-center text-slate-500 space-y-2">
+            <svg class="w-12 h-12 mx-auto text-slate-300 mb-3" fill="none" stroke="currentColor"
+              viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                d="M9.172 16.172a4 4 0 015.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+            </svg>
+            <p class="text-base font-medium text-slate-600">Produk tidak ditemukan</p>
+            <p class="text-sm text-slate-400 mt-1">Coba gunakan kata kunci lain atau ubah filter Anda.</p>
+            @if (request()->hasAny(['search', 'categories', 'brands']))
+              <a href="{{ url()->current() }}" class="text-sm text-sky-600 hover:underline">Kembali</a>
+            @endif
           </div>
-        </div>
-        <div class="group flex h-full flex-col overflow-hidden rounded-2xl bg-white ring-1 ring-slate-200">
-          <div class="relative h-56 overflow-hidden bg-slate-100">
-            <img src="https://se-cdn.djiits.com/tpc/uploads/spu_bundle/cover/a717e6dca76e821a0b6569e764cbf64f@ultra.webp"
-              alt=""
-              class="absolute inset-0 h-full w-full  object-cover object-center transition-transform duration-500 group-hover:scale-105">
-          </div>
-          <div class="flex flex-1 flex-col p-6 border-t-1 border-slate-200">
-            <div>
-              <h3 class="text-2xl font-semibold text-slate-700 transition-colors group-hover:text-sky-600">
-                DJI Matrice 400
-              </h3>
-              <p class="mt-2 text-slate-600">
-                The robot navigation algorithms are currently in a pilot phase
-              </p>
-            </div>
-            <div class="mt-auto pt-6">
-              <a href="/products/detail"
-                class="block w-full rounded-lg bg-slate-100 px-4 py-2 text-center text-sm font-semibold text-slate-700 ring-1 ring-slate-200 transition-colors duration-300 group-hover:bg-sky-600 group-hover:text-white">
-                View Details
-              </a>
-            </div>
-          </div>
-        </div>
-        <div class="group flex h-full flex-col overflow-hidden rounded-2xl bg-white ring-1 ring-slate-200">
-          <div class="relative h-56 overflow-hidden bg-slate-100">
-            <img src="https://www-cdn.djiits.com/dps/5168f7ff8f661a008798e1bd23e15d3c.jpg" alt=""
-              class="absolute inset-0 h-full w-full object-cover object-center transition-transform duration-500 group-hover:scale-105">
-          </div>
-          <div class="flex flex-1 flex-col p-6 border-t-1 border-slate-200">
-            <div>
-              <h3 class="text-2xl font-semibold text-slate-700 transition-colors group-hover:text-sky-600">
-                DJI Matrice 4 Series
-              </h3>
-              <p class="mt-2 text-slate-600">
-                The robot navigation algorithms are currently in a pilot phase
-              </p>
-            </div>
-            <div class="mt-auto pt-6">
-              <a href="/products/detail"
-                class="block w-full rounded-lg bg-slate-100 px-4 py-2 text-center text-sm font-semibold text-slate-700 ring-1 ring-slate-200 transition-colors duration-300 group-hover:bg-sky-600 group-hover:text-white">
-                View Details
-              </a>
-            </div>
-          </div>
-        </div>
-        {{-- <div class="group flex h-full flex-col overflow-hidden rounded-2xl bg-white ring-1 ring-slate-200">
-          <div class="relative h-56 overflow-hidden bg-slate-100">
-            <img src="{{ asset('images/S10-1-300x600.png') }}" alt=""
-              class="absolute inset-0 h-full w-full object-contain object-center transition-transform duration-500 group-hover:scale-105">
-          </div>
-          <div class="flex flex-1 flex-col p-6 border-t-1 border-slate-200">
-            <div>
-              <h3 class="text-2xl font-semibold text-slate-700 transition-colors group-hover:text-sky-600">
-                FlashBot Arm
-              </h3>
-              <p class="mt-2 text-slate-600">
-                Semi-Humanoid Embodied AI Service Robot
-              </p>
-            </div>
-            <div class="mt-auto pt-6">
-              <a href="/products/detail"
-                class="block w-full rounded-lg bg-slate-100 px-4 py-2 text-center text-sm font-semibold text-slate-700 ring-1 ring-slate-200 transition-colors duration-300 group-hover:bg-sky-600 group-hover:text-white">
-                View Details
-              </a>
-            </div>
-          </div>
-        </div>
-        <div class="group flex h-full flex-col overflow-hidden rounded-2xl bg-white ring-1 ring-slate-200">
-          <div class="relative h-56 overflow-hidden bg-slate-100">
-            <img
-              src="https://i0.wp.com/halorobotics.com/wp-content/uploads/2025/12/Dock3-%E5%B9%B3%E4%BE%A7-2-1.png?resize=394%2C394&ssl=1"
-              alt=""
-              class="absolute inset-0 h-full w-full object-contain object-center transition-transform duration-500 group-hover:scale-105">
-          </div>
-          <div class="flex flex-1 flex-col p-6 border-t-1 border-slate-200">
-            <div>
-              <h3 class="text-2xl font-semibold text-slate-700 transition-colors group-hover:text-sky-600">
-                DJI Dock 3
-              </h3>
-              <p class="mt-2 text-slate-600">
-                DJI's first Dock to support mobile vehicle-mounted deployment
-              </p>
-            </div>
-            <div class="mt-auto pt-6">
-              <a href="/products/detail"
-                class="block w-full rounded-lg bg-slate-100 px-4 py-2 text-center text-sm font-semibold text-slate-700 ring-1 ring-slate-200 transition-colors duration-300 group-hover:bg-sky-600 group-hover:text-white">
-                View Details
-              </a>
-            </div>
-          </div>
-        </div>
-        <div class="group flex h-full flex-col overflow-hidden rounded-2xl bg-white ring-1 ring-slate-200">
-          <div class="relative h-56 overflow-hidden bg-slate-100">
-            <img src="https://cdn.pudutech.com/nav_pudu_d9_baa71e3b5b.png" alt=""
-              class="absolute inset-0 h-full w-full object-contain object-center transition-transform duration-500 group-hover:scale-105">
-          </div>
-          <div class="flex flex-1 flex-col p-6 border-t-1 border-slate-200">
-            <div>
-              <h3 class="text-2xl font-semibold text-slate-700 transition-colors group-hover:text-sky-600">
-                PUDU D9
-              </h3>
-              <p class="mt-2 text-slate-600">
-                The First Full-sized Bipedal Humanoid Robot by Pudu Robotics
-              </p>
-            </div>
-            <div class="mt-auto pt-6">
-              <a href="/products/detail"
-                class="block w-full rounded-lg bg-slate-100 px-4 py-2 text-center text-sm font-semibold text-slate-700 ring-1 ring-slate-300 transition-colors duration-300 group-hover:bg-sky-600 group-hover:text-white">
-                View Details
-              </a>
-            </div>
-          </div>
-        </div> --}}
+        @endforelse
       </div>
-      <a href="/products"
+      <a href="{{ localized_route('products.index') }}"
         class="flex lg:hidden gap-2 w-fit justify-center items-center px-6 py-2 bg-sky-600 rounded-full text-white mx-auto mt-6">
-        <span>Explore More</span>
+        <span>{{ t('productsIndex_btn_more') }}</span>
         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
           stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" class="h-7 w-auto">
           <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-          <path d="M5 12l14 0" />Drones
+          <path d="M5 12l14 0" />
           <path d="M15 16l4 -4" />
           <path d="M15 8l4 4" />
         </svg>
@@ -362,9 +275,8 @@
     <section class="bg-white mt-24 md:mt-32 antialiased">
       <div class="main-wrapper px-4">
         <div class="max-w-2xl">
-          <p class="text-2xl text-slate-500 font-normal tracking-tight">Why Choose Us</p>
-          <h2 class="mt-2 text-4xl font-semibold text-slate-700 font-jakarta">Why Spark
-            Robotics is The Right Choice for You</h2>
+          <p class="text-2xl text-slate-500 font-normal tracking-tight">{{ t('chooseUs_title') }}</p>
+          <h2 class="mt-2 text-4xl font-semibold text-slate-700 font-jakarta">{{ t('chooseUs_subtitle') }}</h2>
         </div>
         <!-- === BENTO GRID SECTION (Dari Referensi Gambar 1) === -->
         <div class="mt-12 grid grid-cols-1 gap-6 lg:grid-cols-3">
@@ -381,9 +293,8 @@
                       d="M9 12.75 11.25 15 15 9.75M21 12c0 1.268-.63 2.39-1.593 3.068a3.745 3.745 0 0 1-1.043 3.296 3.745 3.745 0 0 1-3.296 1.043A3.745 3.745 0 0 1 12 21c-1.268 0-2.39-.63-3.068-1.593a3.746 3.746 0 0 1-3.296-1.043 3.745 3.745 0 0 1-1.043-3.296A3.745 3.745 0 0 1 3 12c0-1.268.63-2.39 1.593-3.068a3.745 3.745 0 0 1 1.043-3.296 3.746 3.746 0 0 1 3.296-1.043A3.746 3.746 0 0 1 12 3c1.268 0 2.39.63 3.068 1.593a3.746 3.746 0 0 1 3.296 1.043 3.746 3.746 0 0 1 1.043 3.296A3.745 3.745 0 0 1 21 12Z" />
                   </svg>
                 </div>
-                <h3 class="mb-2 text-2xl font-semibold text-slate-700">Official Distributor</h3>
-                <p class="text-sm leading-6 text-slate-600">Genuine products with official warranty and manufacturer
-                  support.</p>
+                <h3 class="mb-2 text-2xl font-semibold text-slate-700">{{ t('chooseUs_distributor') }}</h3>
+                <p class="text-sm leading-6 text-slate-600">{{ t('chooseUs_genuine') }}</p>
               </div>
 
               <!-- Card 2 -->
@@ -396,9 +307,8 @@
                       d="M21 7.5l-9-5.25L3 7.5m18 0l-9 5.25m9-5.25v9l-9 5.25M3 7.5l9 5.25M3 7.5v9l9 5.25m0-9v9" />
                   </svg>
                 </div>
-                <h3 class="mb-2 text-2xl font-semibold text-slate-700">End-to-End Solutions</h3>
-                <p class="text-sm leading-6 text-slate-600">Drones, robotics, GNSS, software, training, and technical
-                  services in one place.</p>
+                <h3 class="mb-2 text-2xl font-semibold text-slate-700">{{ t('chooseUs_solutions') }}</h3>
+                <p class="text-sm leading-6 text-slate-600">{{ t('chooseUs_solutions_description') }}</p>
               </div>
             </div>
 
@@ -413,9 +323,8 @@
                     d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1 1 15 0Z" />
                 </svg>
               </div>
-              <h3 class="mb-2 text-2xl font-semibold text-slate-700">Expert Local Support</h3>
-              <p class="max-w-xl text-sm leading-6 text-slate-600">Consultation, implementation, and responsive
-                after-sales service across Indonesia. We ensure your team is fully equipped and supported.</p>
+              <h3 class="mb-2 text-2xl font-semibold text-slate-700">{{ t('chooseUs_support') }}</h3>
+              <p class="max-w-xl text-sm leading-6 text-slate-600">{{ t('chooseUs_support_description') }}</p>
             </div>
           </div>
 
@@ -429,16 +338,15 @@
                     d="M2.25 21h19.5m-18-18v18m10.5-18v18m6-13.5V21M6.75 6.75h.75m-.75 3h.75m-.75 3h.75m3-6h.75m-.75 3h.75m-.75 3h.75M6.75 21v-3.375c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21M3 3h12m-.75 4.5H21m-3.75 3.75h.008v.008h-.008v-.008Zm0 3h.008v.008h-.008v-.008Zm0 3h.008v.008h-.008v-.008Z" />
                 </svg>
               </div>
-              <h3 class="mb-2 text-2xl font-semibold">Trusted by Leading Industries</h3>
-              <p class="text-base leading-relaxed text-blue-100">Proven experience delivering high-impact solutions for
-                mining, energy, construction, and public sectors.</p>
+              <h3 class="mb-2 text-2xl font-semibold">{{ t('chooseUs_industries') }}</h3>
+              <p class="text-base leading-relaxed text-blue-100">{{ t('chooseUs_industries_description') }}</p>
             </div>
 
             <div class="mt-10">
               <a href="/about-us/case-study"
                 class="group relative inline-flex h-12 items-center justify-center overflow-hidden rounded-full bg-sky-600 px-6 font-medium text-neutral-200 duration-500 ">
                 <div class="translate-x-0 opacity-100 transition group-hover:-translate-x-[150%] group-hover:opacity-0">
-                  View Our Projects</div>
+                  {{ t('chooseUs_btn_projects') }}</div>
                 <div
                   class="absolute translate-x-[150%] opacity-0 transition group-hover:translate-x-0 group-hover:opacity-100">
                   <svg width="15" height="15" viewBox="0 0 15 15" fill="none"
@@ -453,7 +361,8 @@
           </div>
         </div>
         <div class="mt-10 space-y-8">
-          <p class="text-center text-2xl font-semibold text-slate-700">Trusted Global Brands</p>
+          <p class="text-center text-2xl font-semibold text-slate-700">{{ t('chooseUs_brand') }}</p>
+          {{-- TODO: Database insert --}}
           <!-- Brands & Clients Logos (Tab-Style) -->
           <div class="flex flex-wrap items-center justify-center gap-4 md:gap-12">
             <img src="https://www-cdn.djiits.com/dps/ff086756c6f7151c92080074044f7ac3.svg" alt="DJI"
@@ -538,16 +447,11 @@
           </div>
         </div>
         <div class="mt-0 flex flex-col items-start gap-6 pt-4 lg:mt-auto lg:flex-row lg:gap-4">
-          <div class="w-full space-y-4 lg:w-1/3 lg:space-y-6">
-            <h2 class="font-jakarta leading-tight font-medium text-4xl">Who We Are <br class="hidden lg:block" />& Our
-              Solutions</h2>
+          <div class="space-y-4 lg:w-1/3 lg:space-y-6">
+            <h2 class="font-jakarta max-w-xs leading-tight font-medium text-4xl">{{ t('companyIndex_title') }}</h2>
           </div>
           <div class="flex-1">
-            <p class="text-lg leading-7 text-white/90 lg:text-xl">SPARK Robotics is a representative technology company
-              founded in Indonesia by Chinese entrepreneurs. The company serves as an authorized distributor of advanced
-              Chinese technologies, including DJI enterprise drones and Unitree robotics products, in the Indonesian
-              market. With years of experience in Indonesia, SPARK Robotics has developed strong localized service and
-              technical support capabilities across industries.</p>
+            <p class="text-lg leading-7 text-white/90 lg:text-xl">{{ t('companyIndex_subtitle') }}</p>
           </div>
         </div>
       </div>
@@ -557,12 +461,12 @@
     {{-- Latest blog --}}
     <section class="main-wrapper py-24 md:py-32 px-4">
       <div class="mb-2">
-        <p class="text-2xl text-slate-500 font-normal tracking-tight">News</p>
+        <p class="text-2xl text-slate-500 font-normal tracking-tight">{{ t('blogIndex_title') }}</p>
       </div>
       <div class="flex justify-between items-end">
-        <p class="text-4xl font-semibold text-slate-700 font-jakarta">Recent release</p>
+        <p class="text-4xl font-semibold text-slate-700 font-jakarta">{{ t('blogIndex_subtitle') }}</p>
         <a href="/news" class="hidden md:flex gap-2 items-center px-6 py-2 bg-sky-600 rounded-full text-white">
-          <span>See More</span>
+          <span>{{ t('blogIndex_btn_more') }}</span>
           <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
             stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"
             class="h-7 w-auto">
@@ -610,7 +514,7 @@
       </div>
       <a href="/news"
         class="flex md:hidden gap-2 items-center px-6 py-2 bg-sky-600 rounded-full text-white mt-6 w-fit mx-auto">
-        <span>See More</span>
+        <span>{{ t('blogIndex_btn_more') }}</span>
         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
           stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" class="h-7 w-auto">
           <path stroke="none" d="M0 0h24v24H0z" fill="none" />
@@ -626,19 +530,16 @@
     <section class="main-wrapper px-0 md:px-4 my-0 md:my-32">
       <div
         class="bg-radial-[at_50%_75%] from-sky-400 via-sky-600 to-sky-800 to-90% rounded-none md:rounded-3xl text-center py-20 px-6">
-        <h2 class="text-5xl font-medium font-jakarta text-slate-50 mb-4 max-w-3xl mx-auto">Ready to Elevate Your Robotics
-          and Drones
-          Experience?</h2>
-        <p class="text-xl font-jakarta text-slate-100 mb-6 max-w-3xl mx-auto">Contact us today to discover how our
-          products
-          can transform your operations and drive innovation</p>
+        <h2 class="text-5xl font-medium font-jakarta text-slate-50 mb-4 max-w-3xl mx-auto">{{ t('ctaIndex_title') }}
+        </h2>
+        <p class="text-xl font-jakarta text-slate-100 mb-6 max-w-3xl mx-auto">{{ t('ctaIndex_subtitle') }}</p>
         <div class="flex justify-center gap-2 md:gap-4">
           <a href="/about-us/contact"
             class="bg-black px-3 md:px-5 py-2 rounded-full text-white   font-semibold text-base">
-            Contact Us
+            {{ t('ctaIndex_btn_contact') }}
           </a>
           <a href="/products" class="bg-white px-3 md:px-5 py-2 rounded-full text-slate-800   font-semibold text-base">
-            Explore Catalogs
+            {{ t('ctaIndex_btn_more') }}
           </a>
         </div>
       </div>

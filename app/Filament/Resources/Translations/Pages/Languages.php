@@ -56,7 +56,7 @@ class Languages extends Page implements HasForms
             $children = [];
 
             foreach ($translations as $translation) {
-                $children[] = Section::make($translation->key)
+                $children[] = Section::make(Str::headline($translation->key))
                     ->schema([
                         TextInput::make("{$translation->id}.key")
                             ->label('Key')
@@ -71,7 +71,7 @@ class Languages extends Page implements HasForms
                         Textarea::make("{$translation->id}.lang_en")
                             ->label('English')
                             ->autosize()
-                            ->rows(1)   
+                            ->rows(1)
                             ->required(),
                     ])
                     ->columns(3)

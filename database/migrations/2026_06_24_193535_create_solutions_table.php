@@ -13,12 +13,20 @@ return new class extends Migration
     {
         Schema::create('solutions', function (Blueprint $table) {
             $table->id();
+            $table->json('images');
+            $table->timestamps();
+        });
+
+        Schema::create('solution_translations', function (Blueprint $table) {
+            $table->increments('id');
+            $table->unsignedBigInteger('solution_id');
+            $table->string('locale')->index();
             $table->string('title');
             $table->text('description');
-            $table->json('images');
             $table->string('list_title')->nullable();
             $table->json('list_items')->nullable();
-            $table->timestamps();
+            $table->unique(['solution_id', 'locale']);
+            $table->foreign('solution_id')->references('id')->on('solutions')->onDelete('cascade');
         });
     }
 
@@ -27,6 +35,7 @@ return new class extends Migration
      */
     public function down(): void
     {
+        Schema::dropIfExists('solution_translations');
         Schema::dropIfExists('solutions');
     }
 };

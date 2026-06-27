@@ -214,7 +214,7 @@
 
         <div class="flex items-end justify-between mb-8">
           <div>
-            <p class="text-5xl md:text-6xl text-slate-700 font-semibold">Featured Models</p>
+            <p class="text-4xl md:text-5xl text-slate-700 font-semibold">{{ t('productsPage_other_section') }}</p>
           </div>
 
           <div class="flex gap-2 lg:hidden">

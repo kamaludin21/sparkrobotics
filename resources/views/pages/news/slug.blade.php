@@ -1,17 +1,16 @@
 @extends('layout.app', ['activePage' => 'news'])
 
 @section('content')
-  <main class="main-wrapper px-4 py-24 lg:py-32 overflow-x-hidden">
-
-    <x-layout.news-nav title="Blog" />
+  <main class="main-wrapper px-4 py-12 lg:py-32 overflow-x-hidden">
     <section class="py-10 space-y-6">
-      <p class="text-5xl w-full lg:max-w-2/3 font-bold text-slate-700 leading-16">Above the Clouds: How DJI Dock 3 Is
-        Helping Safeguard Europe's Highest Ski Resort</p>
+      <p class="text-4xl md:text-5xl w-full lg:max-w-2/3 font-bold text-slate-700 leading-10 md:leading-16">
+        {{ $article->title }}</p>
       <div
         class="flex flex-col md:flex-row justify-between items-start md:items-center border-b border-slate-200 pb-6 mb-10 gap-6">
 
         <div class="flex items-center gap-4">
-          <span class="text-slate-500 text-sm">April 24, 2026</span>
+          <span
+            class="text-slate-500 text-sm">{{ app()->getLocale() === 'id' ? $article->updated_at->translatedFormat('d F Y') : $article->updated_at->format('F d, Y') }}</span>
         </div>
 
         <div class="flex items-center gap-3">
@@ -54,38 +53,23 @@
         <div class="lg:col-span-3 order-2 lg:order-1">
           <h3 class="text-sm font-semibold tracking-wide text-slate-800 mb-4">TAGGED:</h3>
           <div class="flex flex-wrap gap-2">
-            <span
-              class="bg-slate-100 text-slate-800 text-sm font-medium px-3 py-1.5 rounded-sm hover:bg-slate-200 cursor-pointer transition">Announcement</span>
-            <span
-              class="bg-slate-100 text-slate-800 text-sm font-medium px-3 py-1.5 rounded-sm hover:bg-slate-200 cursor-pointer transition">Product</span>
+            @foreach ($article->tags as $tag)
+              <span
+                class="bg-slate-100 text-slate-800 text-sm font-medium px-3 py-1.5 rounded-sm hover:bg-slate-200 cursor-pointer transition">{{ $tag->name }}</span>
+            @endforeach
           </div>
         </div>
 
         <div class="lg:col-span-9 order-1 lg:order-2 ">
           {{-- Image --}}
           <div class="mb-6">
-            <img class="w-full h-auto" src="https://dorangadget.com/wp-content/uploads/2023/05/merk-drone-terbaik-FI.jpeg"
-              alt="">
+            <img class="w-full h-auto aspect-[16/9] object-cover ring ring-slate-200"
+              src="{{ Storage::url($article->image) ?? 'https://via.placeholder.com/700x400' }}"
+              alt="{{ $article->title }}">
           </div>
-          {{-- Image --}}
-
-          <p class="text-lg leading-relaxed text-black mb-6">
-            Skydio, the largest U.S.-based drone manufacturer and the world leader in flying robots, today announced plans
-            to invest $3.5 billion in the United States over the next five years to expand its domestic manufacturing,
-            accelerate R&D, and strengthen American supply chains. The investment is expected to create over 2,000 new
-            Skydio jobs, support the creation of more than 3,000 additional roles within the U.S. supply chain, and direct
-            more than $1 billion to domestic suppliers.
-          </p>
-          <p class="text-lg leading-relaxed text-black mb-6">
-            A key component of the investment is SkyForge, a new company program designed to ensure the future of flight
-            is built in America. In addition to the billion-dollar investment in U.S. suppliers, Skydio plans to open a
-            new U.S. manufacturing facility five times larger than its current space. The company has outgrown four
-            American manufacturing facilities in eight years; this will be its fifth expansion to meet extraordinary
-            demand. Skydio’s investment in world-class suppliers will help expand - and in some cases initiate - domestic
-            manufacturing of crucial parts and components. The company will invite select suppliers to co-locate
-            production capacity with Skydio, giving suppliers access to production space and Skydio’s engineering talent
-            to help incubate a growing industry.
-          </p>
+          <div class="content-html">
+            {!! $article->content !!}
+          </div>
         </div>
 
       </div>

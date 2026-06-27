@@ -177,14 +177,10 @@
       class="lg:hidden absolute top-full left-0 w-full h-screen bg-slate-900/40 backdrop-blur-sm z-40 cursor-pointer">
     </div>
 
-    <div x-show="mobileMenuOpen" x-transition:enter="transition ease-out duration-200"
-      x-transition:enter-start="opacity-0 -translate-y-2" x-transition:enter-end="opacity-100 translate-y-0"
-      x-transition:leave="transition ease-in duration-150" x-transition:leave-start="opacity-100 translate-y-0"
-      x-transition:leave-end="opacity-0 -translate-y-2" style="display: none;"
+    <div x-show="mobileMenuOpen" x-cloak
       class="lg:hidden absolute top-full left-0 w-full bg-white border-b border-gray-200 shadow-xl z-50 max-h-[calc(100vh-80px)] overflow-y-auto">
       <div class="flex flex-col px-4 py-6 gap-6">
-        <div class="flex flex-col gap-4 text-base font-normal tracking-normal">
-
+        <div class="flex flex-col gap-4 text-base font-normal">
           @foreach ($menus as $menu)
             @php
               $isParentActive = is_array($menu['active_key'])
@@ -192,47 +188,35 @@
                   : $activePage === $menu['active_key'];
             @endphp
 
-            <div class="flex flex-col gap-2">
+            <div class="flex flex-col">
               @if (empty($menu['children']))
-                <a href="{{ $menu['url'] === '#' ? '#' : url(app()->getLocale() . ($menu['url'] === '/' ? '' : $menu['url'])) }}"
-                  class="inline-block w-max {{ $isParentActive ? 'text-sky-600 font-semibold relative' : 'text-slate-700 hover:text-sky-600 transition-colors' }}">
-                  <span class="relative z-10">{{ $menu['title'] }}</span>
-                  @if ($isParentActive)
-                    <div class="absolute -top-1 -left-1 w-4 h-4 rounded-full bg-amber-400 z-0"></div>
-                  @endif
+                <a href="{{ $menu['url'] }}"
+                  class="{{ $isParentActive ? 'text-sky-600 font-semibold' : 'text-slate-700' }}">
+                  {{ $menu['title'] }}
                 </a>
               @else
-                <div class="flex flex-col gap-2">
-                  <button
-                    @click.prevent="openMenu = openMenu === 'mobile-{{ $menu['title'] }}' ? null : 'mobile-{{ $menu['title'] }}'"
-                    class="flex items-center justify-between transition-colors focus:outline-none w-full text-left {{ $isParentActive ? 'text-sky-600 font-semibold' : 'text-slate-700 hover:text-sky-600' }}"
-                    :class="openMenu === 'mobile-{{ $menu['title'] }}' ? 'text-sky-600' : ''">
-                    <span>{{ $menu['title'] }}</span>
-                    <svg class="w-4 h-4 transition-transform duration-200"
-                      :class="openMenu === 'mobile-{{ $menu['title'] }}' ? 'rotate-180' : ''" fill="none"
-                      stroke="currentColor" viewBox="0 0 24 24">
-                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7">
-                      </path>
-                    </svg>
-                  </button>
+                <button @click="openMenu = (openMenu === 'm-{{ $loop->index }}' ? null : 'm-{{ $loop->index }}')"
+                  class="flex items-center justify-between w-full text-left {{ $isParentActive ? 'text-sky-600 font-semibold' : 'text-slate-700' }}">
+                  <span>{{ $menu['title'] }}</span>
+                  <svg class="w-4 h-4 transition-transform"
+                    :class="openMenu === 'm-{{ $loop->index }}' ? 'rotate-180' : ''" fill="none"
+                    stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                  </svg>
+                </button>
 
-                  <div x-show="openMenu === 'mobile-{{ $menu['title'] }}'"
-                    x-transition:enter="transition ease-out duration-200"
-                    x-transition:enter-start="opacity-0 -translate-y-2"
-                    x-transition:enter-end="opacity-100 translate-y-0" style="display: none;"
-                    class="flex flex-col gap-2 pl-4 mt-2 border-l-2 border-gray-100">
-                    @foreach ($menu['children'] as $child)
-                      <a href="{{ $child['url'] }}"
-                        class="text-sm py-1 transition-colors {{ $activePage === $child['active_key'] ? 'text-orange-500 font-semibold' : 'text-slate-600 hover:text-sky-600' }}">
-                        {{ $child['title'] }}
-                      </a>
-                    @endforeach
-                  </div>
+                <div x-show="openMenu === 'm-{{ $loop->index }}'" x-collapse
+                  class="flex flex-col gap-2 pl-4 mt-2 border-l-2 border-gray-100">
+                  @foreach ($menu['children'] as $child)
+                    <a href="{{ $child['url'] }}"
+                      class="text-sm py-1 {{ $activePage === $child['active_key'] ? 'text-orange-500' : 'text-slate-600' }}">
+                      {{ $child['title'] }}
+                    </a>
+                  @endforeach
                 </div>
               @endif
             </div>
           @endforeach
-
         </div>
         <hr class="border-gray-100">
         <div class="flex lg:hidden items-center gap-4 justify-between">
@@ -255,7 +239,28 @@
           </a>
         </div>
       </div>
+
     </div>
+
   </nav>
 </header>
-hea
+{{-- <hr class="border-gray-100">
+        <div class="flex lg:hidden items-center gap-4 justify-between">
+          <div class="flex items-center font-normal gap-1 text-base text-slate-600">
+            <a href="#" class="leading-4 px-1 hover:text-sky-600 transition-colors"><span>IDN</span></a>
+            <div class="h-4 w-[1.5px] bg-slate-600"></div>
+            <a href="#" class="text-sky-600 px-1 flex items-center gap-0.5 font-medium">
+              <x-icons.language class="h-4 w-auto" />
+              <span class="leading-4">ENG</span>
+            </a>
+          </div>
+          <a href="/whatsapp" target="_blank"
+            class="group flex items-center gap-2 text-white pl-1 pr-3 py-2 bg-emerald-600 hover:bg-emerald-700 
+             rounded-xl click-animate hover:pl-4 cursor-pointer">
+            <span
+              class="max-w-0 overflow-hidden group-hover:max-w-[120px] transition-all duration-300 ease-out whitespace-nowrap">
+              Contact Us
+            </span>
+            <x-icons.whatsapp class="h-6 w-auto transition-transform duration-300" />
+          </a>
+        </div> --}}

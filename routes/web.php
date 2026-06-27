@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ArticleController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\SolutionController;
 use App\Http\Controllers\WelcomeController;
@@ -20,21 +21,17 @@ Route::name('en.')->group(function () {
     Route::get(trans('routes.solutions', locale: 'en'), [SolutionController::class, 'index'])->name('solutions.index');
 
     // News
-    Route::get(trans('routes.news', [], 'en'), function () {
-        return view('pages.news.index');
-    })->name('news.index');
+    Route::get(trans('routes.news', locale: 'en'), [ArticleController::class, 'article'])->name('news.index');
+    Route::get(trans('routes.news_category', locale: 'en'), [ArticleController::class, 'articleByCategory'])->name('news.category');
+    Route::get(trans('routes.news_detail', locale: 'en'), [ArticleController::class, 'show'])->name('news.detail');
 
-    Route::get(trans('routes.news_blog', [], 'en'), function () {
-        return view('pages.news.blog');
-    })->name('news.blog');
-
+    // Route::get(trans('routes.news', [], 'en'), function () {
+    //     return view('pages.news.index');
+    // })->name('news.index');
     Route::get(trans('routes.news_download_center', [], 'en'), function () {
         return view('pages.news.download-center');
     })->name('news.download_center');
 
-    Route::get(trans('routes.news_detail', [], 'en'), function () {
-        return view('pages.news.slug');
-    })->name('news.detail');
 
     // About Us
     Route::get(trans('routes.about_us', [], 'en'), function () {
@@ -74,21 +71,17 @@ Route::prefix('{locale}')
         Route::get(trans('routes.solutions', locale: 'id'), [SolutionController::class, 'index'])->name('solutions.index');
 
         // Berita
-        Route::get(trans('routes.news', [], 'id'), function () {
-            return view('pages.news.index');
-        })->name('news.index');
+        Route::get(trans('routes.news', locale: 'id'), [ArticleController::class, 'article'])->name('news.index');
+        Route::get(trans('routes.news_category', locale: 'id'), [ArticleController::class, 'articleByCategory'])->name('news.category');
+        Route::get(trans('routes.news_detail', locale: 'id'), [ArticleController::class, 'show'])->name('news.detail');
 
-        Route::get(trans('routes.news_blog', [], 'id'), function () {
-            return view('pages.news.blog');
-        })->name('news.blog');
+        // Route::get(trans('routes.news_blog', [], 'id'), function () {
+        //     return view('pages.news.blog');
+        // })->name('news.blog');
 
         Route::get(trans('routes.news_download_center', [], 'id'), function () {
             return view('pages.news.download-center');
         })->name('news.download_center');
-
-        Route::get(trans('routes.news_detail', [], 'id'), function () {
-            return view('pages.news.slug');
-        })->name('news.detail');
 
         // Tentang Kami
         Route::get(trans('routes.about_us', [], 'id'), function () {

@@ -2,11 +2,14 @@
 
 namespace App\Filament\Resources\Categories\Tables;
 
+use App\Filament\Resources\Categories\CategoryResource;
+use App\Models\Category;
 use Filament\Actions\ActionGroup;
 use Filament\Actions\DeleteAction;
 use Filament\Actions\EditAction;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
+use Illuminate\Database\Eloquent\Builder;
 
 class CategoriesTable
 {
@@ -17,15 +20,32 @@ class CategoriesTable
                 TextColumn::make('index')
                     ->label('No.')
                     ->rowIndex(),
-                TextColumn::make('name')
-                    ->label('Kategori')
-                    ->searchable(),
+                TextColumn::make('name_id')
+                    ->label('Nama (ID)')
+                    // Mengambil relasi translasi khusus 'id'
+                    ->state(fn(Category $record): ?string => $record->translate('id')?->name)
+                    ->searchable(query: function (Builder $query, string $search) {
+                        // Mencari berdasarkan locale 'id'
+                        $query->whereTranslationLike('name', '%' . $search . '%', 'id');
+                    }),
+
+                // Kolom untuk Bahasa Inggris (EN)
+                TextColumn::make('name_en')
+                    ->label('Nama (EN)')
+                    // Mengambil relasi translasi khusus 'en'
+                    ->state(fn(Category $record): ?string => $record->translate('en')?->name)
+                    ->searchable(query: function (Builder $query, string $search) {
+                        // Mencari berdasarkan locale 'en'
+                        $query->whereTranslationLike('name', '%' . $search . '%', 'en');
+                    }),
             ])
             ->recordActions([
-                ActionGroup::make([
-                    EditAction::make(),
-                    DeleteAction::make(),
-                ])
+                EditAction::make()->mutateRecordDataUsing(function (Category $record, array $data) {
+                    return CategoryResource::mutateTranslatableData($record, $data);
+                })->mutateDataUsing(function (Category $record, array $data) {
+                    $record->unsetRelation('translation');
+                    return $data;
+                }),
             ]);
     }
 }

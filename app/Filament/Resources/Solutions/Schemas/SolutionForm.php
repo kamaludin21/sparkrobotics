@@ -2,6 +2,8 @@
 
 namespace App\Filament\Resources\Solutions\Schemas;
 
+use Doriiaan\FilamentAstrotomic\Schemas\Components\TranslatableTabs;
+use Doriiaan\FilamentAstrotomic\TranslatableTab;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Components\Repeater;
@@ -15,35 +17,6 @@ class SolutionForm
     {
         return $schema
             ->components([
-                TextArea::make('title')
-                    ->autosize()
-                    ->rows(1)
-                    ->required()
-                    ->columnSpanFull(),
-                Textarea::make('description')
-                    ->rows(5)
-                    ->columnSpanFull(),
-                TextInput::make('list_title')
-                    ->label('List Title')
-                    ->required(),
-                Grid::make('1')
-                    ->schema([
-                        Repeater::make('list_items')
-                            ->label('List')
-                            ->schema([
-                                TextInput::make('title')
-                                    ->required(),
-
-                                Textarea::make('subtitle')
-                                    ->rows(2),
-                            ])
-                            ->defaultItems(0)
-                            ->collapsible()
-                            ->cloneable()
-                            ->reorderable()
-                            ->itemLabel(fn(array $state): ?string => $state['title'] ?? null)
-                            ->grid(3),
-                    ])->columnSpanFull(),
                 FileUpload::make('images')
                     ->label('Solutions Illustrasion')
                     ->maxSize(500)
@@ -62,6 +35,41 @@ class SolutionForm
                     ->downloadable()
                     ->helperText('Maks Size: 500KB per gambar')
                     ->required(),
+                TranslatableTabs::make()
+                    ->localeTabSchema(fn(TranslatableTab $tab) => [
+                        TextArea::make($tab->makeName('title'))
+                            ->autosize()
+                            ->rows(1)
+                            ->required()
+                            ->columnSpanFull(),
+                        Textarea::make($tab->makeName('description'))
+                            ->rows(5)
+                            ->columnSpanFull(),
+                        TextInput::make($tab->makeName('list_title'))
+                            ->label('List Title')
+                            ->required(),
+                        Grid::make('1')
+                            ->schema([
+                                Repeater::make($tab->makeName('list_items'))
+                                    ->label('List')
+                                    ->schema([
+                                        TextInput::make($tab->makeName('title'))
+                                            ->required(),
+
+                                        Textarea::make($tab->makeName('subtitle'))
+                                            ->autosize()
+                                            ->rows(1),
+                                    ])
+                                    ->defaultItems(0)
+                                    ->collapsible()
+                                    ->reorderable()
+                                    ->itemLabel(fn(array $state): ?string => $state['title'] ?? null)
+                                    ->grid(2),
+                            ]),
+
+
+                    ])->columnSpanFull(),
+
             ]);
     }
 }

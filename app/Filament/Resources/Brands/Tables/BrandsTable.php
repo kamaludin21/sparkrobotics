@@ -5,9 +5,9 @@ namespace App\Filament\Resources\Brands\Tables;
 use Filament\Actions\ActionGroup;
 use Filament\Actions\DeleteAction;
 use Filament\Actions\EditAction;
+use Filament\Tables\Columns\ImageColumn;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
-use TinusG\FilamentHoverImageColumn\HoverImageColumn;
 
 class BrandsTable
 {
@@ -18,7 +18,7 @@ class BrandsTable
                 TextColumn::make('index')
                     ->label('No.')
                     ->rowIndex(),
-                HoverImageColumn::make('logo_path')
+                ImageColumn::make('logo_path')
                     ->label('Gambar')
                     ->searchable(),
                 TextColumn::make('name')

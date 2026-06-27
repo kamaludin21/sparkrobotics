@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Filament\Resources\Articles\Tables;
+namespace App\Filament\Resources\ArticleCategories\Tables;
 
 use Filament\Actions\BulkActionGroup;
 use Filament\Actions\DeleteBulkAction;
@@ -8,7 +8,7 @@ use Filament\Actions\EditAction;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
 
-class ArticlesTable
+class ArticleCategoriesTable
 {
     public static function configure(Table $table): Table
     {
@@ -19,10 +19,6 @@ class ArticlesTable
                     ->rowIndex(),
                 TextColumn::make('title')
                     ->searchable(),
-
-                TextColumn::make('category.title')
-                    ->searchable(),
-
                 TextColumn::make('created_at')
                     ->dateTime()
                     ->sortable()

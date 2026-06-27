@@ -6,13 +6,13 @@
 
       <div class="mb-8 flex flex-col md:flex-row md:items-end md:justify-between gap-4">
         <div class="space-y-2">
-          <h2 class="text-4xl md:text-5xl font-bold text-slate-700 font-jakarta">{{ t('products_title_page') }}</h2>
-          <p class="text-slate-500 mt-2 text-sm md:text-base">{{ t('products_subtitle_page') }}</p>
+          <h2 class="text-4xl md:text-5xl font-bold text-slate-700 font-jakarta">{{ t('productsPage_title_page') }}</h2>
+          <p class="text-slate-500 mt-2 text-sm md:text-base">{{ t('productsPage_subtitle_page') }}</p>
         </div>
         <div class="flex items-center gap-3">
           <div class="relative w-full md:w-64">
             <input type="text" name="search" value="{{ request('search') }}"
-              placeholder="{{ t('products_search_input') }}..."
+              placeholder="{{ t('productsPage_search_input') }}..."
               class="w-full pl-4 pr-10 py-2 border border-slate-300 rounded-lg focus:ring-2 focus:ring-sky-500 focus:border-sky-500 outline-none text-sm transition-all"
               onkeydown="if(event.key === 'Enter'){ event.preventDefault(); this.form.submit(); }" />
             <button type="submit" class="absolute right-3 top-2.5 text-slate-400 hover:text-sky-600">
@@ -38,7 +38,7 @@
 
             <div class="mb-6">
               <h3 class="text-xs font-bold text-slate-400 uppercase tracking-wider mb-4">
-                {{ t('products_filter_category') }}</h3>
+                {{ t('productsPage_filter_category') }}</h3>
               <div class="space-y-3">
                 @foreach ($categories as $item)
                   <label class="flex items-center gap-3 cursor-pointer group">
@@ -56,7 +56,7 @@
             <hr class="border-slate-100 mb-6" />
 
             <div>
-              <h3 class="text-xs font-bold text-slate-400 uppercase tracking-wider mb-4">{{ t('products_filter_brand') }}
+              <h3 class="text-xs font-bold text-slate-400 uppercase tracking-wider mb-4">{{ t('productsPage_filter_brand') }}
               </h3>
               <div class="space-y-3">
                 @foreach ($brands as $item)
@@ -102,7 +102,7 @@
                     <a href="{{ localized_route('products.show', $item->slug) }}"
                       aria-label="Lihat detail untuk {{ $item->title }}"
                       class="block w-full rounded-lg bg-slate-100 px-4 py-2 text-center text-sm font-semibold text-slate-700 ring-1 ring-slate-200 transition-colors duration-300 group-hover:bg-sky-600 group-hover:text-white">
-                      {{ t('products_detail_button') }}
+                      {{ t('productsPage_detail_button') }}
                     </a>
                   </div>
                 </div>

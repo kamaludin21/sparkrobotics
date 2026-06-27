@@ -1,22 +1,20 @@
 @extends('layout.app', ['activePage' => 'solutions'])
 
 @section('content')
-  <section class="py-24 md:py-32 bg-slate-50 relative" x-data="layananSpark(@js($solutions))">
+  <section class="py-24 md:py-32 bg-slate-50 relative" x-data="layananSpark(@js($solutions))" wire:key="solutions-{{ app()->getLocale() }}">
     <div class="main-wrapper px-4">
-
       <div class="mb-16 flex flex-col lg:flex-row lg:items-end justify-between gap-6 lg:gap-12">
         <div class="w-full lg:max-w-2xl space-y-4">
-          <h2 class="text-4xl md:text-5xl font-bold text-slate-700 font-jakarta">Solutions and Services</h2>
+          <h2 class="text-4xl md:text-5xl font-bold text-slate-700 font-jakarta">{{ t('solutionsPage_title') }}</h2>
           <p class="text-lg text-slate-600 leading-relaxed">
-            Solusi komprehensif kami memanfaatkan teknologi UAV, LiDAR, dan fotogrametri terdepan untuk menghadirkan
-            akurasi dan efisiensi maksimal pada setiap tahap proyek industri Anda.
+            {{ t('solutionsPage_subtitle') }}
           </p>
         </div>
 
         <div class="shrink-0">
           <a href="/about-us/contact"
             class="inline-flex items-center justify-center px-7 py-3.5 text-base font-semibold text-white bg-sky-600 rounded-xl shadow-sm hover:bg-slate-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-sky-600 transition-all duration-300 group">
-            Konsultasi Sekarang
+            {{ t('solutionsPage_btn_contact') }}
             <svg class="w-5 h-5 ml-2.5 transform group-hover:translate-x-1.5 transition-transform duration-300"
               fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
@@ -25,7 +23,7 @@
         </div>
       </div>
 
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" x-cloak>
         <template x-for="(item, index) in services" :key="item.id || index">
           <div
             class="bg-white rounded-2xl shadow-sm hover:shadow-xl transition-all duration-300 border border-slate-100 overflow-hidden cursor-pointer group flex flex-col"
@@ -57,7 +55,7 @@
       </div>
     </div>
 
-    <div x-show="isOpen" style="display: none;"
+    <div x-show="isOpen" x-cloak style="display: none;"
       class="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 bg-slate-900/80 backdrop-blur-sm"
       x-transition:enter="transition ease-out duration-300" x-transition:enter-start="opacity-0"
       x-transition:enter-end="opacity-100" x-transition:leave="transition ease-in duration-200"
@@ -194,6 +192,15 @@
           services: dbServices, // Menggunakan data dinamis
 
           openModal(item) {
+            if (item.list_items && typeof item.list_items === 'string') {
+              try {
+                item.list_items = JSON.parse(item.list_items);
+              } catch (error) {
+                console.error("Gagal mem-parsing list_items:", error);
+                item.list_items = [];
+              }
+            }
+
             this.activeItem = item;
             this.activeSlide = 0;
             this.isOpen = true;
