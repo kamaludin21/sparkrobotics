@@ -87,6 +87,7 @@ class CompanySettings extends SettingsPage
                             ->image()
                             ->multiple()
                             ->optimize('webp')
+                            ->disk('public')
                             ->imageEditor()
                             ->maxSize(500)
                             ->directory('settings/about/company/' . now()->format('Y-m'))
