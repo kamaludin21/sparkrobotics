@@ -9,6 +9,7 @@ use App\Filament\Resources\Solutions\Schemas\SolutionForm;
 use App\Filament\Resources\Solutions\Tables\SolutionsTable;
 use App\Models\Solution;
 use BackedEnum;
+use Doriiaan\FilamentAstrotomic\Resources\Concerns\ResourceTranslatable;
 use Filament\Resources\Resource;
 use Filament\Schemas\Schema;
 use Filament\Support\Icons\Heroicon;
@@ -16,6 +17,7 @@ use Filament\Tables\Table;
 
 class SolutionResource extends Resource
 {
+    use ResourceTranslatable;
     protected static ?string $model = Solution::class;
 
     protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedRectangleStack;
