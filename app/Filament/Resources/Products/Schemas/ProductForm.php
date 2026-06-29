@@ -109,7 +109,7 @@ class ProductForm
                                 'image/png',
                                 'image/webp',
                             ])
-                            ->directory('hero')
+                            ->directory('products/hero/' . now()->format('Y-m'))
                             ->visible(fn(Get $get) => $get('hero_media_type') === 'image')
                             ->required(fn(Get $get) => $get('hero_media_type') === 'image')
                             ->columnSpan(2),
@@ -129,7 +129,7 @@ class ProductForm
                     ->openable()
                     ->disk('public')
                     ->downloadable()
-                    ->directory('products/documents' . now()->format('Y-m'))
+                    ->directory('products/documents/' . now()->format('Y-m'))
                     ->helperText('Maksimal ukuran: 20MB'),
 
                 FileUpload::make('thumbnail_image')
