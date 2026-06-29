@@ -22,6 +22,7 @@ class SolutionForm
                     ->maxSize(500)
                     ->multiple()
                     ->image()
+                    ->disk('public')
                     ->acceptedFileTypes([
                         'image/jpg',
                         'image/jpeg',

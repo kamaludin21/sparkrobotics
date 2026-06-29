@@ -26,6 +26,7 @@ class ArticleForm
                     ->label('Thumbnail Article')
                     ->maxSize(500)
                     ->image()
+                    ->disk('public')
                     ->acceptedFileTypes([
                         'image/jpg',
                         'image/jpeg',

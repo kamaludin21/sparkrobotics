@@ -101,6 +101,7 @@ class ProductForm
                         FileUpload::make('hero_image_path')
                             ->label('Hero Image')
                             ->image()
+                            ->disk('public')
                             ->optimize('webp')
                             ->acceptedFileTypes([
                                 'image/jpg',
@@ -126,6 +127,7 @@ class ProductForm
                     ->label('File Spesifikasi')
                     ->maxSize(20000)
                     ->openable()
+                    ->disk('public')
                     ->downloadable()
                     ->directory('products/documents' . now()->format('Y-m'))
                     ->helperText('Maksimal ukuran: 20MB'),
@@ -134,6 +136,7 @@ class ProductForm
                     ->label('Thumbnail Product')
                     ->maxSize(500)
                     ->image()
+                    ->disk('public')
                     ->acceptedFileTypes([
                         'image/jpg',
                         'image/jpeg',
@@ -153,6 +156,7 @@ class ProductForm
                     ->maxSize(500)
                     ->multiple()
                     ->image()
+                    ->disk('public')
                     ->acceptedFileTypes([
                         'image/jpg',
                         'image/jpeg',
@@ -172,6 +176,7 @@ class ProductForm
                     ->maxSize(500)
                     ->multiple()
                     ->image()
+                    ->disk('public')
                     ->acceptedFileTypes([
                         'image/jpg',
                         'image/jpeg',

@@ -266,6 +266,7 @@ class CompanySettings extends SettingsPage
                         FileUpload::make('logo')
                             ->label('Gambar (PNG,JPG,WEBP)')
                             ->image()
+                            ->disk('public')
                             ->acceptedFileTypes([
                                 'image/jpg',
                                 'image/jpeg',

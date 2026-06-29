@@ -29,6 +29,7 @@ class BrandForm
                 FileUpload::make('logo_path')
                     ->label('Gambar (PNG,JPG,WEBP)')
                     ->image()
+                    ->disk('public')
                     ->acceptedFileTypes([
                         'image/jpg',
                         'image/jpeg',
