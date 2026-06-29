@@ -35,73 +35,36 @@
     {{-- CTA --}}
 
     {{-- Customer Slide --}}
-    <section class="pt-10">
-      <div class="w-full relative flex overflow-hidden " x-data="{ hover: false }" @mouseenter="hover = true"
-        @mouseleave="hover = false">
-        <div class="flex whitespace-nowrap animate-marquee" :style="hover ? 'animation-play-state: paused;' : ''">
-          <div class="flex min-w-full shrink-0 items-center justify-around gap-2 px-2">
-            <div class="w-32 md:w-48 flex justify-center items-center">
-              <img src="https://static.diginusantara.com/2024/01/01/3684april-logo.png" alt="April Group"
-                class="h-12 md:h-14 object-contain transition-all duration-300">
+    @if (count($settings->clients) > 0)
+      <section class="pt-10">
+        <div class="w-full relative flex overflow-hidden " x-data="{ hover: false }" @mouseenter="hover = true"
+          @mouseleave="hover = false">
+          <div class="flex whitespace-nowrap animate-marquee" :style="hover ? 'animation-play-state: paused;' : ''">
+            <div class="flex min-w-full shrink-0 items-center justify-around gap-2 px-2">
+              @foreach ($settings->clients as $client)
+                <div class="w-32 md:w-48 flex justify-center items-center">
+                  @if (!empty($client['logo']))
+                    <img src="{{ Storage::url($client['logo']) }}" alt="{{ $client['company_name'] ?? '' }}"
+                      class="h-12 md:h-14 object-contain transition-all duration-300">
+                  @endif
+                </div>
+              @endforeach
+
             </div>
-            <div class="w-32 md:w-48 flex justify-center items-center">
-              <img src="https://trellis.net/wp-content/uploads/2025/12/POWERCHINA-Logo.png" alt="Google"
-                class="h-12 md:h-14 object-contain transition-all duration-300">
-            </div>
-            <div class="w-32 md:w-48 flex justify-center items-center">
-              <img src="https://www.conocophillips.com/images/logo-black.svg" alt="ConocoPhillips"
-                class="h-12 md:h-14 object-contain transition-all duration-300">
-            </div>
-            <div class="w-32 md:w-48 flex justify-center items-center">
-              <img src="https://www.bp.com/apps/settings/wcm/designs/refresh/bp/images/navigation/bp-logo.svg"
-                alt="Microsoft" class="h-12 md:h-14 object-contain transition-all duration-300">
-            </div>
-            <div class="w-32 md:w-48 flex justify-center items-center">
-              <img src="https://www.ptsi.co.id/images/logo-footer-surveyor.png" alt="Netflix"
-                class="h-12 md:h-14 object-contain transition-all duration-300">
-            </div>
-            <div class="w-32 md:w-48 flex justify-center items-center">
-              <img src="https://adaroindonesia.com/theme/images/Logo-Adaro-Andalan-Indonesia-Color.png" alt="Spotify"
-                class="h-12 md:h-14 object-contain transition-all duration-300">
-            </div>
-            <div class="w-32 md:w-48 flex justify-center items-center">
-              <img src="https://career.inpex.co.id/img/logov2.png" alt="Spotify"
-                class="h-12 md:h-14 object-contain transition-all duration-300">
-            </div>
-          </div>
-          <div class="flex min-w-full shrink-0 items-center justify-around gap-2 px-2" aria-hidden="true">
-            <div class="w-32 md:w-48 flex justify-center items-center">
-              <img src="https://static.diginusantara.com/2024/01/01/3684april-logo.png" alt="April Group"
-                class="h-12 md:h-14 object-contain transition-all duration-300">
-            </div>
-            <div class="w-32 md:w-48 flex justify-center items-center">
-              <img src="https://trellis.net/wp-content/uploads/2025/12/POWERCHINA-Logo.png" alt="Google"
-                class="h-12 md:h-14 object-contain transition-all duration-300">
-            </div>
-            <div class="w-32 md:w-48 flex justify-center items-center">
-              <img src="https://www.conocophillips.com/images/logo-black.svg" alt="ConocoPhillips"
-                class="h-12 md:h-14 object-contain transition-all duration-300">
-            </div>
-            <div class="w-32 md:w-48 flex justify-center items-center">
-              <img src="https://www.bp.com/apps/settings/wcm/designs/refresh/bp/images/navigation/bp-logo.svg"
-                alt="Microsoft" class="h-12 md:h-14 object-contain transition-all duration-300">
-            </div>
-            <div class="w-32 md:w-48 flex justify-center items-center">
-              <img src="https://www.ptsi.co.id/images/logo-footer-surveyor.png" alt="Netflix"
-                class="h-12 md:h-14 object-contain transition-all duration-300">
-            </div>
-            <div class="w-32 md:w-48 flex justify-center items-center">
-              <img src="https://adaroindonesia.com/theme/images/Logo-Adaro-Andalan-Indonesia-Color.png" alt="Spotify"
-                class="h-12 md:h-14 object-contain transition-all duration-300">
-            </div>
-            <div class="w-32 md:w-48 flex justify-center items-center">
-              <img src="https://career.inpex.co.id/img/logov2.png" alt="Spotify"
-                class="h-12 md:h-14 object-contain transition-all duration-300">
+            <div class="flex min-w-full shrink-0 items-center justify-around gap-2 px-2" aria-hidden="true">
+              @foreach ($settings->clients as $client)
+                <div class="w-32 md:w-48 flex justify-center items-center">
+                  @if (!empty($client['logo']))
+                    <img src="{{ Storage::url($client['logo']) }}" alt="{{ $client['company_name'] ?? '' }}"
+                      class="h-12 md:h-14 object-contain transition-all duration-300">
+                  @endif
+                </div>
+              @endforeach
             </div>
           </div>
         </div>
-      </div>
-    </section>
+      </section>
+    @endif
     {{-- Customer Slide --}}
 
     {{-- Category --}}
@@ -166,9 +129,9 @@
               {{ t('segment_ecosystem_slogan') }}
             </h3>
             <div class="flex flex-wrap gap-3 text-xs text-white/60">
-              <span>DJI ENTERPRISE</span>
-              <span>UNITREE</span>
-              <span>CHCNAV</span>
+              @foreach ($brands as $item)
+                <span class="uppercase">{{ $item->name }}</span>
+              @endforeach
             </div>
           </div>
 
@@ -201,8 +164,7 @@
           class="hidden lg:flex gap-2 items-center px-6 py-2 bg-sky-600 rounded-full text-white">
           <span>{{ t('productsIndex_btn_more') }}</span>
           <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-            stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"
-            class="h-7 w-auto">
+            stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" class="h-7 w-auto">
             <path stroke="none" d="M0 0h24v24H0z" fill="none" />
             <path d="M5 12l14 0" />
             <path d="M15 16l4 -4" />
@@ -249,11 +211,7 @@
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                 d="M9.172 16.172a4 4 0 015.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
             </svg>
-            <p class="text-base font-medium text-slate-600">Produk tidak ditemukan</p>
-            <p class="text-sm text-slate-400 mt-1">Coba gunakan kata kunci lain atau ubah filter Anda.</p>
-            @if (request()->hasAny(['search', 'categories', 'brands']))
-              <a href="{{ url()->current() }}" class="text-sm text-sky-600 hover:underline">Kembali</a>
-            @endif
+            <p class="text-base font-medium text-slate-600">{{ t('home_product_empty') }}</p>
           </div>
         @endforelse
       </div>
@@ -343,7 +301,7 @@
             </div>
 
             <div class="mt-10">
-              <a href="/about-us/case-study"
+              <a href="{{ locale_route('about.case_study') }}"
                 class="group relative inline-flex h-12 items-center justify-center overflow-hidden rounded-full bg-sky-600 px-6 font-medium text-neutral-200 duration-500 ">
                 <div class="translate-x-0 opacity-100 transition group-hover:-translate-x-[150%] group-hover:opacity-0">
                   {{ t('chooseUs_btn_projects') }}</div>
@@ -365,33 +323,10 @@
           {{-- TODO: Database insert --}}
           <!-- Brands & Clients Logos (Tab-Style) -->
           <div class="flex flex-wrap items-center justify-center gap-4 md:gap-12">
-            <img src="https://www-cdn.djiits.com/dps/ff086756c6f7151c92080074044f7ac3.svg" alt="DJI"
-              class="h-6 md:h-10 w-auto duration-300 hover:scale-105" />
-            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/fc/Unitree.svg/1280px-Unitree.svg.png"
-              alt="Unitree" class="h-6 md:h-10 w-auto duration-300 hover:scale-105" />
-            <img src="https://docs.emlid.com/emlid-studio/img/logo.svg" alt="EMLID"
-              class="h-6 md:h-10 w-auto duration-300 hover:scale-105" />
-            <img src="https://11918092.s21i.faiusr.com/4/ABUIABAEGAAgicK1lgYo_czmvQcwpQc4wQE.png" alt="EMLID"
-              class="h-6 md:h-10 w-auto duration-300 hover:scale-105" />
-            <img src="https://topodrone.com/upload/iblock/aa2/3p692r723ddh9bu0tqfwvjc94z2reb5p.png" alt="EMLID"
-              class="h-6 md:h-10 w-auto duration-300 hover:scale-105" />
-            <img src="https://upload.wikimedia.org/wikipedia/commons/8/83/Pix4D_logo.png" alt="EMLID"
-              class="h-6 md:h-10 w-auto duration-300 hover:scale-105" />
-            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT2jzYEIgkzPiMS_O0Rk7PFUFmZ8v7BFizUVQ&s"
-              alt="EMLID" class="h-10 w-auto duration-300 hover:scale-105" />
-            {{-- SKYDIO --}}
-            {{-- <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-auto duration-300 hover:scale-105" fill="none"
-              viewBox="0 0 121 108">
-              <path fill="#22211F" fill-rule="evenodd"
-                d="M120.99 15.953c0 6.965-21.382 18.723-120.99 37.97V.001h108.417v8.313s12.573 1.722 12.573 7.639ZM12.804 106.95c-5.722-1.273-9.638-5.318-9.638-11.234 0-5.992 4.066-26.512 105.406-56.694v68.826H28.69c-11.97 0-14.72-.632-15.672-.851-.084-.019-.153-.035-.215-.047Z"
-                clip-rule="evenodd"></path>
-            </svg>
-
-            <img src="https://www.pudurobotics.com/_next/static/media/logo.851bf515.svg" alt="Skydio"
-              class="h-10 w-auto duration-300 hover:scale-105" />
-            <img
-              src="https://www.autelrobotics.com/wp-content/themes/autel/userfiles/images/2023/03/08/2023030810005703.svg"
-              alt="FlashBot" class="h-10 w-auto duration-300 hover:scale-105" /> --}}
+            @foreach ($brands as $item)
+              <img src="{{ Storage::url($item->logo_path) }}" alt="{{ $item->name }}"
+                class="h-6 md:h-10 w-auto duration-300 hover:scale-105" />
+            @endforeach
           </div>
         </div>
       </div>
@@ -416,18 +351,11 @@
         }">
           <div x-ref="slider"
             class="flex snap-x snap-mandatory [scrollbar-width:'none'] gap-4 overflow-x-auto [-ms-overflow-style:'none'] lg:grid lg:grid-cols-4 lg:gap-8 lg:overflow-visible [&::-webkit-scrollbar]:hidden">
-            <img src="{{ asset('images/Picture1.png') }}"
-              class="h-72 w-[85%] shrink-0 snap-center rounded-2xl object-cover shadow-lg duration-200 lg:h-96 lg:w-full hover:lg:-mt-4"
-              alt="About Us" />
-            <img src="{{ asset('images/Picture2.png') }}"
-              class="h-72 w-[85%] shrink-0 snap-center rounded-2xl object-cover shadow-lg duration-200 lg:h-96 lg:w-full hover:lg:-mt-4"
-              alt="About Us" />
-            <img src="{{ asset('images/Picture3.png') }}"
-              class="h-72 w-[85%] shrink-0 snap-center rounded-2xl object-cover shadow-lg duration-200 lg:h-96 lg:w-full hover:lg:-mt-4"
-              alt="About Us" />
-            <img src="{{ asset('images/Picture4.jpg') }}"
-              class="h-72 w-[85%] shrink-0 snap-center rounded-2xl object-cover shadow-lg duration-200 lg:h-96 lg:w-full hover:lg:-mt-4"
-              alt="About Us" />
+            @foreach ($settings->about_image as $item)
+              <img src="{{ Storage::url($item) }}"
+                class="h-72 w-[85%] shrink-0 snap-center rounded-2xl object-cover shadow-lg duration-200 lg:h-96 lg:w-full hover:lg:-mt-4"
+                alt="About Us" />
+            @endforeach
           </div>
           <div class="mt-6 flex justify-center gap-4 lg:hidden">
             <button @click="scrollPrev"
@@ -465,7 +393,8 @@
       </div>
       <div class="flex justify-between items-end">
         <p class="text-4xl font-semibold text-slate-700 font-jakarta">{{ t('blogIndex_subtitle') }}</p>
-        <a href="/news" class="hidden md:flex gap-2 items-center px-6 py-2 bg-sky-600 rounded-full text-white">
+        <a href="{{ localized_route('news.index') }}"
+          class="hidden md:flex gap-2 items-center px-6 py-2 bg-sky-600 rounded-full text-white">
           <span>{{ t('blogIndex_btn_more') }}</span>
           <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
             stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"
@@ -478,41 +407,32 @@
         </a>
       </div>
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mt-12">
-        <div class="bg-white rounded-2xl p-4 ring ring-slate-200">
-          <img
-            src="https://cdn.sanity.io/images/mgxz50fq/production-v3-red/208754dfdeecbaf983ffe7ad7c87d4c721aafbbe-3840x2160.png?w=3000&fit=max&auto=format"
-            alt="Blog 1" class="w-full object-cover mx-auto h-56 rounded-xl">
-          <div class="px-2 py-4">
-            <a href="/news/detail"
-              class="line-clamp-3 text-xl font-semibold text-slate-700 hover:text-sky-600 cursor-pointer hover:underline">
-              The Future of Robotics: Trends and Predictions for the Next Decade</a>
-            <p class="text-slate-600 mt-2">April 21, 2026</p>
+        @forelse ($articles as $item)
+          <div class="bg-white rounded-2xl p-4 ring ring-slate-200">
+            <img src="{{ Storage::url($item->image) }}" alt="{{ $item->title }}"
+              class="w-full object-cover mx-auto h-56 rounded-xl">
+            <div class="px-2 py-4">
+              <a href=""
+                class="line-clamp-3 text-xl font-semibold text-slate-700 hover:text-sky-600 cursor-pointer hover:underline">
+                {{ $item->title }}</a>
+              <p class="text-slate-600 mt-2">
+                {{ app()->getLocale() === 'id' ? $item->updated_at->translatedFormat('d F Y') : $item->updated_at->format('F d, Y') }}
+              </p>
+            </div>
           </div>
-        </div>
-        <div class="bg-white rounded-2xl p-4 ring ring-slate-200">
-          <img src="https://cdn.pudutech.com/blog_82cccb7a7e.png" alt="Blog 1"
-            class="w-full object-cover mx-auto h-56 rounded-xl">
-          <div class="px-2 py-4">
-            <a href="/news/detail"
-              class="line-clamp-3 text-xl font-semibold text-slate-700 hover:text-sky-600 cursor-pointer hover:underline">
-              Smart Factory's Backbone: How PUDU T300 AMR Powers Ennoconn Technologies' End-to-End EMS Logistics</a>
-            <p class="text-slate-600 mt-2">January 30, 2026</p>
+        @empty
+          <div
+            class="col-span-full bg-white border border-dashed border-slate-300 rounded-2xl py-16 text-center text-slate-500 space-y-2">
+            <svg class="w-12 h-12 mx-auto text-slate-300 mb-3" fill="none" stroke="currentColor"
+              viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                d="M9.172 16.172a4 4 0 015.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+            </svg>
+            <p class="text-base font-medium text-slate-600">{{ t('home_product_empty') }}</p>
           </div>
-        </div>
-        <div class="bg-white rounded-2xl p-4 ring ring-slate-200">
-          <img src="https://www-cdn.djiits.com/cms/uploads/187cd6bd8123342f34a326d78ce3f85f@770*462.png" alt="Blog 1"
-            class="w-full object-cover mx-auto h-56 rounded-xl">
-          <div class="px-2 py-4">
-            <a href="/news/detail"
-              class="line-clamp-3 text-xl font-semibold text-slate-700 hover:text-sky-600 cursor-pointer hover:underline">
-              DJI Releases Findings of the Most Comprehensive Independent Security Assessment of Its Drone Systems to Date
-            </a>
-            <p class="text-slate-600 mt-2">Sept 1, 2025</p>
-          </div>
-        </div>
-
+        @endforelse
       </div>
-      <a href="/news"
+      <a href="{{ localized_route('news.index') }}"
         class="flex md:hidden gap-2 items-center px-6 py-2 bg-sky-600 rounded-full text-white mt-6 w-fit mx-auto">
         <span>{{ t('blogIndex_btn_more') }}</span>
         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
@@ -534,11 +454,12 @@
         </h2>
         <p class="text-xl font-jakarta text-slate-100 mb-6 max-w-3xl mx-auto">{{ t('ctaIndex_subtitle') }}</p>
         <div class="flex justify-center gap-2 md:gap-4">
-          <a href="/about-us/contact"
+          <a href="{{ localized_route('about.contact') }}"
             class="bg-black px-3 md:px-5 py-2 rounded-full text-white   font-semibold text-base">
             {{ t('ctaIndex_btn_contact') }}
           </a>
-          <a href="/products" class="bg-white px-3 md:px-5 py-2 rounded-full text-slate-800   font-semibold text-base">
+          <a href="{{ localized_route('products.index') }}"
+            class="bg-white px-3 md:px-5 py-2 rounded-full text-slate-800   font-semibold text-base">
             {{ t('ctaIndex_btn_more') }}
           </a>
         </div>

@@ -43,7 +43,8 @@ class SolutionForm
                             ->required()
                             ->columnSpanFull(),
                         Textarea::make($tab->makeName('description'))
-                            ->rows(5)
+                            ->rows(3)
+                            ->autosize()
                             ->columnSpanFull(),
                         TextInput::make($tab->makeName('list_title'))
                             ->label('List Title')

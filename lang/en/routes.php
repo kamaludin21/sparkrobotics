@@ -10,6 +10,6 @@ return [
     'news_download_center'    => 'news/download-center',
     'about_us'                => 'about-us',
     'about_case_study'        => 'about-us/case-study',
-    'about_case_study_detail' => 'about-us/case-study/detail',
+    'about_case_study_detail' => 'about-us/case-study/{slug}',
     'about_contact'           => 'about-us/contact',
 ];

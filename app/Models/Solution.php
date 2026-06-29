@@ -23,7 +23,6 @@ class Solution extends Model implements TranslatableContract
     ];
 
     protected $casts = [
-        'images' => 'array',
-        'list_items' => 'array',
+        'images' => 'array'
     ];
 }

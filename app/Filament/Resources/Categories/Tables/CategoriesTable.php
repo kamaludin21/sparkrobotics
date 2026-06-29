@@ -4,8 +4,6 @@ namespace App\Filament\Resources\Categories\Tables;
 
 use App\Filament\Resources\Categories\CategoryResource;
 use App\Models\Category;
-use Filament\Actions\ActionGroup;
-use Filament\Actions\DeleteAction;
 use Filament\Actions\EditAction;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;

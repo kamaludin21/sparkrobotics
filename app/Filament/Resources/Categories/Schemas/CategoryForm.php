@@ -44,7 +44,7 @@ class CategoryForm
                                     $rule->where('locale', $locale);
                                     // 2. Jika sedang mode Edit (record ada), abaikan data translasi milik Kategori ini
                                     if ($record) {
-                                        $rule->whereNot('category_id', $record->id);
+                                        $rule->ignore($record->id, 'category_id');
                                     }
                                     return $rule;
                                 }

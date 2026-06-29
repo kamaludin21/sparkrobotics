@@ -1,73 +1,72 @@
 @extends('layout.app', ['activePage' => 'news'])
 
 @section('content')
-  <main class="main-wrapper px-4 py-12 lg:py-32 overflow-x-hidden">
+  <main class="main-wrapper px-4 py-12 lg:py-32">
+    {{-- Back Button --}}
+    <div>
+      <a href="{{ url()->previous() }}"
+        class="inline-flex items-center text-sm font-semibold text-blue-600 transition-colors hover:text-blue-800">
+        <svg class="mr-2 h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path>
+        </svg>
+        {{ t('general_goback') }}
+      </a>
+    </div>
+
     <section class="py-10 space-y-6">
-      <p class="text-4xl md:text-5xl w-full lg:max-w-2/3 font-bold text-slate-700 leading-10 md:leading-16">
-        {{ $article->title }}</p>
+      {{-- Title - Fix: max-w-2/3 bukan class valid --}}
+      <h1 class="text-4xl md:text-5xl w-full lg:max-w-[66.666%] font-bold text-slate-700 leading-tight md:leading-[4rem]">
+        {{ $article->title }}
+      </h1>
+
+      {{-- Meta Info --}}
       <div
         class="flex flex-col md:flex-row justify-between items-start md:items-center border-b border-slate-200 pb-6 mb-10 gap-6">
-
         <div class="flex items-center gap-4">
-          <span
-            class="text-slate-500 text-sm">{{ app()->getLocale() === 'id' ? $article->updated_at->translatedFormat('d F Y') : $article->updated_at->format('F d, Y') }}</span>
+          <span class="text-slate-500 text-sm">
+            {{ app()->getLocale() === 'id'
+                ? $article->updated_at->translatedFormat('d F Y')
+                : $article->updated_at->format('F d, Y') }}
+          </span>
         </div>
 
-        <div class="flex items-center gap-3">
-          <span class="text-sm font-semibold tracking-widest text-slate-600">SHARE:</span>
-          <div class="flex gap-2">
-            <a href="#"
-              class="w-8 h-8 bg-slate-800 text-white flex items-center justify-center rounded-sm hover:bg-slate-800 transition">
-              <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
-                <path
-                  d="M22.675 0h-21.35c-.732 0-1.325.593-1.325 1.325v21.351c0 .731.593 1.324 1.325 1.324h11.495v-9.294h-3.128v-3.622h3.128v-2.671c0-3.1 1.893-4.788 4.659-4.788 1.325 0 2.463.099 2.795.143v3.24l-1.918.001c-1.504 0-1.795.715-1.795 1.763v2.313h3.587l-.467 3.622h-3.12v9.293h6.116c.73 0 1.323-.593 1.323-1.325v-21.35c0-.732-.593-1.325-1.325-1.325z" />
-              </svg>
-            </a>
-            <a href="#"
-              class="w-8 h-8 bg-slate-800 text-white flex items-center justify-center rounded-sm hover:bg-slate-800 transition">
-              <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
-                <path
-                  d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
-              </svg>
-            </a>
-            <a href="#"
-              class="w-8 h-8 bg-slate-800 text-white flex items-center justify-center rounded-sm hover:bg-slate-800 transition">
-              <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
-                <path
-                  d="M18.901 1.153h3.68l-8.04 9.19L24 22.846h-7.406l-5.8-7.584-6.638 7.584H.474l8.6-9.83L0 1.154h7.594l5.243 6.932ZM17.61 20.644h2.039L6.486 3.24H4.298Z" />
-              </svg>
-            </a>
-            <a href="#"
-              class="w-8 h-8 bg-slate-800 text-white flex items-center justify-center rounded-sm hover:bg-slate-800 transition">
-              <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
-                <path
-                  d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z" />
-              </svg>
-            </a>
-          </div>
+        <div class="flex items-center gap-2 text-slate-600">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+            class="icon icon-tabler icons-tabler-outline icon-tabler-link">
+            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+            <path d="M9 15l6 -6" />
+            <path d="M11 6l.463 -.536a5 5 0 0 1 7.071 7.072l-.534 .464" />
+            <path d="M13 18l-.397 .534a5.068 5.068 0 0 1 -7.127 0a4.972 4.972 0 0 1 0 -7.071l.524 -.463" />
+          </svg>
+          <span class="text-sm font-semibold tracking-widest">{{ t('newsPage_share') }}</span>
         </div>
       </div>
 
-      <div class="grid grid-cols-1 lg:grid-cols-12 gap-10">
+      {{-- Grid Content - Fix: tambahkan items-start --}}
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-start">
 
+        {{-- Sidebar Tags --}}
         <div class="lg:col-span-3 order-2 lg:order-1">
-          <h3 class="text-sm font-semibold tracking-wide text-slate-800 mb-4">TAGGED:</h3>
+          <h3 class="text-sm font-semibold tracking-wide text-slate-800 mb-4">{{ t('newsPage_tag') }}:</h3>
           <div class="flex flex-wrap gap-2">
             @foreach ($article->tags as $tag)
               <span
-                class="bg-slate-100 text-slate-800 text-sm font-medium px-3 py-1.5 rounded-sm hover:bg-slate-200 cursor-pointer transition">{{ $tag->name }}</span>
+                class="bg-slate-100 text-slate-800 text-sm font-medium px-3 py-1.5 rounded-sm hover:bg-slate-200 cursor-pointer transition">
+                {{ $tag->name }}
+              </span>
             @endforeach
           </div>
         </div>
 
-        <div class="lg:col-span-9 order-1 lg:order-2 ">
-          {{-- Image --}}
+        {{-- Main Content --}}
+        <div class="lg:col-span-9 order-1 lg:order-2">
           <div class="mb-6">
-            <img class="w-full h-auto aspect-[16/9] object-cover ring ring-slate-200"
-              src="{{ Storage::url($article->image) ?? 'https://via.placeholder.com/700x400' }}"
+            <img class="w-full h-auto max-h-96 aspect-[16/9] object-contain ring ring-slate-200"
+              src="{{ $article->image ? Storage::url($article->image) : 'https://via.placeholder.com/700x400' }}"
               alt="{{ $article->title }}">
           </div>
-          <div class="content-html">
+          <div class="content-html overflow-visible">
             {!! $article->content !!}
           </div>
         </div>

@@ -1,7 +1,41 @@
 @extends('layout.app', ['activePage' => 'about'])
 
 @section('content')
+  @php
+    $locale = app()->getLocale();
+    $isId = $locale === 'id';
+
+    // Hero
+    $tagline = $isId ? $settings->tagline_id : $settings->tagline_en;
+    $companyName = $isId ? $settings->company_name_id : $settings->company_name_en;
+    $designation = $isId ? $settings->designation_id : $settings->designation_en;
+    $heroDesc = $isId ? $settings->description_id : $settings->description_en;
+
+    // Siapa Kami
+    $sectionTitle = $isId ? $settings->section_title_id : $settings->section_title_en;
+    $aboutContent = $isId ? $settings->about_id : $settings->about_en;
+    $aboutImages = $settings->about_image;
+
+    // Industri
+    $industriesTitle = $isId ? $settings->industries_title_id : $settings->industries_title_en;
+    $industriesSubtitle = $isId ? $settings->industries_subtitle_id : $settings->industries_subtitle_en;
+    $industries = $settings->industries;
+
+    // Dipercaya Oleh
+    $brandTitle = $isId ? $settings->brand_title_id : $settings->brand_title_en;
+    $brandSubtitle = $isId ? $settings->brand_subtitle_id : $settings->brand_subtitle_en;
+    $clients = $settings->clients;
+
+    // Split company name untuk efek gradient
+    $nameParts = explode(' ', $companyName, 2);
+    $nameFirst = $nameParts[0] ?? '';
+    $nameRest = $nameParts[1] ?? '';
+  @endphp
+
   <main class="w-full bg-white antialiased">
+    {{-- ============================================= --}}
+    {{-- HERO SECTION --}}
+    {{-- ============================================= --}}
     <section class="relative isolate overflow-hidden bg-white">
       <div class="absolute inset-0 -z-10 h-full w-full overflow-hidden">
         <svg
@@ -25,213 +59,174 @@
       </div>
 
       <div class="mx-auto max-w-4xl py-24 sm:py-32 lg:py-40 text-center px-6">
-        <div class="mb-8 flex justify-center">
-          <div
-            class="relative rounded-full px-3 py-1 text-sm leading-6 text-gray-600 ring-1 ring-gray-900/10 hover:ring-gray-900/20 bg-white/50 backdrop-blur-sm">
-            Expertise Meets Excellence
+        @if ($designation)
+          <div class="mb-8 flex justify-center">
+            <div
+              class="relative rounded-full px-3 py-1 text-sm leading-6 text-gray-600 ring-1 ring-gray-900/10 hover:ring-gray-900/20 bg-white/50 backdrop-blur-sm">
+              {{ $designation }}
+            </div>
           </div>
-        </div>
+        @endif
 
         <h1 class="text-5xl font-bold tracking-tight text-gray-900 sm:text-7xl">
-          SPARK <span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-cyan-500">Robotics</span>
+          {{ $nameFirst }}
+          @if ($nameRest)
+            <span
+              class="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-cyan-500">{{ $nameRest }}</span>
+          @endif
         </h1>
-        <p class="mt-6 text-xl font-semibold leading-8 text-blue-600 uppercase tracking-[0.3em]">
-          Authorized Reseller of DJI Enterprise and Unitree
-        </p>
-        <p class="mt-4 text-lg leading-8 text-gray-600 max-w-2xl mx-auto">
-          Distributor resmi teknologi <strong>DJI Enterprise</strong> dan <strong>Unitree Robotics</strong> di Indonesia.
-          Menghadirkan efisiensi melalui automasi udara dan darat.
-        </p>
+
+        @if ($tagline)
+          <p class="mt-6 text-xl font-semibold leading-8 text-blue-600 uppercase tracking-[0.3em]">
+            {{ $tagline }}
+          </p>
+        @endif
+
+        @if ($heroDesc)
+          <p class="mt-4 text-lg leading-8 text-gray-600 max-w-2xl mx-auto">
+            {{ $heroDesc }}
+          </p>
+        @endif
       </div>
     </section>
+
+    {{-- ============================================= --}}
+    {{-- SIAPA KAMI SECTION --}}
+    {{-- ============================================= --}}
     <section class="main-wrapper px-4 py-16">
       <div class="grid grid-cols-1 gap-y-16 lg:grid-cols-2 lg:gap-x-16 lg:items-center">
         <div>
-          <h2 class="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">Siapa Kami?</h2>
-          <p class="mt-6 text-base leading-7 text-gray-600">
-            <strong class="font-semibold text-gray-900">SPARK Robotics</strong> adalah perusahaan teknologi terkemuka
-            yang
-            didirikan di Indonesia oleh pengusaha asal Tiongkok. Kami hadir sebagai distributor resmi untuk teknologi
-            canggih Tiongkok di pasar Indonesia, secara khusus berfokus pada penyediaan drone <em>enterprise</em> merek
-            <strong>DJI</strong> dan produk robotika dari <strong>Unitree</strong>.
-          </p>
-          <p class="mt-4 text-base leading-7 text-gray-600">
-            Dengan pengalaman bertahun-tahun beroperasi di Indonesia, kami telah membangun kapasitas layanan lokal dan
-            dukungan teknis yang sangat kuat. Layanan profesional dan keahlian teknis kami telah mendapatkan pengakuan
-            luas serta umpan balik positif dari klien-klien kami.
-          </p>
+          @if ($sectionTitle)
+            <h2 class="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">{{ $sectionTitle }}</h2>
+          @endif
+
+          @if ($aboutContent)
+            <div class="mt-6 text-base leading-7 text-gray-600 prose prose-sm max-w-none">
+              {!! $aboutContent !!}
+            </div>
+          @endif
         </div>
-        <div
-          class="relative w-full h-64 sm:h-80 lg:h-96 rounded-2xl overflow-hidden bg-gray-100 shadow-xl border border-gray-200 flex items-center justify-center group">
-          <div class="text-center p-6 transition group-hover:scale-105">
-            <svg class="mx-auto h-16 w-16 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"
-              stroke-width="1.5">
-              <path stroke-linecap="round" stroke-linejoin="round"
-                d="M6.827 6.175A2.31 2.31 0 015.186 7.23c-.38.054-.757.112-1.134.175C2.999 7.58 2.25 8.507 2.25 9.574V18a2.25 2.25 0 002.25 2.25h15A2.25 2.25 0 0021.75 18V9.574c0-1.067-.75-1.994-1.802-2.169a47.865 47.865 0 00-1.134-.175 2.31 2.31 0 01-1.64-1.055l-.822-1.316a2.192 2.192 0 00-1.736-1.039 48.774 48.774 0 00-5.232 0 2.192 2.192 0 00-1.736 1.039l-.821 1.316z" />
-              <path stroke-linecap="round" stroke-linejoin="round"
-                d="M16.5 12.75a4.5 4.5 0 11-9 0 4.5 4.5 0 019 0zM18.75 10.5h.008v.008h-.008V10.5z" />
-            </svg>
-            <span class="mt-3 block text-sm font-medium text-gray-500">[Gambar Perusahaan]</span>
+
+        @if (!empty($aboutImages) && is_array($aboutImages) && count($aboutImages) > 0)
+          <div x-data="{
+              images: @js($aboutImages),
+              activeSlide: 0,
+              nextSlide() {
+                  this.activeSlide = (this.activeSlide === this.images.length - 1) ? 0 : this.activeSlide + 1;
+              },
+              prevSlide() {
+                  this.activeSlide = (this.activeSlide === 0) ? this.images.length - 1 : this.activeSlide - 1;
+              }
+          }"
+            class="w-full h-64 sm:h-80 lg:h-96 relative h-72 overflow-hidden group/slider rounded-2xl shadow-xl">
+
+            <div class="w-full h-full relative">
+              <template x-for="(img, idx) in images" :key="idx">
+                <div x-show="activeSlide === idx" x-transition:enter="transition ease-in-out duration-500 transform"
+                  x-transition:enter-start="opacity-0 scale-105" x-transition:enter-end="opacity-100 scale-100"
+                  x-transition:leave="transition ease-in-out duration-500 transform"
+                  x-transition:leave-start="opacity-100 scale-100" x-transition:leave-end="opacity-0 scale-95"
+                  class="absolute inset-0 w-full h-full">
+                  <img :src="'/storage/' + img" alt="About Image" class="w-full h-full object-contain">
+                </div>
+              </template>
+            </div>
+            <div class="absolute inset-0 bg-gradient-to-t from-transparent to-black/40 md:hidden pointer-events-none">
+            </div>
+
+            <template x-if="images.length > 1">
+              <div>
+                <button @click="prevSlide()"
+                  class="absolute left-4 top-1/2 -translate-y-1/2 bg-black/30 hover:bg-sky-600/90 text-white rounded-full p-2 z-20 transition-all opacity-100 md:opacity-0 group-hover/slider:opacity-100 focus:outline-none">
+                  <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+                  </svg>
+                </button>
+
+                <button @click="nextSlide()"
+                  class="absolute right-4 top-1/2 -translate-y-1/2 bg-black/30 hover:bg-sky-600/90 text-white rounded-full p-2 z-20 transition-all opacity-100 md:opacity-0 group-hover/slider:opacity-100 focus:outline-none">
+                  <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                  </svg>
+                </button>
+
+                <div class="absolute bottom-4 left-1/2 -translate-x-1/2 flex space-x-2 z-20">
+                  <template x-for="(img, idx) in images" :key="idx">
+                    <button @click="activeSlide = idx"
+                      :class="activeSlide === idx ? 'bg-sky-600 w-6' : 'bg-white/50 hover:bg-white w-2'"
+                      class="h-2 rounded-full transition-all duration-300 focus:outline-none"></button>
+                  </template>
+                </div>
+              </div>
+            </template>
           </div>
-        </div>
+        @endif
       </div>
     </section>
 
+    {{-- ============================================= --}}
+    {{-- INDUSTRI YANG KAMI DUKUNG --}}
+    {{-- ============================================= --}}
     <section class="bg-gray-900 py-16 sm:py-24">
       <div class="main-wrapper px-4">
         <div class="mx-auto max-w-2xl lg:text-center">
-          <h2 class="text-base font-semibold leading-7 text-blue-400">Jangkauan Layanan</h2>
-          <p class="mt-2 text-3xl font-bold tracking-tight text-white sm:text-4xl">Industri yang Kami Dukung</p>
-          <p class="mt-6 text-lg leading-8 text-gray-300">
-            Kami menyediakan solusi terintegrasi yang disesuaikan untuk memenuhi tantangan dan kebutuhan operasional di
-            berbagai sektor industri krusial:
-          </p>
+          @if ($industriesTitle)
+            <p class="text-3xl font-bold tracking-tight text-white sm:text-4xl">{{ $industriesTitle }}</p>
+          @endif
+
+          @if ($industriesSubtitle)
+            <p class="mt-4 text-center text-lg leading-8 text-slate-200 max-w-3xl mx-auto">
+              {{ $industriesSubtitle }}
+            </p>
+          @endif
         </div>
 
-        <div class="mx-auto mt-16 max-w-2xl sm:mt-20 lg:mt-24 lg:max-w-none">
-          <dl class="grid max-w-xl grid-cols-2 gap-x-6 gap-y-6 lg:max-w-none lg:grid-cols-4 sm:grid-cols-3">
-            <div
-              class="flex items-center justify-center bg-gray-800 p-6 rounded-xl ring-1 ring-white/10 hover:ring-blue-500 transition-all">
-              <dt class="text-base font-semibold leading-7 text-white text-center">Pertambangan</dt>
-            </div>
-            <div
-              class="flex items-center justify-center bg-gray-800 p-6 rounded-xl ring-1 ring-white/10 hover:ring-blue-500 transition-all">
-              <dt class="text-base font-semibold leading-7 text-white text-center">Minyak & Gas</dt>
-            </div>
-            <div
-              class="flex items-center justify-center bg-gray-800 p-6 rounded-xl ring-1 ring-white/10 hover:ring-blue-500 transition-all">
-              <dt class="text-base font-semibold leading-7 text-white text-center">Konstruksi</dt>
-            </div>
-            <div
-              class="flex items-center justify-center bg-gray-800 p-6 rounded-xl ring-1 ring-white/10 hover:ring-blue-500 transition-all">
-              <dt class="text-base font-semibold leading-7 text-white text-center">Listrik & Utilitas</dt>
-            </div>
-            <div
-              class="flex items-center justify-center bg-gray-800 p-6 rounded-xl ring-1 ring-white/10 hover:ring-blue-500 transition-all">
-              <dt class="text-base font-semibold leading-7 text-white text-center">Ilmu Lingkungan</dt>
-            </div>
-            <div
-              class="flex items-center justify-center bg-gray-800 p-6 rounded-xl ring-1 ring-white/10 hover:ring-blue-500 transition-all">
-              <dt class="text-base font-semibold leading-7 text-white text-center">Pemadam Kebakaran</dt>
-            </div>
-            <div
-              class="flex items-center justify-center bg-gray-800 p-6 rounded-xl ring-1 ring-white/10 hover:ring-blue-500 transition-all">
-              <dt class="text-base font-semibold leading-7 text-white text-center">Keamanan Publik</dt>
-            </div>
-          </dl>
-        </div>
+        @if (count($industries) > 0)
+          <div class="mx-auto mt-16 max-w-2xl sm:mt-20 lg:mt-24 lg:max-w-none">
+            <dl class="grid max-w-xl grid-cols-2 gap-x-6 gap-y-6 lg:max-w-none lg:grid-cols-4 sm:grid-cols-3">
+              @foreach ($industries as $industry)
+                <div
+                  class="flex items-center justify-center bg-gray-800 p-6 rounded-xl ring-1 ring-white/10 hover:ring-blue-500 transition-all">
+                  <dt class="text-base font-semibold leading-7 text-white text-center">
+                    {{ $isId ? $industry['industries_name_id'] ?? '' : $industry['industries_name_en'] ?? '' }}
+                  </dt>
+                </div>
+              @endforeach
+            </dl>
+          </div>
+        @endif
       </div>
     </section>
 
+    {{-- ============================================= --}}
+    {{-- DIPERCAYA OLEH --}}
+    {{-- ============================================= --}}
     <section class="py-16 sm:py-24 bg-white">
       <div class="main-wrapper px-4">
-        <h2 class="text-center text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">Dipercaya Oleh</h2>
-        <p class="mt-4 text-center text-lg leading-8 text-gray-600 max-w-3xl mx-auto">
-          Hingga saat ini, SPARK Robotics telah memberikan layanan dan solusi terbaik kepada berbagai organisasi
-          terkemuka yang beroperasi di Indonesia:
-        </p>
+        @if ($brandTitle)
+          <h2 class="text-center text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">{{ $brandTitle }}</h2>
+        @endif
 
-        <div class="mt-12 flex justify-center gap-6 flex-wrap max-w-5xl mx-auto">
-          <img class="w-auto h-14"
-            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRGjcgQMHd9CnnvgPR_kgFOFVRzT7Lq_Ij8fA&s"
-            alt="IWIP Group">
-          <img class="w-auto h-14"
-            src="https://imip.co.id/wp-content/uploads/2024/06/Screenshot_2024-06-21_at_9.25.55_PM-removebg-preview.png"
-            alt="">
-          <img class="w-auto h-14" src="https://trellis.net/wp-content/uploads/2025/12/POWERCHINA-Logo.png"
-            alt="">
-          <img class="w-auto h-14" src="https://www.ceic.com/gjnyjtwwEn/xhtml/images/jtjs0.png" alt="">
-          <img class="w-auto h-14"
-            src="https://play-lh.googleusercontent.com/UgxsDpxXcUq3J_f0HZwsLdJAyavuKbH0bYiWsX3zuuCjiLlD_RP6HgCkNpJATFzEJ7uUYF_L-O3yVKmAs9ki=w480-h960-rw"
-            alt="">
-          <img class="w-auto h-14" src="https://www.sinarmas.com/images/Untitled-2.png" alt="">
-          <img class="w-auto h-14" src="https://www.pertamina.com/file/files/2025/02/pertamina-logo.svg"
-            alt="">
-          <img class="w-auto h-14" src="https://www.baramultigroup.co.id/assets/images/logo.png" alt="">
-          <img class="w-auto h-14" src="https://www.aprilasia.com/id/templates/osapril/assets/logo.png" alt="">
-          <img class="w-auto h-14" src="https://adaroindonesia.com/theme/images/Logo-Adaro-Andalan-Indonesia-Color.png"
-            alt="">
-          <img class="w-auto h-14"
-            src="https://www.bp.com/apps/settings/wcm/designs/refresh/bp/images/navigation/bp-logo.svg" alt="">
-          <img class="w-auto h-14" src="https://asc.co.id/images/2023/11/06/000a---logo-header.png" alt="">
-          <img class="w-auto h-14" src="https://www.sucofindo.co.id/wp-content/uploads/2022/08/image-4.webp"
-            alt="">
-          <img class="w-auto h-14"
-            src="https://thermalindo.com/wp-content/uploads/2016/05/PT.-THIESS-CONTRACTORS-INDONESIA.gif"
-            alt="">
-          <img class="w-auto h-14"
-            src="https://www.amman.co.id/assets/logo-amman-1326d9e51ac0ffe53dc6956cc15ff5c877db72a9afa86af0336721b9f08b2046.png"
-            alt="">
-          <img class="w-auto h-14" src="https://www.conocophillips.com/images/logo-black.svg" alt="">
-          <img class="w-auto h-14" src="https://www.ptsi.co.id/images/logo-footer-surveyor.png" alt="">
-          <img class="w-auto h-14" src="https://career.inpex.co.id/img/logov2.png" alt="">
-          <img class="w-auto h-14"
-            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT8LFzAPCkw_tfzzIMnvr7OWh6_6LUp3L7MmA&s"
-            alt="">
-          <img class="w-auto h-14" src="https://corporatewatch.org/wp-content/uploads/2017/10/Syngenta_Logo.svg_.png"
-            alt="">
-          <img class="w-auto h-14"
-            src="https://fintech.id/_next/image?url=https%3A%2F%2Ffintechid-bucket.s3.ap-southeast-3.amazonaws.com%2Faftech%2Fassets%2Ffiles%2Fshares%2Flogo%2Flogofi2%2FTELKOMSEL_TELKOM_LOCKUP_RED_CMYK%20-%20Kurniawan%20Cahyo.png&w=3840&q=75"
-            alt="">
-          <img class="w-auto h-14" src="https://upload.wikimedia.org/wikipedia/id/e/e1/Logo_PT_ANJ.png" alt="">
-          <img class="w-auto h-14" src="https://static.diginusantara.com/2024/01/01/99868bc06logo-white.png"
-            alt="">
-          <img class="w-auto h-14" src="https://bumainternational.com/images/post/wTAGiK0ubYaGkdQek5.jpg"
-            alt="">
-          <img class="w-auto h-14" src="https://corporatewatch.org/wp-content/uploads/2017/10/1200px-G4S.svg_.png"
-            alt="">
-          <img class="w-auto h-14"
-            src="https://lh5.googleusercontent.com/proxy/x2KkQ5eHTkGUpge5g59yFPszySf-mKAOEMnj9Y0OhHq6GFrXvHHqnCw9dSv2SR7lUObXvKmESSwg8kYN3ZS2ZrlGyqem8-40qj6mF3c7qPpKFrZrMxzLyudRcQ"
-            alt="">
-          <img class="w-auto h-14" src="https://upload.wikimedia.org/wikipedia/commons/d/d8/Logo_MedcoEnergi.png"
-            alt="">
-          <img class="w-auto h-14" src="https://upload.wikimedia.org/wikipedia/commons/f/f7/Logo_Bayer.svg"
-            alt="">
-          <img class="w-auto h-14"
-            src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhXLczlo3dV3sgrfT9W516dxIUiOnkWRlZaOrsNyQ5A5bqHEpVLyZYCMZ7b4cy71MSla10cmB1yiTl6QgbCE8U_ZhyphenhyphennNZK9Tytafd6JZ0UWlFfwiLHpOIpjAP7mubxdwbQHcg7t_aQMZz-2/s1600/pineapplelogo.jpg"
-            alt="">
-          <img class="w-auto h-14"
-            src="https://www.starenergy.co.id/content/image/cropped-logo-SE-scaled-1-e1715744452795.jpg" alt="">
-          <img class="w-auto h-14" src="https://www.ptpp.co.id/icon.png" alt="">
-          <img class="w-auto h-14"
-            src="https://upload.wikimedia.org/wikipedia/id/thumb/7/73/Waskita_Karya.svg/1280px-Waskita_Karya.svg.png"
-            alt="">
-          <img class="w-auto h-14" src="https://ptpnxiv.com/assets/images/IMG20230809153902.png" alt="">
-          <img class="w-auto h-14" src="https://www.comoeng.com.au/wp-content/uploads/2021/12/Archi-Group.jpg"
-            alt="">
-          <img class="w-auto h-14"
-            src="https://cdn.prod.website-files.com/64f3c4268355564bf3736396/64f3c4268355564bf3736481_Gama%20Plantation.png"
-            alt="">
-          <img class="w-auto h-14"
-            src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5b/Japan_International_Cooperation_Agency_logo.svg/1280px-Japan_International_Cooperation_Agency_logo.svg.png"
-            alt="">
-          <img class="w-auto h-14" src="https://r2.astra.co.id/business/logos/01JPHP5W8WMQSZDMJ8YNV41WEV.png"
-            alt="">
-          <img class="w-auto h-14"
-            src="https://upload.wikimedia.org/wikipedia/id/thumb/3/3b/ITM_logo.png/1280px-ITM_logo.png" alt="">
-          <img class="w-auto h-14" src="https://www.kpc.co.id/wp-content/uploads/2025/12/Logo_KPC.png" alt="">
-          <img class="w-auto h-14" src="https://gpslands.co.id/wp-content/uploads/2026/03/HME-removebg-preview-Copy.png"
-            alt="">
-          <img class="w-auto h-14"
-            src="https://careers.haritanickel.com/public/assets/img/Logo_Harita%20Nickel_Primer.png" alt="">
-          <img class="w-auto h-14"
-            src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6e/Logo_of_Biro_Klasifikasi_Indonesia_2021.svg/250px-Logo_of_Biro_Klasifikasi_Indonesia_2021.svg.png"
-            alt="">
-          <img class="w-auto h-14"
-            src="https://upload.wikimedia.org/wikipedia/commons/8/8a/Logo_Kementerian_Pertanian_Republik_Indonesia.svg"
-            alt="">
-          <img class="w-auto h-14" src="https://imip.co.id/wp-content/uploads/2024/07/BDM.png" alt="">
-          <img class="w-auto h-14" src="https://koni.id/storage/anggota_images/PB-FASI.png" alt="">
-          <img class="w-auto h-14" src="https://www.arutmin.com/assets/img/logo.jpg?v=1708507774" alt="">
-          <img class="w-auto h-14"
-            src="https://upload.wikimedia.org/wikipedia/id/9/95/Logo_Institut_Teknologi_Bandung.png" alt="">
-          <img class="w-auto h-14"
-            src="https://upload.wikimedia.org/wikipedia/id/thumb/3/30/Institut_Teknologi_Sepuluh_Nopember_logo.svg/250px-Institut_Teknologi_Sepuluh_Nopember_logo.svg.png"
-            alt="">
-          <img class="w-auto h-14" src="https://upload.wikimedia.org/wikipedia/id/5/59/Astra-Agro.gif" alt="">
-          <img class="w-auto h-14" src="https://www.arsari.co.id/wp-content/uploads/2025/01/arsari-group-logo.png"
-            alt="">
-        </div>
+        @if ($brandSubtitle)
+          <p class="mt-4 text-center text-lg leading-8 text-gray-600 max-w-3xl mx-auto">
+            {{ $brandSubtitle }}
+          </p>
+        @endif
+
+        @if (count($clients) > 0)
+          <div class="mt-12 flex justify-center gap-6 flex-wrap max-w-5xl mx-auto items-center">
+            @foreach ($clients as $client)
+              @if (!empty($client['logo']))
+                <img class="w-auto h-14 object-contain" src="{{ Storage::url($client['logo']) }}"
+                  alt="{{ $client['company_name'] ?? '' }}" />
+              @else
+                <span class="text-sm font-medium text-gray-400 px-4 py-2 rounded-lg bg-gray-50 border border-gray-200">
+                  {{ $client['company_name'] ?? '' }}
+                </span>
+              @endif
+            @endforeach
+          </div>
+        @endif
       </div>
     </section>
   </main>

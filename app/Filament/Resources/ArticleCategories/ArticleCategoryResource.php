@@ -19,6 +19,7 @@ class ArticleCategoryResource extends Resource
     protected static ?string $model = ArticleCategory::class;
 
     protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedRectangleStack;
+    protected static ?string $navigationParentItem = 'Article';
 
     public static function form(Schema $schema): Schema
     {

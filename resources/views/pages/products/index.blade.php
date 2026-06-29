@@ -115,10 +115,10 @@
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                     d="M9.172 16.172a4 4 0 015.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
                 </svg>
-                <p class="text-base font-medium text-slate-600">Produk tidak ditemukan</p>
-                <p class="text-sm text-slate-400 mt-1">Coba gunakan kata kunci lain atau ubah filter Anda.</p>
+                <p class="text-base font-medium text-slate-600">{{ t('productsPage_empty_title') }}</p>
+                <p class="text-sm text-slate-400 mt-1">{{ t('productsPage_empty_subtitle') }}</p>
                 @if (request()->hasAny(['search', 'categories', 'brands']))
-                  <a href="{{ url()->current() }}" class="text-sm text-sky-600 hover:underline">Kembali</a>
+                  <a href="{{ url()->current() }}" class="text-sm text-sky-600 hover:underline">{{ t('general_goback') }}</a>
                 @endif
               </div>
             @endforelse

@@ -12,7 +12,7 @@
         </div>
 
         <div class="shrink-0">
-          <a href="/about-us/contact"
+          <a href="{{ localized_route('about.contact') }}"
             class="inline-flex items-center justify-center px-7 py-3.5 text-base font-semibold text-white bg-sky-600 rounded-xl shadow-sm hover:bg-slate-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-sky-600 transition-all duration-300 group">
             {{ t('solutionsPage_btn_contact') }}
             <svg class="w-5 h-5 ml-2.5 transform group-hover:translate-x-1.5 transition-transform duration-300"
@@ -42,7 +42,7 @@
               </p>
               <div
                 class="mt-auto flex items-center text-sm font-semibold text-sky-600 group-hover:text-sky-800 transition-colors">
-                <span>Lihat Detail Layanan</span>
+                <span>{{ t('solutionsPage_detail') }}</span>
                 <svg class="w-4 h-4 ml-2 transform group-hover:translate-x-1 transition-transform" fill="none"
                   stroke="currentColor" viewBox="0 0 24 24">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3">

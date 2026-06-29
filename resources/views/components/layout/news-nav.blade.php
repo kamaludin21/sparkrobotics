@@ -45,7 +45,7 @@
 
     {{-- Download Center (Manual) --}}
     <li class="{{ $isActive('download-center') }}">
-      <a href="/download-center" class="{{ $isLinkActive('download-center') }}">
+      <a href="{{ localized_route('news.download_center') }}" class="{{ $isLinkActive('download-center') }}">
         Download Center
       </a>
     </li>
