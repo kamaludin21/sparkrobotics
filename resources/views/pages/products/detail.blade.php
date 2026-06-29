@@ -239,7 +239,7 @@
           @mousemove="drag" @touchstart="startDragging" @touchend="stopDragging" @touchmove="drag"
           class="flex lg:grid lg:grid-cols-4 gap-4 overflow-x-auto lg:overflow-visible no-scrollbar cursor-grab active:cursor-grabbing lg:cursor-auto pb-4">
 
-          @forelse ($products as $item)
+          @forelse ($otherProducts as $item)
             <div
               class="w-full shrink-0 h-full flex flex-col bg-white border border-slate-200 rounded-3xl overflow-hidden group select-none transition hover:shadow-lg hover:border-sky-200">
               <div class="h-56 shrink-0 bg-slate-200 overflow-hidden relative">
