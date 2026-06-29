@@ -176,8 +176,8 @@
         @forelse ($products as $item)
           <article class="group flex h-full flex-col overflow-hidden rounded-2xl bg-white ring-1 ring-slate-200">
             <div class="relative h-56 overflow-hidden bg-slate-100">
-              @if (!empty($item->showcase_images) && isset($item->showcase_images[0]))
-                <img src="{{ Storage::url($item->showcase_images[0]) }}" alt="{{ $item->title }}" loading="lazy"
+              @if (!empty($item->thumbnail_image))
+                <img src="{{ Storage::url($item->thumbnail_image) }}" alt="{{ $item->title }}" loading="lazy"
                   class="absolute inset-0 h-full w-full object-cover object-center transition-transform duration-500 group-hover:scale-105">
               @else
                 <div class="absolute inset-0 flex items-center justify-center bg-slate-200 text-slate-400">

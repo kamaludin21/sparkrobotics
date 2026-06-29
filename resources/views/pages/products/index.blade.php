@@ -56,7 +56,8 @@
             <hr class="border-slate-100 mb-6" />
 
             <div>
-              <h3 class="text-xs font-bold text-slate-400 uppercase tracking-wider mb-4">{{ t('productsPage_filter_brand') }}
+              <h3 class="text-xs font-bold text-slate-400 uppercase tracking-wider mb-4">
+                {{ t('productsPage_filter_brand') }}
               </h3>
               <div class="space-y-3">
                 @foreach ($brands as $item)
@@ -80,8 +81,8 @@
             @forelse ($products as $item)
               <article class="group flex h-full flex-col overflow-hidden rounded-2xl bg-white ring-1 ring-slate-200">
                 <div class="relative h-56 overflow-hidden bg-slate-100">
-                  @if (!empty($item->showcase_images) && isset($item->showcase_images[0]))
-                    <img src="{{ Storage::url($item->showcase_images[0]) }}" alt="{{ $item->title }}" loading="lazy"
+                  @if (!empty($item->showcase_images))
+                    <img src="{{ Storage::url($item->thumbnail_image) }}" alt="{{ $item->title }}" loading="lazy"
                       class="absolute inset-0 h-full w-full object-cover object-center transition-transform duration-500 group-hover:scale-105">
                   @else
                     <div class="absolute inset-0 flex items-center justify-center bg-slate-200 text-slate-400">
@@ -118,7 +119,8 @@
                 <p class="text-base font-medium text-slate-600">{{ t('productsPage_empty_title') }}</p>
                 <p class="text-sm text-slate-400 mt-1">{{ t('productsPage_empty_subtitle') }}</p>
                 @if (request()->hasAny(['search', 'categories', 'brands']))
-                  <a href="{{ url()->current() }}" class="text-sm text-sky-600 hover:underline">{{ t('general_goback') }}</a>
+                  <a href="{{ url()->current() }}"
+                    class="text-sm text-sky-600 hover:underline">{{ t('general_goback') }}</a>
                 @endif
               </div>
             @endforelse

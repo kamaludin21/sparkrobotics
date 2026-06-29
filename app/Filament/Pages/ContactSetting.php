@@ -22,7 +22,7 @@ class ContactSetting extends SettingsPage
         return $schema
             ->components([
                 Section::make('Informasi Perusahaan')
-                    ->description('Detail informasi perusahaan yang akan ditampilkan')
+                    ->description('Informasi kontak yang tampil dihalaman depan')
                     ->icon('heroicon-o-building-office-2')
                     ->schema([
                         TextInput::make('company_name')
@@ -55,8 +55,8 @@ class ContactSetting extends SettingsPage
                             ->placeholder('Contoh: 628123456789')
                             ->tel()
                             ->maxLength(20)
-                            ->prefixIcon('heroicon-o-chat-bubble-oval-left')
-                            ->hint('Format: kode negara + nomor (tanpa +)'),
+                            ->prefixIcon('heroicon-o-chat-bubble-oval-left'),
+                        // ->hint('Format: kode negara + nomor (tanpa +)'),
 
                         TextInput::make('wechat')
                             ->label('WeChat ID')
@@ -74,25 +74,13 @@ class ContactSetting extends SettingsPage
                             ->label('Instagram')
                             ->placeholder('Contoh: @username_atau_link_lengkap')
                             ->maxLength(255)
-                            ->prefixIcon('heroicon-o-camera')
-                            ->suffixAction(
-                                Action::make('open')
-                                    ->icon('heroicon-o-arrow-top-right-on-square')
-                                    ->url(fn($get) => $get('instagram') ?: '#', true)
-                                    ->hidden(fn($get) => empty($get('instagram')))
-                            ),
+                            ->prefixIcon('heroicon-o-camera'),
 
                         TextInput::make('tiktok')
                             ->label('TikTok')
                             ->placeholder('Contoh: @username_atau_link_lengkap')
                             ->maxLength(255)
-                            ->prefixIcon('heroicon-o-video-camera')
-                            ->suffixAction(
-                                Action::make('open')
-                                    ->icon('heroicon-o-arrow-top-right-on-square')
-                                    ->url(fn($get) => $get('tiktok') ?: '#', true)
-                                    ->hidden(fn($get) => empty($get('tiktok')))
-                            ),
+                            ->prefixIcon('heroicon-o-video-camera'),
                     ])
                     ->columns(1),
 

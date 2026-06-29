@@ -50,4 +50,11 @@ class ArticleController extends Controller
             ->get();
         return view('pages.news.slug', compact('article', 'relatedArticles'));
     }
+
+    
+    public function downloadCenter()
+    {
+        return view('pages.news.download-center');
+    }
+
 }

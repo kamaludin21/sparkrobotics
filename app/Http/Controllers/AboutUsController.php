@@ -57,33 +57,19 @@ class AboutUsController extends Controller
 
     public function submitForm(Request $request)
     {
-        // 1. Validasi Super Ketat
         $validated = $request->validate([
-            // Hanya izinkan huruf dan spasi, maksimal 100 karakter
             'full_name' => 'required|string|max:100|regex:/^[a-zA-Z\s]*$/',
-
             'company'   => 'nullable|string|max:100',
-
-            // Validasi format email secara RFC dan cek apakah DNS domain valid
             'email'     => 'required|email:rfc,dns|max:255',
-
-            // Batasi panjang nomor HP, sesuaikan dengan standar internasional
             'phone'     => 'nullable|string|max:20',
-
-            // Batasi panjang pesan untuk mencegah payload yang sangat besar (DoS via DB)
             'message'   => 'required|string|max:2000',
         ], [
-            // (Opsional) Custom error messages
             'full_name.regex' => 'The name may only contain letters and spaces.',
             'email.dns'       => 'Please provide a valid and active email address.'
         ]);
 
         try {
-            // 2. Sanitasi Data Tambahan (XSS Prevention)
-            // Hilangkan tag HTML jika ada user usil yang mencoba memasukkan <h1> atau <script>
             $cleanMessage = strip_tags($validated['message']);
-
-            // 3. Proses penyimpanan data (contoh menggunakan Model Eloquent)
             Inbox::create([
                 'full_name' => $validated['full_name'],
                 'company'   => $validated['company'],
@@ -91,17 +77,13 @@ class AboutUsController extends Controller
                 'phone'     => $validated['phone'],
                 'message'   => $cleanMessage,
             ]);
-
-            // (Opsional) Kirim notifikasi email di sini
-
             return redirect()->back()->with('success', 'Thank you! Your message has been sent successfully.');
         } catch (\Exception $e) {
-            // Logging error secara aman tanpa menampilkan detail error ke user
             Log::error('Contact form submission error: ' . $e->getMessage());
-
             return redirect()->back()
                 ->withInput()
                 ->withErrors(['error' => 'Sorry, something went wrong. Please try again later.']);
         }
     }
+
 }
