@@ -15,14 +15,21 @@ class SolutionsSeeder extends Seeder
     public function run(): void
     {
         Solution::create([
-            'images' => [
-                'solutions/2026-06/01KW8NC13C0RVCCH431KW5P6PD.webp'
-            ],
+            'images' => [],
+
             'en' => [
                 'title'       => 'Engineering Monitoring',
                 'description' => 'Our comprehensive solution for all terrain mapping needs...',
                 'list_title'  => 'Services Scope',
-                'list_items'  => [
+            ],
+            'id' => [
+                'title'       => 'Pemantauan Teknis',
+                'description' => 'Solusi komprehensif kami menjawab segala kebutuhan pemetaan medan...',
+                'list_title'  => 'Lingkup Layanan',
+            ],
+
+            'list_items' => [
+                'en' => [
                     ["title" => "Topographic Survey", "subtitle" => null],
                     ["title" => "Asset and Inventory Monitoring", "subtitle" => "Generate a visual database for real-time project asset status."],
                     ["title" => "Construction Progress Monitoring", "subtitle" => "Track project progress with high-resolution aerial views."],
@@ -30,13 +37,7 @@ class SolutionsSeeder extends Seeder
                     ["title" => "Analisis Cut-and-Fill", "subtitle" => "Ground elevation mapping for dredging and filling operations."],
                     ["title" => "Slope Monitoring", "subtitle" => "Analyzing the stability and movement of slopes in mining areas or on cliffs."]
                 ],
-            ],
-
-            'id' => [
-                'title'       => 'Pemantauan Teknis',
-                'description' => 'Solusi komprehensif kami menjawab segala kebutuhan pemetaan medan...',
-                'list_title'  => 'Lingkup Layanan',
-                'list_items'  => [
+                'id' => [
                     ["title" => "Survei Topografi", "subtitle" => null],
                     ["title" => "Pemantauan Aset dan Inventaris", "subtitle" => "Menghasilkan database visual untuk status aset proyek real-time."],
                     ["title" => "Pemantauan Kemajuan Konstruksi", "subtitle" => "Pantau kemajuan proyek dengan tampilan udara beresolusi tinggi."],

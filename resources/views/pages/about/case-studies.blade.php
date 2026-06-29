@@ -18,7 +18,7 @@
         <div class="grid grid-cols-1 md:grid-cols-2">
           @if ($showImageFirst)
             <div class="h-80 md:h-[500px]">
-              <img src="{{ $thumbnail }}" alt="{{ $case->title }}" class="w-full h-full object-contain">
+              <img src="{{ $thumbnail }}" alt="{{ $case->title }}" class="w-full h-full object-cover">
             </div>
             <div class="bg-white p-6 md:p-10 lg:p-16 flex flex-col justify-between h-auto">
               <div>
@@ -72,7 +72,7 @@
               </div>
             </div>
             <div class="h-80 md:h-[500px]">
-              <img src="{{ $thumbnail }}" alt="{{ $case->title }}" class="w-full h-full object-contain">
+              <img src="{{ $thumbnail }}" alt="{{ $case->title }}" class="w-full h-full object-cover">
             </div>
           @endif
         </div>

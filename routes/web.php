@@ -60,12 +60,11 @@ Route::prefix('{locale}')
         Route::get(trans('routes.about_contact', locale: 'id'), [AboutUsController::class, 'contact'])->name('about.contact');
     });
 
-
 // Route untuk memproses data submit form (method POST)
 Route::post('/submit-contact', [AboutUsController::class, 'submitForm'])
     ->name('contact.submit')
     ->middleware('throttle:3,1'); // 3 requests per 1 minute
 
-Route::get('/zyel', function () {
-    echo phpinfo();
-});
+// Route::get('/zyel', function () {
+//     echo phpinfo();
+// });
