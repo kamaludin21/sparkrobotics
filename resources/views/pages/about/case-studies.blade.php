@@ -24,7 +24,7 @@
               <div>
                 <h2 class="text-3xl md:text-4xl font-bold mb-4 leading-tight">{{ $case->title }}</h2>
                 <p class="text-gray-500 text-sm md:text-base leading-relaxed line-clamp-4">
-                  {{ Str::limit(strip_tags($case->content), 250) }}
+                  {{ Str::limit(html_entity_decode(strip_tags($case->content)), 250) }}
                 </p>
               </div>
               <div class="text-right mt-6">
@@ -50,7 +50,7 @@
               <div>
                 <h2 class="text-3xl md:text-4xl font-bold mb-4 leading-tight">{{ $case->title }}</h2>
                 <p class="text-gray-300 text-sm md:text-base leading-relaxed line-clamp-4">
-                  {{ Str::limit(strip_tags($case->content), 250) }}
+                  {{ Str::limit(html_entity_decode(strip_tags($case->content)), 250) }}
                 </p>
               </div>
               <div class="text-right mt-6">
