@@ -86,9 +86,10 @@ class CompanySettings extends SettingsPage
                             ->label('Foto Perusahaan')
                             ->image()
                             ->multiple()
+                            ->optimize('webp')
                             ->imageEditor()
                             ->maxSize(500)
-                            ->directory('settings/about/company' . now()->format('Y-m'))
+                            ->directory('settings/about/company/' . now()->format('Y-m'))
                             ->columnSpanFull(),
                         Tabs::make('Bahasa')
                             ->tabs([
