@@ -239,81 +239,47 @@
           @mousemove="drag" @touchstart="startDragging" @touchend="stopDragging" @touchmove="drag"
           class="flex lg:grid lg:grid-cols-4 gap-4 overflow-x-auto lg:overflow-visible no-scrollbar cursor-grab active:cursor-grabbing lg:cursor-auto pb-4">
 
-          {{-- <div
-            class="w-full shrink-0 h-full flex flex-col bg-white border border-slate-200 rounded-3xl overflow-hidden group select-none transition hover:shadow-lg hover:border-sky-200">
-            <div class="h-56 shrink-0 bg-slate-200 overflow-hidden relative">
-              <img
-                src="https://shop.unitree.com/cdn/shop/files/df9f333424ff6cc6164ce421b019fb94_a6f832b0-479e-4294-ac75-6516208b91f4_900x.png"
-                alt="Unitree Aliengo"
-                class="w-full h-full object-cover pointer-events-none transition-transform duration-500 group-hover:scale-105">
-            </div>
-            <div class="p-6 flex-1 flex flex-col justify-between">
-              <div>
-                <h3 class="text-xl font-bold text-slate-800 mb-1">Unitree Go2 Pro</h3>
-                <p class="text-slate-500 text-sm mb-4 line-clamp-2">The next generation standard for bionic quadruped
-                  robots</p>
+          @forelse ($otherProducts as $item)
+            <article class="group flex h-full flex-col overflow-hidden rounded-2xl bg-white ring-1 ring-slate-200">
+              <div class="relative h-56 overflow-hidden bg-slate-100">
+                @if (!empty($item->thumbnail_image))
+                  <img src="{{ Storage::url($item->thumbnail_image) }}" alt="{{ $item->title }}" loading="lazy"
+                    class="absolute inset-0 h-full w-full object-cover object-center transition-transform duration-500 group-hover:scale-105">
+                @else
+                  <div class="absolute inset-0 flex items-center justify-center bg-slate-200 text-slate-400">
+                    <span class="text-sm">No Image</span>
+                  </div>
+                @endif
               </div>
-              <button
-                class="text-sm font-semibold text-slate-800 bg-slate-200 px-4 py-2 rounded-full hover:bg-slate-200 transition self-start">
-                Detail
-              </button>
-            </div>
-          </div>
-
-          <div
-            class="w-full shrink-0 h-full flex flex-col bg-white border border-slate-200 rounded-3xl overflow-hidden group select-none transition hover:shadow-lg hover:border-sky-200">
-            <div class="h-56 shrink-0 bg-slate-200 overflow-hidden relative">
-              <img src="https://shop.unitree.com/cdn/shop/files/24_900x.png" alt="Unitree Aliengo"
-                class="w-full h-full object-cover pointer-events-none transition-transform duration-500 group-hover:scale-105">
-            </div>
-            <div class="p-6 flex-1 flex flex-col justify-between">
-              <div>
-                <h3 class="text-xl font-bold text-slate-800 mb-1">Unitree B2</h3>
-                <p class="text-slate-500 text-sm mb-4 line-clamp-2">Industrial grade robot dog built for extreme
-                  performance</p>
+              <div class="flex flex-1 flex-col p-6 border-t border-slate-200">
+                <div>
+                  <h3 class="text-2xl font-semibold text-slate-700 transition-colors group-hover:text-sky-600">
+                    <a href="{{ localized_route('products.show', $item->slug) }}">{{ $item->title }}</a>
+                  </h3>
+                  <p class="mt-2 text-slate-600 line-clamp-3">
+                    {{ $item->title_section }}
+                  </p>
+                </div>
+                <div class="mt-auto pt-6">
+                  <a href="{{ localized_route('products.show', $item->slug) }}"
+                    aria-label="Lihat detail untuk {{ $item->title }}"
+                    class="block w-full rounded-lg bg-slate-100 px-4 py-2 text-center text-sm font-semibold text-slate-700 ring-1 ring-slate-200 transition-colors duration-300 group-hover:bg-sky-600 group-hover:text-white">
+                    {{ t('productsIndex_detail_button') }}
+                  </a>
+                </div>
               </div>
-              <button
-                class="text-sm font-semibold text-slate-800 bg-slate-200 px-4 py-2 rounded-full hover:bg-slate-200 transition self-start">
-                Detail
-              </button>
+            </article>
+          @empty
+            <div
+              class="col-span-full bg-white border border-dashed border-slate-300 rounded-2xl py-16 text-center text-slate-500 space-y-2">
+              <svg class="w-12 h-12 mx-auto text-slate-300 mb-3" fill="none" stroke="currentColor"
+                viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                  d="M9.172 16.172a4 4 0 015.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+              </svg>
+              <p class="text-base font-medium text-slate-600">{{ t('home_product_empty') }}</p>
             </div>
-          </div>
-
-          <div
-            class="w-full shrink-0 h-full flex flex-col bg-white border border-slate-200 rounded-3xl overflow-hidden group select-none transition hover:shadow-lg hover:border-sky-200">
-            <div class="h-56 shrink-0 bg-slate-200 overflow-hidden relative">
-              <img src="https://shop.unitree.com/cdn/shop/files/23_900x.png" alt="Unitree Aliengo"
-                class="w-full h-full object-cover pointer-events-none transition-transform duration-500 group-hover:scale-105">
-            </div>
-            <div class="p-6 flex-1 flex flex-col justify-between">
-              <div>
-                <h3 class="text-xl font-bold text-slate-800 mb-1">Unitree H1</h3>
-                <p class="text-slate-500 text-sm mb-4 line-clamp-2">General-purpose humanoid robot with highest speed</p>
-              </div>
-              <button
-                class="text-sm font-semibold text-slate-800 bg-slate-200 px-4 py-2 rounded-full hover:bg-slate-200 transition self-start">
-                Detail
-              </button>
-            </div>
-          </div>
-
-          <div
-            class="w-full shrink-0 h-full flex flex-col bg-white border border-slate-200 rounded-3xl overflow-hidden group select-none transition hover:shadow-lg hover:border-sky-200">
-            <div class="h-56 shrink-0 bg-slate-200 overflow-hidden relative">
-              <img src="https://shop.unitree.com/cdn/shop/files/21_900x.png?v=1718274083" alt="Unitree Aliengo"
-                class="w-full h-full object-cover pointer-events-none transition-transform duration-500 group-hover:scale-105">
-            </div>
-            <div class="p-6 flex-1 flex flex-col justify-between">
-              <div>
-                <h3 class="text-xl font-bold text-slate-800 mb-1">Aliengo</h3>
-                <p class="text-slate-500 text-sm mb-4 line-clamp-2">Robust AI robot for advanced research.</p>
-              </div>
-              <button
-                class="text-sm font-semibold text-slate-800 bg-slate-200 px-4 py-2 rounded-full hover:bg-slate-200 transition self-start">
-                Detail
-              </button>
-            </div>
-          </div> --}}
+          @endforelse
 
         </div>
       </div>
@@ -328,7 +294,8 @@
             designed to support your daily needs.</p>
         </div>
         <div class="flex justify-center gap-4">
-          <a href="{{ localized_route('about.contact') }}" class="bg-black px-5 py-2 rounded-full text-white font-semibold text-base">
+          <a href="{{ localized_route('about.contact') }}"
+            class="bg-black px-5 py-2 rounded-full text-white font-semibold text-base">
             Place an Inquiry
           </a>
         </div>

@@ -43,6 +43,8 @@ class ProductController extends Controller
             ->paginate(12)
             ->withQueryString();
 
+        
+
         return view('pages.products.index', compact('categories', 'brands', 'products'));
     }
 
@@ -51,6 +53,7 @@ class ProductController extends Controller
         $slug = $param2 ? $param2 : $param1;
 
         $product = Product::where('slug', $slug)->firstOrFail();
-        return view('pages.products.detail', compact('product'));
+        $otherProducts = Product::whereNot('id', $product->id)->get();
+        return view('pages.products.detail', compact('product', 'otherProducts'));
     }
 }
