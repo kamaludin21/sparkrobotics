@@ -9,7 +9,7 @@
   <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
   <link rel="manifest" href="/site.webmanifest">
   @vite(['resources/css/app.css', 'resources/js/app.js'])
-  <title>Spark Robotic</title>
+  <title>SPARK Robotics</title>
 </head>
 
 <body class="font-sans antialiased">
@@ -17,5 +17,4 @@
   @yield('content')
   <x-layout.footer />
 </body>
-
 </html>
