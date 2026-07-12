@@ -14,7 +14,7 @@ return new class extends Migration
     {
         Schema::create('products', function (Blueprint $table) {
             $table->id();
-
+            $table->integer('sort')->default(0)->comment('Urutan produk di halaman produk');
             // Relations
             $table->foreignIdFor(Brand::class)
                 ->nullable()

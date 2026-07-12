@@ -3,8 +3,9 @@
 namespace App\Filament\Pages;
 
 use App\Settings\Contact;
-use BackedEnum;
+use BackedEnum, UnitEnum;
 use Filament\Actions\Action;
+use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\TextInput;
 use Filament\Pages\SettingsPage;
 use Filament\Schemas\Components\Section;
@@ -17,12 +18,13 @@ class ContactSetting extends SettingsPage
 
     protected static string $settings = Contact::class;
 
+    protected static string | UnitEnum | null $navigationGroup = 'Settings';
+
     public function form(Schema $schema): Schema
     {
         return $schema
             ->components([
                 Section::make('Informasi Perusahaan')
-                    ->description('Informasi kontak yang tampil dihalaman depan')
                     ->icon('heroicon-o-building-office-2')
                     ->schema([
                         TextInput::make('company_name')
@@ -30,6 +32,11 @@ class ContactSetting extends SettingsPage
                             ->placeholder('Masukkan nama perusahaan')
                             ->maxLength(255)
                             ->prefixIcon('heroicon-o-building-office'),
+                        TextInput::make('email')
+                            ->label('Email Perusahaan')
+                            ->placeholder('Masukkan email perusahaan')
+                            ->maxLength(255)
+                            ->prefixIcon('heroicon-o-envelope'),
                     ])
                     ->columns(1),
 
@@ -40,7 +47,6 @@ class ContactSetting extends SettingsPage
                         TextInput::make('mobile')
                             ->label('Nomor Mobile')
                             ->placeholder('Contoh: 08123456789')
-                            ->tel()
                             ->maxLength(20)
                             ->prefixIcon('heroicon-o-device-phone-mobile'),
                     ])
@@ -53,11 +59,13 @@ class ContactSetting extends SettingsPage
                         TextInput::make('whatsapp')
                             ->label('WhatsApp')
                             ->placeholder('Contoh: 628123456789')
-                            ->tel()
                             ->maxLength(20)
                             ->prefixIcon('heroicon-o-chat-bubble-oval-left'),
-                        // ->hint('Format: kode negara + nomor (tanpa +)'),
-
+                        Textarea::make('whatsapp_message')
+                            ->rows(1)
+                            ->autosize()
+                            ->label('Custom text whatsapp link')
+                            ->maxLength(200),
                         TextInput::make('wechat')
                             ->label('WeChat ID')
                             ->placeholder('Masukkan WeChat ID')
@@ -72,13 +80,12 @@ class ContactSetting extends SettingsPage
                     ->schema([
                         TextInput::make('instagram')
                             ->label('Instagram')
-                            ->placeholder('Contoh: @username_atau_link_lengkap')
+                            ->placeholder('Contoh: @username')
                             ->maxLength(255)
                             ->prefixIcon('heroicon-o-camera'),
-
                         TextInput::make('tiktok')
                             ->label('TikTok')
-                            ->placeholder('Contoh: @username_atau_link_lengkap')
+                            ->placeholder('Contoh: @username')
                             ->maxLength(255)
                             ->prefixIcon('heroicon-o-video-camera'),
                     ])

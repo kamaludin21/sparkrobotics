@@ -7,6 +7,7 @@ use Astrotomic\Translatable\Translatable;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\File;
 
@@ -14,6 +15,7 @@ class Product extends Model implements TranslatableContract
 {
     use Translatable;
     protected $fillable = [
+        'sort',
         'brand_id',
         'title',
         'slug',
@@ -52,8 +54,18 @@ class Product extends Model implements TranslatableContract
         return $this->belongsToMany(Category::class);
     }
 
+    public function translations(): HasMany
+    {
+        return $this->hasMany(ProductTranslation::class);
+    }
+
     public function getSizeAttribute()
     {
+        // 1. Tangani langsung jika fieldnya kosong atau null
+        if (empty($this->datasheet_file_path)) {
+            return null;
+        }
+
         try {
             if (Storage::disk('public')->exists($this->datasheet_file_path)) {
                 $bytes = Storage::disk('public')->size($this->datasheet_file_path);
@@ -63,6 +75,8 @@ class Product extends Model implements TranslatableContract
 
             return $this->formatSizeUnits($bytes);
         } catch (\Exception $e) {
+            // 2. Catch tetap dipertahankan sebagai safety net 
+            // jika terjadi error lain (misal: file dihapus saat proses berjalan)
             return null;
         }
     }

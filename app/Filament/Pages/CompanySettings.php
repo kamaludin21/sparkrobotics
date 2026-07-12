@@ -3,7 +3,7 @@
 namespace App\Filament\Pages;
 
 use App\Settings\Company;
-use BackedEnum;
+use BackedEnum, UnitEnum;
 use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Components\Repeater;
 use Filament\Forms\Components\RichEditor;
@@ -23,6 +23,7 @@ class CompanySettings extends SettingsPage
     protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedCog6Tooth;
 
     protected static string $settings = Company::class;
+    protected static string | UnitEnum | null $navigationGroup = 'Settings';
 
     public function form(Schema $schema): Schema
     {
@@ -90,7 +91,7 @@ class CompanySettings extends SettingsPage
                             ->disk('public')
                             ->imageEditor()
                             ->maxSize(500)
-                            ->directory('settings/about/company/' . now()->format('Y-m'))
+                            ->directory('settings/about/company')
                             ->columnSpanFull(),
                         Tabs::make('Bahasa')
                             ->tabs([
@@ -275,7 +276,7 @@ class CompanySettings extends SettingsPage
                             ])
                             ->optimize('webp')
                             ->helperText('Max Size: 500KB')
-                            ->directory('settings/company/client_image/' . now()->format('Y-m'))
+                            ->directory('settings/company/client_image')
                             ->imagePreviewHeight('150')
                             ->downloadable()
                             ->maxSize(500)

@@ -40,7 +40,7 @@ class CaseStudyForm
                                     ->optimize('webp')
                                     ->helperText('Max Size: 500KB')
                                     ->disk('public')
-                                    ->directory('case-study/' . now()->format('Y-m'))
+                                    ->directory('case-study')
                                     ->imagePreviewHeight('150')
                                     ->downloadable()
                                     ->openable()

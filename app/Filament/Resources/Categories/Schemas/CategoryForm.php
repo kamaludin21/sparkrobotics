@@ -4,6 +4,7 @@ namespace App\Filament\Resources\Categories\Schemas;
 
 use Doriiaan\FilamentAstrotomic\Schemas\Components\TranslatableTabs;
 use Doriiaan\FilamentAstrotomic\TranslatableTab;
+use Filament\Forms\Components\FileUpload;
 use Filament\Schemas\Schema;
 use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\TextInput;
@@ -18,6 +19,23 @@ class CategoryForm
     {
         return $schema
             ->components([
+                FileUpload::make('image')
+                    ->label('Thumbnail Article')
+                    ->maxSize(500)
+                    ->image()
+                    ->disk('public')
+                    ->acceptedFileTypes([
+                        'image/jpg',
+                        'image/jpeg',
+                        'image/png',
+                        'image/webp',
+                    ])
+                    ->optimize('webp')
+                    ->directory('category')
+                    ->imageEditor()
+                    ->openable()
+                    ->downloadable()
+                    ->helperText('Maks Size: 500KB'),
                 TranslatableTabs::make()
                     ->localeTabSchema(fn(TranslatableTab $tab) => [
                         Textarea::make($tab->makeName('name'))

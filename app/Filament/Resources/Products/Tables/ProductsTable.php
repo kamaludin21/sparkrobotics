@@ -15,9 +15,8 @@ class ProductsTable
     {
         return $table
             ->columns([
-                TextColumn::make('index')
-                    ->label('No.')
-                    ->rowIndex(),
+                TextColumn::make('sort')
+                    ->label('No.'),
                 TextColumn::make('brand.name')
                     ->sortable(),
                 TextColumn::make('title')
@@ -35,6 +34,8 @@ class ProductsTable
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
             ])
+            ->defaultSort('sort', 'asc')
+            ->reorderable('sort')
             ->recordActions([
                 ActionGroup::make([
                     EditAction::make(),

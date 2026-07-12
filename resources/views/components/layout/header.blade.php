@@ -133,7 +133,7 @@
       </div>
 
       <div class="hidden lg:flex items-center gap-2">
-        <a href="https://api.whatsapp.com/send?phone={{ $contact->whatsapp }}&text=Halo%2C%20saya%20sedang%20melihat%20layanan%20di%20website%20Anda%20https%3A%2F%2Fsparkrobotics.id.%20Saya%20ingin%20berdiskusi%20lebih%20lanjut"
+        <a href="https://wa.me/send?phone={{ $contact->whatsapp }}&text={{ urlencode($contact->whatsapp_message) }}"
           target="_blank"
           class="group flex items-center gap-2 text-white pl-1 pr-3 py-2 bg-emerald-600 hover:bg-emerald-700 
            rounded-xl transition-all duration-300 [transition-timing-function:cubic-bezier(0.175,0.885,0.32,1.275)] active:-translate-y-1 active:scale-x-90 active:scale-y-110 ease-out hover:pl-4 cursor-pointer">
@@ -236,7 +236,7 @@
               <span class="leading-4">ENG</span>
             </a>
           </div>
-          <a href="https://api.whatsapp.com/send?phone={{ $contact->whatsapp }}&text=Halo%2C%20saya%20sedang%20melihat%20layanan%20di%20website%20Anda%20https%3A%2F%2Fsparkrobotics.id.%20Saya%20ingin%20berdiskusi%20lebih%20lanjut"
+          <a href="https://wa.me/send?phone={{ $contact->whatsapp }}&text=Halo%2C%20saya%20sedang%20melihat%20layanan%20di%20website%20Anda%20https%3A%2F%2Fsparkrobotics.id.%20Saya%20ingin%20berdiskusi%20lebih%20lanjut"
             target="_blank"
             class="group flex items-center gap-2 text-white pl-1 pr-3 py-2 bg-emerald-600 hover:bg-emerald-700 
              rounded-xl click-animate hover:pl-4 cursor-pointer">
@@ -253,23 +253,3 @@
 
   </nav>
 </header>
-{{-- <hr class="border-gray-100">
-        <div class="flex lg:hidden items-center gap-4 justify-between">
-          <div class="flex items-center font-normal gap-1 text-base text-slate-600">
-            <a href="#" class="leading-4 px-1 hover:text-sky-600 transition-colors"><span>IDN</span></a>
-            <div class="h-4 w-[1.5px] bg-slate-600"></div>
-            <a href="#" class="text-sky-600 px-1 flex items-center gap-0.5 font-medium">
-              <x-icons.language class="h-4 w-auto" />
-              <span class="leading-4">ENG</span>
-            </a>
-          </div>
-          <a href="/whatsapp" target="_blank"
-            class="group flex items-center gap-2 text-white pl-1 pr-3 py-2 bg-emerald-600 hover:bg-emerald-700 
-             rounded-xl click-animate hover:pl-4 cursor-pointer">
-            <span
-              class="max-w-0 overflow-hidden group-hover:max-w-[120px] transition-all duration-300 ease-out whitespace-nowrap">
-              Contact Us
-            </span>
-            <x-icons.whatsapp class="h-6 w-auto transition-transform duration-300" />
-          </a>
-        </div> --}}

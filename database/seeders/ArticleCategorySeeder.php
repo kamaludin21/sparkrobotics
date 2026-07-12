@@ -18,7 +18,7 @@ class ArticleCategorySeeder extends Seeder
             ['title' => 'Blog', 'slug' => 'blog'],
             ['title' => 'Product', 'slug' => 'product'],
             ['title' => 'Announcements', 'slug' => 'announcements'],
-            ['title' => 'Tutorial', 'slug' => 'tutorial'],
+            ['title' => 'Video', 'slug' => 'video'],
         ];
 
         foreach ($categories as $category) {

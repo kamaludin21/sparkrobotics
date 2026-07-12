@@ -38,11 +38,15 @@ class BrandForm
                     ])
                     ->optimize('webp')
                     ->helperText('Max Size: 500KB')
-                    ->directory('brands/' . now()->format('Y-m'))
+                    ->directory('brands')
                     ->imagePreviewHeight('150')
                     ->downloadable()
                     ->maxSize(500)
                     ->nullable(),
+                TextInput::make('website')
+                    ->label('Website')
+                    ->placeholder('Website')
+                    ->url(),
             ]);
     }
 }

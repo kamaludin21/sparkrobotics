@@ -24,9 +24,9 @@ return new class extends SettingsMigration
         // =============================================
         $this->migrator->add('company.about_image', []);
         $this->migrator->add('company.section_title_id', 'Siapa Kami?');
-        $this->migrator->add('company.about_id', 'Deskripsi dalam Bahasa Indonesia.');
+        $this->migrator->add('company.about_id', 'SPARK Robotics adalah perusahaan teknologi yang didirikan di Indonesia oleh para pengusaha asal Tiongkok. Perusahaan ini berperan sebagai distributor resmi untuk teknologi canggih asal Tiongkok, termasuk drone kelas enterprise DJI dan produk robotika Unitree di pasar Indonesia.    ');
         $this->migrator->add('company.section_title_en', 'Who We Are?');
-        $this->migrator->add('company.about_en', 'Description in English.');
+        $this->migrator->add('company.about_en', 'SPARK Robotics is a representative technology company founded in Indonesia by Chinese entrepreneurs. The company serves as an authorized distributor of advanced Chinese technologies, including DJI enterprise drones and Unitree robotics products, in the Indonesian market.');
 
         // =============================================
         // INDUSTRI YANG KAMI DUKUNG
@@ -77,7 +77,7 @@ return new class extends SettingsMigration
         $this->migrator->add('company.brand_title_id', 'Dipercaya Oleh');
         $this->migrator->add('company.brand_subtitle_id', 'Hingga saat ini, SPARK Robotics telah memberikan layanan dan solusi terbaik kepada berbagai organisasi terkemuka yang beroperasi di Indonesia');
         $this->migrator->add('company.brand_title_en', 'Trusted By');
-        $this->migrator->add('company.brand_subtitle_en', 'Hingga saat ini, SPARK Robotics telah memberikan layanan dan solusi terbaik kepada berbagai organisasi terkemuka yang beroperasi di Indonesia');
+        $this->migrator->add('company.brand_subtitle_en', 'To date, SPARK Robotics has provided top-tier services and solutions to various leading organizations operating in Indonesia.');
         $this->migrator->add('company.clients', []);
     }
 };

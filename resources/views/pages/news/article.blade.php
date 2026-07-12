@@ -41,7 +41,7 @@
                 class="hover:text-sky-600 hover:underline">{{ $item->title }}</a>
             </div>
             <div class="text-sm md:text-base text-gray-600">
-              {{ $item->updated_at->format('M d, Y') }}
+              {{ app()->getLocale() === 'id' ? $item->updated_at->translatedFormat('d F Y') : $item->updated_at->format('F d, Y') }}
             </div>
             <div class="text-sm md:text-base text-gray-500">
               {{ $category->title }}

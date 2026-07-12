@@ -30,7 +30,7 @@ class SolutionForm
                         'image/webp',
                     ])
                     ->optimize('webp')
-                    ->directory('solutions/' . now()->format('Y-m'))
+                    ->directory('solutions')
                     ->imageEditor()
                     ->openable()
                     ->downloadable()

@@ -15,9 +15,9 @@ return new class extends Migration
             $table->id();
             $table->string('full_name');
             $table->string('company')->nullable();
-            $table->string('email');
+            $table->string('email')->nullable();
             $table->string('phone')->nullable();
-            $table->text('message');
+            $table->text('message')->nullable();
             $table->enum('status', ['queue', 'process', 'done'])->default('queue');
             $table->text('admin_note')->nullable();
             $table->timestamps();

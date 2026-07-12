@@ -2,37 +2,109 @@
 
 @section('content')
   <main class="">
-    {{-- CTA --}}
-    <section class="main-wrapper pt-24 md:pt-24 px-4">
-      <div
-        class="bg-radial-[at_50%_75%] from-sky-400 via-sky-600 to-sky-900 to-90% h-auto flex items-center rounded-3xl flex-col justify-between ">
-        <div class="max-w-2xl mx-auto px-3 md:px-6 py-12 rounded-lg text-center">
-          <div class="inline-flex items-center gap-2 px-2 py-1 mb-6 rounded-md bg-slate-900/30">
-            <span class="w-2 h-2 rounded-full bg-blue-500 animate-pulse"></span>
-            <span class="text-xs font-jakarta text-slate-200 uppercase tracking-wider font-semibold">
-              {{ t('home_title') }}
-            </span>
+    {{-- Hero Section CTA --}}
+    <section class="h-screen relative overflow-hidden">
+
+      @if (empty($hero->slides) || count($hero->slides) === 0)
+        @php
+          $locale = app()->getLocale();
+          $tagline = $locale === 'en' ? $hero->tagline_en ?? $hero->tagline_id : $hero->tagline_id;
+          $designation = $locale === 'en' ? $hero->designation_en ?? $hero->designation_id : $hero->designation_id;
+        @endphp
+        <div
+          class="bg-radial-[at_50%_75%] from-sky-400 via-sky-600 to-sky-900 to-90% h-full flex items-center flex-col justify-between">
+          <div class="max-w-2xl mx-auto px-3 md:px-6 pt-32 rounded-lg text-center">
+            <div class="inline-flex items-center gap-2 px-2 py-1 mb-6 rounded-md bg-slate-900/30">
+              <span class="w-2 h-2 rounded-full bg-blue-500 animate-pulse"></span>
+              <span class="text-xs font-jakarta text-slate-200 uppercase tracking-wider font-semibold">
+                {{ $designation }}
+              </span>
+            </div>
+            <h2 class="text-5xl md:text-6xl font-medium font-jakarta text-white mb-4">
+              {{ $hero->company_name }}
+            </h2>
+            <p class="text-xl font-jakarta text-slate-100 italic mb-6">
+              {{ $tagline }}
+            </p>
+            <div class="flex justify-center gap-2 md:gap-4">
+              <a href="{{ locale_route('about.contact') }}"
+                class="bg-slate-800 px-5 py-2 rounded-full text-white font-semibold text-base">
+                {{ t('home_cta_contact') }}
+              </a>
+              <a href="{{ locale_route('products.index') }}"
+                class="bg-white px-5 py-2 rounded-full text-slate-800 font-semibold text-base">
+                {{ t('home_cta_catalogs') }}
+              </a>
+            </div>
           </div>
-          <h2 class="text-5xl md:text-6xl font-medium font-jakarta text-white mb-4 ">{{ t('brand_spark_robotics') }}</h2>
-          <p class="text-xl font-jakarta text-slate-100 italic mb-6">{{ t('home_cta_tagline') }}</p>
-          <div class="flex justify-center gap-2 md:gap-4">
-            <a href="{{ locale_route('about.contact') }}"
-              class="bg-slate-800 px-5 py-2 rounded-full text-white font-semibold text-base">
-              {{ t('home_cta_contact') }}
-            </a>
-            <a href="{{ locale_route('products.index') }}"
-              class="bg-white px-5 py-2 rounded-full text-slate-800   font-semibold text-base">
-              {{ t('home_cta_catalogs') }}
-            </a>
+          <div class="flex justify-center items-end">
+            <img src="{{ Storage::url($hero->image) }}" alt="Hero Image"
+              class="w-full h-44 md:h-80 object-contain md:object-cover object-bottom">
           </div>
         </div>
-        <div class="flex justify-center items-end">
-          <img src="{{ asset('images/robotic.png') }}" alt="Hero Image"
-            class="w-full h-44 md:h-72 object-contain md:object-cover object-bottom">
+      @else
+        <div class="relative w-full h-full bg-slate-200 overflow-hidden" x-data="{
+            activeSlide: 0,
+            totalSlides: {{ count($hero->slides) }},
+            next() {
+                this.activeSlide = this.activeSlide === this.totalSlides - 1 ? 0 : this.activeSlide + 1;
+            },
+            prev() {
+                this.activeSlide = this.activeSlide === 0 ? this.totalSlides - 1 : this.activeSlide - 1;
+            }
+        }" x-init="setInterval(() => next(), 5000)">
+          @foreach ($hero->slides as $index => $slide)
+            <div class="absolute inset-0 w-full h-full" x-show="activeSlide === {{ $index }}"
+              x-transition:enter="transition ease-out duration-700" x-transition:enter-start="opacity-0 scale-105"
+              x-transition:enter-end="opacity-100 scale-100" x-transition:leave="transition ease-in duration-500 absolute"
+              x-transition:leave-start="opacity-100 scale-100" x-transition:leave-end="opacity-0 scale-105"
+              style="display: none;">
+              <img src="{{ asset('storage/' . $slide['image']) }}" alt="{{ $slide['title'] }}"
+                class="h-full w-full object-cover" />
+              <div class="absolute inset-0 bg-black/30"></div>
+
+              <div class="w-full absolute inset-0 flex flex-col justify-end p-6 md:p-12 text-white">
+                <div class="flex justify-between items-end">
+                  <div class="drop-shadow-lg shadow-black">
+                    <h1 class="text-4xl md:text-6xl font-bold mb-4">{{ $slide['title'] }}</h1>
+                    <p class="text-lg md:text-2xl">{{ $slide['subtitle'] }}</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          @endforeach
+
+          {{-- Navigasi Slider --}}
+          @if (count($hero->slides) > 1)
+            <div class="absolute bottom-6 md:bottom-12 right-6 md:right-12 z-10 flex gap-2 md:gap-4">
+              <button @click="prev()"
+                class="bg-sky-600 hover:bg-sky-700 text-white font-semibold py-2 px-3 rounded-lg transition-colors duration-300">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                  stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                  class="h-8 w-auto">
+                  <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                  <path d="M5 12l14 0" />
+                  <path d="M5 12l6 6" />
+                  <path d="M5 12l6 -6" />
+                </svg>
+              </button>
+              <button @click="next()"
+                class="bg-sky-600 hover:bg-sky-700 text-white font-semibold py-2 px-3 rounded-lg transition-colors duration-300">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                  stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                  class="h-8 w-auto">
+                  <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                  <path d="M5 12l14 0" />
+                  <path d="M13 18l6 -6" />
+                  <path d="M13 6l6 6" />
+                </svg>
+              </button>
+            </div>
+          @endif
         </div>
-      </div>
+      @endif
     </section>
-    {{-- CTA --}}
+    {{-- Hero Section CTA --}}
 
     {{-- Customer Slide --}}
     @if (count($settings->clients) > 0)
@@ -77,39 +149,41 @@
         <div class="grid grid-cols-2 gap-4 md:grid-cols-10 lg:grid-cols-12 md:grid-rows-2">
 
           <!-- Left Large Card -->
-          <div class="relative overflow-hidden col-span-2 rounded-2xl md:col-span-4 lg:col-span-5 md:row-span-2 group">
-            <img src="https://www-cdn.djiits.com/dps/d5687107b6b51178f6491bf89a5e701f.jpg" alt=""
-              class="h-full w-full object-cover" />
-
-            <div class="absolute inset-0 bg-black/30"></div>
-
-            <div class="absolute bottom-0 left-0 flex h-full w-full flex-col justify-between p-6">
-              <div class="text-4xl font-black leading-none text-white uppercase w-min">
-                {{ t('brand_spark_robotics') }}
-              </div>
-
-              <div class="">
-                <p
-                  class="inline-flex items-center text-2xl font-bold uppercase leading-none font-bold tracking-tight text-slate-100 uppercase">
-                  {{ t('segment_title_first') }}
-                </p>
-
+          @if (null !== $categories->get(0))
+            <div class="relative overflow-hidden col-span-2 rounded-2xl md:col-span-4 lg:col-span-5 md:row-span-2 block">
+              <img src="{{ asset('storage/' . $categories->get(0)->image) }}" alt="{{ $categories->get(0)->name }}"
+                class="h-full w-full object-cover transition-transform duration-500" />
+              <div class="absolute inset-0 bg-black/30 transition-colors"></div>
+              <div class="absolute bottom-0 left-0 flex h-full w-full flex-col justify-between p-6">
+                <div class="text-4xl font-black leading-none text-white uppercase w-min">
+                  {{ t('brand_spark_robotics') }}
+                </div>
+                <div>
+                  <a href="{{ localized_route('products.index', ['categories' => [$categories->get(0)->id]]) }}"
+                    class="inline-flex items-center gap-1.5 text-2xl font-bold uppercase leading-none font-bold tracking-tight border-b-2 border-b-transparent hover:border-white text-slate-100 hover:text-white uppercase hover:bg-slate-800/30 pl-2 cursor-pointer">
+                    {{ $categories->get(0)->name }}
+                    <x-icons.arrow-up-right class="h-8 w-8" />
+                  </a>
+                </div>
               </div>
             </div>
-          </div>
+          @endif
 
-          <!-- Top Middle -->
-          <div class="relative overflow-hidden col-span-2 rounded-2xl md:col-span-3 lg:col-span-4 min-h-44">
-            <img src="https://stag-www-cdn.djiits.com/pre/dps/bedf44783ff5ebbb210ca39d68ead198.jpg" alt=""
-              class="h-full w-full object-cover" />
-            <div class="absolute inset-0 bg-black/10"></div>
-            <div class="absolute bottom-4 right-4">
-              <p
-                class="inline-flex items-center text-2xl font-bold uppercase leading-none font-bold tracking-tight text-slate-100">
-                {{ t('segment_title_second') }}
-              </p>
+          @if (null !== $categories->get(1))
+            <!-- Top Middle -->
+            <div class="relative overflow-hidden col-span-2 rounded-2xl md:col-span-3 lg:col-span-4 min-h-44">
+              <img src="{{ asset('storage/' . $categories->get(1)->image) }}" alt="{{ $categories->get(1)->name }}"
+                class="h-full w-full object-cover" />
+              <div class="absolute inset-0 bg-black/10"></div>
+              <div class="absolute bottom-4 right-4">
+                <a href="{{ localized_route('products.index', ['categories' => [$categories->get(1)->id]]) }}"
+                  class="inline-flex items-center gap-1.5 text-2xl font-bold uppercase leading-none font-bold tracking-tight border-b-2 border-b-transparent hover:border-white text-slate-100 hover:text-white uppercase hover:bg-slate-800/30 pl-2 cursor-pointer">
+                  {{ $categories->get(1)->name }}
+                  <x-icons.arrow-up-right class="h-8 w-8" />
+                </a>
+              </div>
             </div>
-          </div>
+          @endif
 
           <!-- Top Right Black Card -->
           <div class="flex flex-col justify-between rounded-2xl bg-black p-4 md:p-6 md:col-span-3">
@@ -135,18 +209,21 @@
             </div>
           </div>
 
-          <!-- Bottom Right Image -->
-          <div class="relative overflow-hidden col-span-2 rounded-2xl md:col-span-3 lg:col-span-4">
-            <img src="https://www.unitree.com/images/eec8d82f279b440ea170982ffa80b3fa_3840x2160.jpg" alt=""
-              class="h-full w-full object-cover" />
-            <div class="absolute inset-0 bg-black/10"></div>
-            <div class="absolute bottom-4 left-4">
-              <p
-                class="inline-flex items-center text-2xl font-bold leading-none font-bold tracking-tight text-slate-100 uppercase">
-                {{ t('segment_title_third') }}
-              </p>
+          @if (null !== $categories->get(2))
+            <!-- Bottom Right Image -->
+            <div class="relative overflow-hidden col-span-2 rounded-2xl md:col-span-3 lg:col-span-4">
+              <img src="{{ asset('storage/' . $categories->get(2)->image) }}" alt="{{ $categories->get(2)->name }}"
+                class="h-full w-full object-cover" />
+              <div class="absolute inset-0 bg-black/10"></div>
+              <div class="absolute bottom-4 left-4">
+                <a href="{{ localized_route('products.index', ['categories' => [$categories->get(2)->id]]) }}"
+                  class="inline-flex items-center gap-1.5 text-2xl font-bold uppercase leading-none font-bold tracking-tight border-b-2 border-b-transparent hover:border-white text-slate-100 hover:text-white uppercase hover:bg-slate-800/30 pl-2 cursor-pointer">
+                  {{ $categories->get(2)->name }}
+                  <x-icons.arrow-up-right class="h-8 w-8" />
+                </a>
+              </div>
             </div>
-          </div>
+          @endif
 
         </div>
       </div>
@@ -164,7 +241,8 @@
           class="hidden lg:flex gap-2 items-center px-6 py-2 bg-sky-600 rounded-full text-white">
           <span>{{ t('productsIndex_btn_more') }}</span>
           <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-            stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" class="h-7 w-auto">
+            stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"
+            class="h-7 w-auto">
             <path stroke="none" d="M0 0h24v24H0z" fill="none" />
             <path d="M5 12l14 0" />
             <path d="M15 16l4 -4" />
@@ -242,8 +320,8 @@
           <div class="flex flex-col gap-6 lg:col-span-2">
             <div class="grid grid-cols-1 gap-6 sm:grid-cols-2">
               <!-- Card 1 -->
-              <div
-                class="rounded-3xl bg-slate-50 p-8 shadow-sm ring-1 ring-slate-900/5 transition-all hover:bg-slate-100">
+              <a href="https://enterprise.dji.com/find-a-dealer" target="_blank"
+                class="rounded-3xl bg-white p-8 ring-1 ring-slate-200 transition-all hover:bg-slate-100 cursor-pointer hover:shadow-lg">
                 <div class="mb-4">
                   <svg class="h-10 w-10 text-slate-800" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                     stroke="currentColor">
@@ -253,11 +331,11 @@
                 </div>
                 <h3 class="mb-2 text-2xl font-semibold text-slate-700">{{ t('chooseUs_distributor') }}</h3>
                 <p class="text-sm leading-6 text-slate-600">{{ t('chooseUs_genuine') }}</p>
-              </div>
+              </a>
 
               <!-- Card 2 -->
-              <div
-                class="rounded-3xl bg-slate-50 p-8 shadow-sm ring-1 ring-slate-900/5 transition-all hover:bg-slate-100">
+              <a href="{{ localized_route('solutions.index') }}"
+                class="rounded-3xl bg-white p-8 ring-1 ring-slate-200 transition-all hover:bg-slate-100 cursor-pointer hover:shadow-lg">
                 <div class="mb-4">
                   <svg class="h-10 w-10 text-slate-800" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                     stroke="currentColor">
@@ -267,12 +345,12 @@
                 </div>
                 <h3 class="mb-2 text-2xl font-semibold text-slate-700">{{ t('chooseUs_solutions') }}</h3>
                 <p class="text-sm leading-6 text-slate-600">{{ t('chooseUs_solutions_description') }}</p>
-              </div>
+              </a>
             </div>
 
             <!-- Card 3 (Lebar) -->
-            <div
-              class="flex-1 rounded-3xl bg-slate-50 p-8 shadow-sm ring-1 ring-slate-900/5 transition-all hover:bg-slate-100">
+            <a href="https://maps.app.goo.gl/ibwKNihvTNtdMVzY7" target="_blank"
+              class="flex-1 rounded-3xl bg-white p-8 shadow-sm ring-1 ring-slate-200 transition-all hover:bg-slate-100 cursor-pointer hover:shadow-lg">
               <div class="mb-4">
                 <svg class="h-10 w-10 text-slate-800" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                   stroke="currentColor">
@@ -283,7 +361,7 @@
               </div>
               <h3 class="mb-2 text-2xl font-semibold text-slate-700">{{ t('chooseUs_support') }}</h3>
               <p class="max-w-xl text-sm leading-6 text-slate-600">{{ t('chooseUs_support_description') }}</p>
-            </div>
+            </a>
           </div>
 
           <!-- Kanan: Card 4 (Dark Mode) -->
@@ -324,8 +402,10 @@
           <!-- Brands & Clients Logos (Tab-Style) -->
           <div class="flex flex-wrap items-center justify-center gap-4 md:gap-12">
             @foreach ($brands as $item)
-              <img src="{{ Storage::url($item->logo_path) }}" alt="{{ $item->name }}"
-                class="h-6 md:h-10 w-auto duration-300 hover:scale-105" />
+              <a href="{{ $item->website }}" target="_blank">
+                <img src="{{ Storage::url($item->logo_path) }}" alt="{{ $item->name }}"
+                  class="h-6 md:h-10 w-auto duration-300 hover:scale-105" />
+              </a>
             @endforeach
           </div>
         </div>
@@ -351,7 +431,7 @@
         }">
           <div x-ref="slider"
             class="flex snap-x snap-mandatory [scrollbar-width:'none'] gap-4 overflow-x-auto [-ms-overflow-style:'none'] lg:grid lg:grid-cols-4 lg:gap-8 lg:overflow-visible [&::-webkit-scrollbar]:hidden">
-            @foreach ($settings->about_image as $item)
+            @foreach (collect($settings->about_image)->take(4) as $item)
               <img src="{{ Storage::url($item) }}"
                 class="h-72 w-[85%] shrink-0 snap-center rounded-2xl object-cover shadow-lg duration-200 lg:h-96 lg:w-full hover:lg:-mt-4"
                 alt="About Us" />
@@ -408,13 +488,23 @@
       </div>
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mt-12">
         @forelse ($articles as $item)
-          <div class="bg-white rounded-2xl p-4 ring ring-slate-200">
-            <img src="{{ Storage::url($item->image) }}" alt="{{ $item->title }}"
-              class="w-full object-cover mx-auto h-56 rounded-xl">
-            <div class="px-2 py-4">
-              <a href=""
+          <div class="bg-white rounded-2xl p-4 ring ring-slate-200 flex flex-col h-full">
+            @if ($item->type === 'video' && $item->video_url)
+              <iframe class="w-full h-56 rounded-xl" src="{{ $item->embed_video_url }}" title="{{ $item->title }}"
+                frameborder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                referrerpolicy="strict-origin-when-cross-origin" allowfullscreen>
+              </iframe>
+            @elseif ($item->type === 'standard' && $item->image)
+              <img src="{{ Storage::url($item->image) }}" alt="{{ $item->title }}"
+                class="w-full object-cover mx-auto h-56 rounded-xl">
+            @endif
+
+            <div class="px-2 py-4 flex-grow">
+              <a href="{{ localized_route('news.detail', $item->slug) }}"
                 class="line-clamp-3 text-xl font-semibold text-slate-700 hover:text-sky-600 cursor-pointer hover:underline">
-                {{ $item->title }}</a>
+                {{ $item->title }}
+              </a>
               <p class="text-slate-600 mt-2">
                 {{ app()->getLocale() === 'id' ? $item->updated_at->translatedFormat('d F Y') : $item->updated_at->format('F d, Y') }}
               </p>

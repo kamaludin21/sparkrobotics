@@ -2,7 +2,7 @@
 
 @section('content')
   <main class="main-wrapper px-4 py-24 lg:py-32 overflow-x-hidden">
-    <x-layout.news-nav title="Newsroom" active="news" />
+    <x-layout.news-nav :title="t('newsPage_main_title')" active="news" />
 
     <section class="py-10 w-full mx-auto">
       <form class="w-full max-w-lg mx-auto">
@@ -31,9 +31,17 @@
 
       <div class="w-full lg:w-2/3 flex flex-col">
         @if ($featured)
-          <img class="w-full h-auto aspect-[16/9] object-cover ring ring-slate-200 rounded-xl"
-            src="{{ Storage::url($featured->image) ?? 'https://via.placeholder.com/700x400' }}"
-            alt="{{ $featured->title }}">
+          @if (isset($featured->type) && $featured->type === 'video' && $featured->video_url)
+            <iframe class="w-full aspect-[16/9] ring ring-slate-200 rounded-xl" src="{{ $featured->embed_video_url }}"
+              title="{{ $featured->title }}" frameborder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              referrerpolicy="strict-origin-when-cross-origin" allowfullscreen>
+            </iframe>
+          @else
+            <img class="w-full h-auto aspect-[16/9] object-cover ring ring-slate-200 rounded-xl"
+              src="{{ $featured->image ? Storage::url($featured->image) : 'https://via.placeholder.com/700x400' }}"
+              alt="{{ $featured->title }}">
+          @endif
 
           <div class="flex flex-col sm:flex-row mt-4 items-start gap-4 sm:gap-6 w-full">
             <a href="{{ localized_route('news.detail', $featured->slug) }}"
@@ -71,8 +79,7 @@
     </section>
 
     <section class="py-10 space-y-6">
-      <p class="text-3xl font-bold text-slate-700">News</p>
-
+      <p class="text-3xl font-bold text-slate-700">{{ t('newsPage_section_title') }}</p>
       <div class="w-full">
         <div
           class="hidden md:grid md:grid-cols-[1fr_150px_200px] gap-6 border-b border-slate-200 pb-4 text-xs font-semibold text-slate-500 uppercase tracking-wider">

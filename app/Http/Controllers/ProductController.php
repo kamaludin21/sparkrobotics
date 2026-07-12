@@ -38,12 +38,12 @@ class ProductController extends Controller
             ->when($request->filled('brands'), function ($query) use ($request) {
                 $query->whereIn('brand_id', $request->brands);
             })
-            // Eager load relasi untuk menghindari N+1 problem jika Anda menampilkan nama kategori di view
             ->with(['categories'])
+            ->orderBy('sort', 'asc')
             ->paginate(12)
             ->withQueryString();
 
-        
+
 
         return view('pages.products.index', compact('categories', 'brands', 'products'));
     }

@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string('name');
             $table->string('slug')->unique();
             $table->string('logo_path')->nullable();
+            $table->string('website')->nullable();
             $table->timestamps();
         });
     }

@@ -5,6 +5,7 @@ namespace Database\Seeders;
 use App\Models\Article;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
 
 class ArticleSeeder extends Seeder
 {
@@ -16,7 +17,7 @@ class ArticleSeeder extends Seeder
         $articles = [
             [
                 'article_category_id' => rand(1, 5),
-                'image' => 'articles/2026-06/drone-technology.webp',
+                'image' => null,
                 'en' => [
                     'title'   => 'How Drone Technology is Revolutionizing Topographic Surveys',
                     'slug'    => 'how-drone-technology-revolutionizing-topographic-surveys',
@@ -58,7 +59,7 @@ class ArticleSeeder extends Seeder
 
             [
                 'article_category_id' => rand(1, 5),
-                'image' => 'articles/2026-06/lidar-explained.webp',
+                'image' => null,
                 'en' => [
                     'title'   => 'Understanding LiDAR: A Complete Guide for Mining Industry',
                     'slug'    => 'understanding-lidar-complete-guide-mining-industry',
@@ -100,7 +101,7 @@ class ArticleSeeder extends Seeder
 
             [
                 'article_category_id' => rand(1, 5),
-                'image' => 'articles/2026-06/spark-new-project.webp',
+                'image' => null,
                 'en' => [
                     'title'   => 'SPARK Monitoring Partners with Leading Mining Company',
                     'slug'    => 'spark-monitoring-partners-leading-mining-company',
@@ -130,7 +131,7 @@ class ArticleSeeder extends Seeder
 
             [
                 'article_category_id' => rand(1, 5),
-                'image' => 'articles/2026-06/construction-monitoring.webp',
+                'image' => null,
                 'en' => [
                     'title'   => 'Construction Progress Monitoring: Why Aerial Data Matters',
                     'slug'    => 'construction-progress-monitoring-aerial-data-matters',
@@ -166,7 +167,7 @@ class ArticleSeeder extends Seeder
 
             [
                 'article_category_id' => rand(1, 5),
-                'image' => 'articles/2026-06/photogrammetry-guide.webp',
+                'image' => null,
                 'en' => [
                     'title'   => 'Photogrammetry vs LiDAR: Choosing the Right Technology',
                     'slug'    => 'photogrammetry-vs-lidar-choosing-right-technology',
@@ -205,12 +206,43 @@ class ArticleSeeder extends Seeder
 
         foreach ($articles as $data) {
             $tags = $data['tags'] ?? [];
-            unset($data['tags']);
 
-            $article = Article::create($data);
+            // Pisahkan data utama dan data terjemahan
+            $enTranslation = $data['en'];
+            $idTranslation = $data['id'];
 
+            unset($data['tags'], $data['en'], $data['id']);
+
+            // 1. Insert ke tabel utama (articles)
+            $articleId = DB::table('articles')->insertGetId([
+                'article_category_id' => $data['article_category_id'],
+                'image'               => $data['image'],
+                'created_at'          => now(),
+                'updated_at'          => now(),
+            ]);
+
+            // 2. Insert ke tabel terjemahan (article_translations)
+            DB::table('article_translations')->insert([
+                [
+                    'article_id' => $articleId,
+                    'locale'     => 'en',
+                    'title'      => $enTranslation['title'],
+                    'slug'       => $enTranslation['slug'],
+                    'content'    => $enTranslation['content'],
+                ],
+                [
+                    'article_id' => $articleId,
+                    'locale'     => 'id',
+                    'title'      => $idTranslation['title'],
+                    'slug'       => $idTranslation['slug'],
+                    'content'    => $idTranslation['content'],
+                ],
+            ]);
+
+            // 3. Handle relasi tags (jika ada)
             if (!empty($tags)) {
-                $article->tags()->attach($tags);
+                // Karena tabel pivot biasanya butuh Eloquent untuk menangani event/relasi dengan benar
+                Article::find($articleId)->tags()->attach($tags);
             }
         }
     }

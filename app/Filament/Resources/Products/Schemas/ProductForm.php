@@ -109,7 +109,7 @@ class ProductForm
                                 'image/png',
                                 'image/webp',
                             ])
-                            ->directory('products/hero/' . now()->format('Y-m'))
+                            ->directory('products/hero_images')
                             ->visible(fn(Get $get) => $get('hero_media_type') === 'image')
                             ->required(fn(Get $get) => $get('hero_media_type') === 'image')
                             ->columnSpan(2),
@@ -129,7 +129,7 @@ class ProductForm
                     ->openable()
                     ->disk('public')
                     ->downloadable()
-                    ->directory('products/documents/' . now()->format('Y-m'))
+                    ->directory('products/documents')
                     ->helperText('Maksimal ukuran: 20MB'),
 
                 FileUpload::make('thumbnail_image')
@@ -144,7 +144,7 @@ class ProductForm
                         'image/webp',
                     ])
                     ->optimize('webp')
-                    ->directory('products/thumbnail/' . now()->format('Y-m'))
+                    ->directory('products/thumbnail')
                     ->imageEditor()
                     ->openable()
                     ->downloadable()
@@ -164,8 +164,9 @@ class ProductForm
                         'image/webp',
                     ])
                     ->optimize('webp')
-                    ->directory('products/showcase_images/' . now()->format('Y-m'))
+                    ->directory('products/showcase_images')
                     ->imageEditor()
+                    ->reorderable()
                     ->openable()
                     ->downloadable()
                     ->helperText('Maks Size: 500KB per gambar')
@@ -184,7 +185,7 @@ class ProductForm
                         'image/webp',
                     ])
                     ->optimize('webp')
-                    ->directory('products/features_images/' . now()->format('Y-m'))
+                    ->directory('products/features_images')
                     ->imageEditor()
                     ->reorderable()
                     ->openable()

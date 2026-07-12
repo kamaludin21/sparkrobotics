@@ -2,6 +2,7 @@
 
 namespace App\Filament\Resources\Articles\Schemas;
 
+use App\Models\ArticleCategory;
 use Doriiaan\FilamentAstrotomic\Schemas\Components\TranslatableTabs;
 use Doriiaan\FilamentAstrotomic\TranslatableTab;
 use Filament\Forms\Components\FileUpload;
@@ -9,9 +10,11 @@ use Filament\Forms\Components\RichEditor;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\Textarea;
+use Filament\Forms\Components\ToggleButtons;
 use Filament\Schemas\Components\Grid;
+use Filament\Schemas\Components\Utilities\Get;
 use Filament\Schemas\Schema;
-use Filament\Schemas\Components\Utilities\{Get, Set};
+use Filament\Schemas\Components\Utilities\Set;
 use Illuminate\Support\Str;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Validation\Rules\Unique;
@@ -22,24 +25,39 @@ class ArticleForm
     {
         return $schema
             ->components([
-                FileUpload::make('image')
-                    ->label('Thumbnail Article')
-                    ->maxSize(500)
-                    ->image()
-                    ->disk('public')
-                    ->acceptedFileTypes([
-                        'image/jpg',
-                        'image/jpeg',
-                        'image/png',
-                        'image/webp',
-                    ])
-                    ->optimize('webp')
-                    ->directory('articles/images/' . now()->format('Y-m'))
-                    ->imageEditor()
-                    ->openable()
-                    ->downloadable()
-                    ->helperText('Maks Size: 500KB')
-                    ->required(),
+                // Tipe Artikel
+                Grid::make(1)
+                    ->schema([
+                        ToggleButtons::make('type')
+                            ->label('Tipe Artikel')
+                            ->options([
+                                'standard' => 'Standar',
+                                'video' => 'Video',
+                            ])
+                            ->default('standard')
+                            ->inline()
+                            ->grouped()
+                            ->required()
+                            ->live()
+                            ->columnSpanFull(),
+                        FileUpload::make('image')
+                            ->label('Thumbnail Article')
+                            ->maxSize(500)
+                            ->image()
+                            ->disk('public')
+                            ->acceptedFileTypes([
+                                'image/jpg',
+                                'image/jpeg',
+                                'image/png',
+                                'image/webp',
+                            ])
+                            ->optimize('webp')
+                            ->directory('articles/thumbnail')
+                            ->imageEditor()
+                            ->openable()
+                            ->downloadable()
+                            ->helperText('Maks Size: 500KB'),
+                    ]),
                 Grid::make(2)
                     ->schema([
                         Select::make('article_category_id')
@@ -112,13 +130,8 @@ class ArticleForm
                                 table: 'article_translations',
                                 column: 'slug',
                                 modifyRuleUsing: function (Unique $rule, ?Model $record) use ($tab) {
-                                    // Ekstrak locale dari hasil makeName.
-                                    // explode('.', 'id.slug')[0] akan menghasilkan 'id'
                                     $locale = explode('.', $tab->makeName('slug'))[0];
-
-                                    // 1. Batasi pengecekan unique hanya pada locale yang sedang aktif
                                     $rule->where('locale', $locale);
-                                    // 2. Jika sedang mode Edit (record ada), abaikan data translasi milik Kategori ini
                                     if ($record) {
                                         $rule->ignore($record->id, 'article_id');
                                     }
@@ -137,9 +150,17 @@ class ArticleForm
                                 'customBlocks',
                                 'mergeTags'
                             ])
-                            ->required()
                             ->columnSpanFull(),
-                    ])->columnSpanFull()
+                    ])->columnSpanFull(),
+                TextInput::make('video_url')
+                    ->label('URL Video')
+                    ->placeholder('https://youtu.be/...')
+                    ->url()
+                    ->visible(fn(Get $get): bool => $get('type') === 'video')
+                    ->required(fn(Get $get): bool => $get('type') === 'video')
+                    ->columnSpanFull()
+                    ->suffixIcon('heroicon-o-play-circle')
+                    ->helperText('Masukkan URL Youtube video'),
             ]);
     }
 }

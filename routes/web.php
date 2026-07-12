@@ -7,6 +7,9 @@ use App\Http\Controllers\SolutionController;
 use App\Http\Controllers\WelcomeController;
 use Illuminate\Support\Facades\Route;
 
+use Illuminate\Support\Facades\Mail;
+use App\Mail\SendEmail;
+
 // ==========================================
 // 1. MAIN ROUTES (ENGLISH / DEFAULT NO PREFIX)
 // ==========================================
@@ -59,8 +62,5 @@ Route::prefix('{locale}')
 // Route untuk memproses data submit form (method POST)
 Route::post('/submit-contact', [AboutUsController::class, 'submitForm'])
     ->name('contact.submit')
-    ->middleware('throttle:3,1'); // 3 requests per 1 minute
+    ->middleware('throttle:2,1'); // 2 requests per 1 minute
 
-// Route::get('/zyel', function () {
-//     echo phpinfo();
-// });

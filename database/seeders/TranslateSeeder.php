@@ -10,8 +10,8 @@ class TranslateSeeder extends Seeder
     public function run(): void
     {
         $translations = [
-            ['key' => 'home_title', 'lang_id' => 'Reseller Resmi DJI & Unitree', 'lang_en' => 'Authorized Reseller of DJI & Unitree'],
-            ['key' => 'home_cta_tagline', 'lang_id' => 'Keahlian Bertemu Keunggulan', 'lang_en' => 'Expertise Meets Excellence'],
+            // ['key' => 'home_title', 'lang_id' => 'Reseller Resmi DJI Enterprise & Unitree', 'lang_en' => 'Authorized Reseller of DJI Enterprise & Unitree'],
+            // ['key' => 'home_cta_tagline', 'lang_id' => 'Keahlian Bertemu Keunggulan', 'lang_en' => 'Expertise Meets Excellence'],
             ['key' => 'home_cta_contact', 'lang_id' => 'Hubungi Kami', 'lang_en' => 'Contact Us'],
             ['key' => 'home_cta_catalogs', 'lang_id' => 'Lihat Katalog', 'lang_en' => 'See Catalogs'],
             ['key' => 'brand_spark_robotics', 'lang_id' => 'SPARK Robotics', 'lang_en' => 'SPARK Robotics'],
@@ -28,6 +28,8 @@ class TranslateSeeder extends Seeder
             ['key' => 'productsIndex_subtitle', 'lang_id' => 'Beragam Pilihan Produk', 'lang_en' => 'A Diverse Range of Products'],
             ['key' => 'productsIndex_btn_more', 'lang_id' => 'Jelajahi Lebih Lanjut', 'lang_en' => 'Explore More'],
             ['key' => 'productsIndex_detail_button', 'lang_id' => 'Lihat Detail', 'lang_en' => 'See Detail'],
+            ['key' => 'productsIndex_features', 'lang_id' => 'Kaya Fitur', 'lang_en' => 'Rich of Features'],
+            ['key' => 'productsIndex_specification', 'lang_id' => 'Spesifikasi', 'lang_en' => 'Specification'],
             ['key' => 'chooseUs_title', 'lang_id' => 'Mengapa Memilih Kami', 'lang_en' => 'Why Choose Us'],
             ['key' => 'chooseUs_subtitle', 'lang_id' => 'Kenapa Spark Robotics adalah Pilihan Tepat untuk Anda', 'lang_en' => 'Why Spark Robotics is The Right Choice for You'],
             ['key' => 'chooseUs_distributor', 'lang_id' => 'Distributor Resmi', 'lang_en' => 'Official Distributor'],
@@ -70,6 +72,8 @@ class TranslateSeeder extends Seeder
             ['key' => 'newsPage_search_title', 'lang_id' => 'Cari', 'lang_en' => 'Search'],
             ['key' => 'newsPage_search_placeholder', 'lang_id' => 'Temukan produk...', 'lang_en' => 'Find something...'],
             ['key' => 'newsPage_search_submit', 'lang_id' => 'Cari', 'lang_en' => 'Search'],
+            ['key' => 'newsPage_main_title', 'lang_id' => 'Ruang Berita', 'lang_en' => 'Newsroom'],
+            ['key' => 'newsPage_section_title', 'lang_id' => 'Berita', 'lang_en' => 'News'],
             ['key' => 'studyCasePage_title', 'lang_id' => 'Studi Kasus', 'lang_en' => 'Case Studies'],
             ['key' => 'studyCasePage_more_btn', 'lang_id' => 'Baca selengkapnya', 'lang_en' => 'Read More'],
             ['key' => 'studyCasePage_cta_title', 'lang_id' => 'Siap mengubah operasi Anda?', 'lang_en' => 'Ready to transform your operations?'],
@@ -88,6 +92,16 @@ class TranslateSeeder extends Seeder
             ['key' => 'newsPage_tag', 'lang_id' => 'Tag', 'lang_en' => 'Tagged'],
             ['key' => 'newsPage_share', 'lang_id' => 'Bagikan', 'lang_en' => 'Share'],
             ['key' => 'studyCasePage_empty', 'lang_id' => 'Data masih kosong', 'lang_en' => 'No data available yet'],
+            ['key' => 'footer_address', 'lang_id' => 'Alamat Kantor', 'lang_en' => 'Office Address'],
+            ['key' => 'footer_1', 'lang_id' => 'Dukungan Profesional', 'lang_en' => 'Professional Support'],
+            ['key' => 'footer_2', 'lang_id' => 'Dukungan untuk teknologi terkini', 'lang_en' => 'Support for the latest technology'],
+            ['key' => 'footer_3', 'lang_id' => 'Solusi Terintegrasi', 'lang_en' => 'End to End Solutions'],
+            ['key' => 'footer_address_value', 'lang_id' => 'Rukan Arjuna Niaga, Jl. Arjuna Utara No.1B Lantai 4, RT.6/RW.2, Duri Kepa, Kebon Jeruk, Jakarta Barat, DKI Jakarta 11510', 'lang_en' => 'Arjuna Niaga Business Complex, Jl. Arjuna Utara No. 1B, 4th Floor, RT.6/RW.2, Duri Kepa, Kebon Jeruk, West Jakarta, Special Capital Region of Jakarta 11510, Indonesia'],
+            ['key' => 'footer_btn_map', 'lang_id' => 'Lihat di peta', 'lang_en' => 'Open in maps'],
+            ['key' => 'footer_nav_home', 'lang_id' => 'Beranda', 'lang_en' => 'Home'],
+            ['key' => 'footer_nav_products', 'lang_id' => 'Produk', 'lang_en' => 'Products'],
+            ['key' => 'footer_nav_solutions', 'lang_id' => 'Solusi', 'lang_en' => 'Solutions'],
+            ['key' => 'footer_nav_news', 'lang_id' => 'Berita', 'lang_en' => 'News'],
         ];
 
         foreach ($translations as $translation) {

@@ -10,6 +10,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 class Category extends Model implements TranslatableContract
 {
     use Translatable;
+    protected $fillable = ['image'];
     public $translatedAttributes = ['name', 'slug'];
 
     public function products(): BelongsToMany

@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('solutions', function (Blueprint $table) {
             $table->id();
-            $table->json('images');
+            $table->json('images')->nullable();
             $table->timestamps();
         });
 

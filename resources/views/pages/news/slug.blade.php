@@ -62,9 +62,17 @@
         {{-- Main Content --}}
         <div class="lg:col-span-9 order-1 lg:order-2">
           <div class="mb-6">
-            <img class="w-full h-auto max-h-96 aspect-[16/9] object-contain ring ring-slate-200"
-              src="{{ $article->image ? Storage::url($article->image) : 'https://via.placeholder.com/700x400' }}"
-              alt="{{ $article->title }}">
+            @if (isset($article->type) && $article->type === 'video' && $article->video_url)
+              <iframe class="w-full aspect-[16/9] ring ring-slate-200" src="{{ $article->embed_video_url }}"
+                title="{{ $article->title }}" frameborder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                referrerpolicy="strict-origin-when-cross-origin" allowfullscreen>
+              </iframe>
+            @else
+              <img class="w-full h-auto aspect-[16/9] object-contain ring ring-slate-200"
+                src="{{ $article->image ? Storage::url($article->image) : 'https://via.placeholder.com/700x400' }}"
+                alt="{{ $article->title }}">
+            @endif
           </div>
           <div class="content-html overflow-visible">
             {!! $article->content !!}

@@ -12,7 +12,7 @@ class Article extends Model implements TranslatableContract
 {
     use Translatable;
 
-    public $fillable = ['article_category_id', 'image'];
+    public $fillable = ['article_category_id', 'image', 'type', 'video_url'];
 
     public $translatedAttributes = ['title', 'slug', 'content'];
 
@@ -24,5 +24,24 @@ class Article extends Model implements TranslatableContract
     public function tags(): BelongsToMany
     {
         return $this->belongsToMany(Tag::class);
+    }
+
+    protected $appends = ['embed_video_url'];
+
+    public function getEmbedVideoUrlAttribute()
+    {
+        if (!$this->video_url) {
+            return null;
+        }
+
+        // support youtube.com & youtu.be
+        preg_match('/(?:youtube\.com\/watch\?v=|youtu\.be\/)([^\s&]+)/', $this->video_url, $matches);
+        $videoId = $matches[1] ?? null;
+
+        if (!$videoId) {
+            return null;
+        }
+
+        return "https://www.youtube.com/embed/{$videoId}";
     }
 }

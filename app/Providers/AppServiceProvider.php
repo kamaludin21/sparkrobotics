@@ -2,7 +2,10 @@
 
 namespace App\Providers;
 
+use App\Settings\Contact;
 use Illuminate\Support\ServiceProvider;
+use Illuminate\Support\Facades\View;
+
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -19,6 +22,8 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        //
+        $contact = app(Contact::class);
+        View::share('locale', app()->getLocale());
+        View::share('contact', $contact);
     }
 }

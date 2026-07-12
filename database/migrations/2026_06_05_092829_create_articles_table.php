@@ -17,6 +17,8 @@ return new class extends Migration
             $table->foreignIdFor(ArticleCategory::class)
                 ->constrained()
                 ->onDelete('cascade');
+            $table->enum('type', ['standard', 'video'])->default('standard');
+            $table->string('video_url')->nullable();
             $table->string('image')->nullable();
             $table->timestamps();
         });
@@ -27,7 +29,7 @@ return new class extends Migration
             $table->string('locale')->index();
             $table->string('title');
             $table->string('slug');
-            $table->text('content');
+            $table->text('content')->nullable();
             $table->unique(['article_id', 'locale']);
             $table->foreign('article_id')->references('id')->on('articles')->onDelete('cascade');
         });

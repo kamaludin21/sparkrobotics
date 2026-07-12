@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Jobs\SendInboxNotification;
 use App\Models\CaseStudy;
-use App\Models\Inbox;
+use App\Models\Inbox as InboxModel;
 use App\Settings\Company;
 use App\Settings\Contact;
+use App\Settings\Inbox;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 
@@ -30,7 +32,7 @@ class AboutUsController extends Controller
 
         // Tentukan suffix berdasarkan locale (misal: 'id' atau 'en')
         $locale = app()->getLocale(); // Hasilnya 'id' atau 'en'
-        $captionField = 'caption_' . $locale; // Hasilnya 'caption_id' atau 'caption_en'
+        $captionField = 'caption_' . $locale;
 
         $images = [];
         if (!empty($caseStudy->images) && is_array($caseStudy->images)) {
@@ -52,9 +54,11 @@ class AboutUsController extends Controller
     public function contact()
     {
         $contact = app(Contact::class);
-        return view('pages.about.contact', compact('contact'));
+        $inbox = app(Inbox::class);
+        return view('pages.about.contact', compact('contact','inbox'));
     }
 
+    // AboutUsController
     public function submitForm(Request $request)
     {
         $validated = $request->validate([
@@ -70,13 +74,22 @@ class AboutUsController extends Controller
 
         try {
             $cleanMessage = strip_tags($validated['message']);
-            Inbox::create([
+            InboxModel::create([
                 'full_name' => $validated['full_name'],
                 'company'   => $validated['company'],
                 'email'     => $validated['email'],
                 'phone'     => $validated['phone'],
                 'message'   => $cleanMessage,
             ]);
+            $emailData = [
+                'subject'   => 'Inbox for Spark Robotics',
+                'full_name' => $validated['full_name'],
+                'company'   => $validated['company'] ?? '-',
+                'email'     => $validated['email'],
+                'phone'     => $validated['phone'] ?? '-',
+                'message'   => $cleanMessage,
+            ];
+            SendInboxNotification::dispatch($emailData);
             return redirect()->back()->with('success', 'Thank you! Your message has been sent successfully.');
         } catch (\Exception $e) {
             Log::error('Contact form submission error: ' . $e->getMessage());
@@ -85,5 +98,4 @@ class AboutUsController extends Controller
                 ->withErrors(['error' => 'Sorry, something went wrong. Please try again later.']);
         }
     }
-
 }
