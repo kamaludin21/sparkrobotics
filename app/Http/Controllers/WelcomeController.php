@@ -15,8 +15,6 @@ class WelcomeController extends Controller
     public function index()
     {
         $locale = app()->getLocale();
-
-        // 1. Optimasi Hero
         $hero = app(Hero::class);
         $hero->slides = collect($hero->slides)
             ->where('is_visible', true)
@@ -24,6 +22,7 @@ class WelcomeController extends Controller
             ->toArray();
 
         $settings = app(Company::class);
+        $clients = collect($settings->clients)->take(10);
         $categories = Category::join('category_translations', 'categories.id', '=', 'category_translations.category_id')
             ->select(
                 'categories.id',
@@ -47,10 +46,8 @@ class WelcomeController extends Controller
             ->take(3)
             ->get();
 
-        // 4. Cache Brands (Tidak ada translasi)
         $brands = Brand::select('id', 'name', 'website', 'logo_path')->get();
 
-        // 5. Cache Articles (Translasi title berdasarkan locale)
         $articles = Article::join('article_translations', 'articles.id', '=', 'article_translations.article_id')
             ->select(
                 'articles.id',
@@ -58,16 +55,17 @@ class WelcomeController extends Controller
                 'articles.type',
                 'articles.video_url',
                 'articles.updated_at',
-                'article_translations.title' // Mengambil title yang sesuai dengan bahasa
+                'article_translations.title'
             )
             ->where('article_translations.locale', $locale)
             ->latest('articles.updated_at')
             ->take(3)
             ->get();
-        
+
         return view('pages.index', compact(
             'hero',
             'settings',
+            'clients',
             'categories',
             'products',
             'brands',
