@@ -15,6 +15,12 @@
   ];
 @endphp
 @extends('layout.app', ['activePage' => 'products'])
+
+@section('title', $product->title . ' | SPARK Robotics')
+@section('description', Str::limit($product->content, 150))
+@section('image', Storage::url($product->thumbnail_image))
+@section('og_type', 'product')
+
 @section('content')
   <main>
     <x-sections.hero :title="$product->title_section" :subtitle="$product->subtitle_section" inquiryText="Place an Inquiry" :background="$bgImage" />

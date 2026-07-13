@@ -1,5 +1,7 @@
 @extends('layout.app', ['activePage' => 'products'])
 
+@section('title', __('seo.nav.products') . ' | SPARK Robotics')
+
 @section('content')
   <main class="main-wrapper px-4 py-24 md:py-32">
     <form action="{{ url()->current() }}" method="GET" id="filter-form">
