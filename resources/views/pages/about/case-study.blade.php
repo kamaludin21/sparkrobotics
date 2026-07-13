@@ -43,11 +43,12 @@
       {!! $caseStudy->content !!}
     </article>
 
-    <div class="flex items-center justify-between border-t border-gray-200 mt-12 pt-12">
-      <h3 class="text-2xl font-bold text-slate-800">{{ t('studyCasePage_cta_title') }}</h3>
+    <div
+      class="mt-12 flex flex-col md:flex-row items-start md:items-center justify-between border-t border-gray-200 pt-12 gap-6">
+      <h3 class="text-4xl font-bold text-slate-800">{{ t('studyCasePage_cta_title') }}</h3>
       <a href="{{ localized_route('about.contact') }}"
-        class="group relative inline-flex h-[calc(48px+8px)] items-center justify-center rounded-full bg-sky-600 py-1 pl-6 pr-14 font-medium text-neutral-50">
-        <span class="z-10 pr-2">{{ t('studyCasePage_cta_btn') }}</span>
+        class="group relative shrink-0 inline-flex h-[calc(48px+8px)] items-center justify-center rounded-full bg-sky-600 py-1 pr-14 pl-6 font-medium text-neutral-50">
+        <span class="z-10 pr-2 whitespace-nowrap">{{ t('studyCasePage_cta_btn') }}</span>
         <div
           class="absolute right-1 inline-flex h-12 w-12 items-center justify-end rounded-full bg-sky-700 transition-[width] group-hover:w-[calc(100%-8px)]">
           <div class="mr-3.5 flex items-center justify-center">
@@ -60,5 +61,6 @@
         </div>
       </a>
     </div>
+
   </section>
 @endsection

@@ -9,7 +9,7 @@
     ],
 ])
 
-<section class="main-wrapper pt-14 md:pt-24 px-4">
+<section class="main-wrapper pt-20 md:pt-32 px-4">
   <div class="relative flex h-[35rem] items-end overflow-hidden rounded-3xl">
     <div class="absolute inset-0 w-full h-full z-0 overflow-hidden bg-slate-900">
       @if (isset($background) && $background['type'] === 'video')

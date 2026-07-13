@@ -4,7 +4,6 @@
   <main class="">
     {{-- Hero Section CTA --}}
     <section class="h-screen relative overflow-hidden">
-
       @if (empty($hero->slides) || count($hero->slides) === 0)
         @php
           $locale = app()->getLocale();
@@ -16,7 +15,7 @@
           <div class="max-w-2xl mx-auto px-3 md:px-6 pt-32 rounded-lg text-center">
             <div class="inline-flex items-center gap-2 px-2 py-1 mb-6 rounded-md bg-slate-900/30">
               <span class="w-2 h-2 rounded-full bg-blue-500 animate-pulse"></span>
-              <span class="text-xs font-jakarta text-slate-200 uppercase tracking-wider font-semibold">
+              <span class="text-xs font-jakarta text-slate-200 uppercase  text-balance tracking-wider font-semibold">
                 {{ $designation }}
               </span>
             </div>
@@ -107,24 +106,15 @@
     {{-- Hero Section CTA --}}
 
     {{-- Customer Slide --}}
-    @if (count($settings->clients) > 0)
+    @if ($clients->isNotEmpty())
       <section class="pt-10">
         <div class="w-full relative flex overflow-hidden " x-data="{ hover: false }" @mouseenter="hover = true"
           @mouseleave="hover = false">
           <div class="flex whitespace-nowrap animate-marquee" :style="hover ? 'animation-play-state: paused;' : ''">
-            <div class="flex min-w-full shrink-0 items-center justify-around gap-2 px-2">
-              @foreach ($settings->clients as $client)
-                <div class="w-32 md:w-48 flex justify-center items-center">
-                  @if (!empty($client['logo']))
-                    <img src="{{ Storage::url($client['logo']) }}" alt="{{ $client['company_name'] ?? '' }}"
-                      class="h-12 md:h-14 object-contain transition-all duration-300">
-                  @endif
-                </div>
-              @endforeach
 
-            </div>
-            <div class="flex min-w-full shrink-0 items-center justify-around gap-2 px-2" aria-hidden="true">
-              @foreach ($settings->clients as $client)
+            {{-- Set Pertama --}}
+            <div class="flex min-w-full shrink-0 items-center justify-around gap-2 px-2">
+              @foreach ($clients as $client)
                 <div class="w-32 md:w-48 flex justify-center items-center">
                   @if (!empty($client['logo']))
                     <img src="{{ Storage::url($client['logo']) }}" alt="{{ $client['company_name'] ?? '' }}"
@@ -133,6 +123,19 @@
                 </div>
               @endforeach
             </div>
+
+            {{-- Set Kedua (Duplikat untuk efek marquee yang mulus) --}}
+            <div class="flex min-w-full shrink-0 items-center justify-around gap-2 px-2" aria-hidden="true">
+              @foreach ($clients as $client)
+                <div class="w-32 md:w-48 flex justify-center items-center">
+                  @if (!empty($client['logo']))
+                    <img src="{{ Storage::url($client['logo']) }}" alt="{{ $client['company_name'] ?? '' }}"
+                      class="h-12 md:h-14 object-contain transition-all duration-300">
+                  @endif
+                </div>
+              @endforeach
+            </div>
+
           </div>
         </div>
       </section>
