@@ -24,55 +24,47 @@ class WelcomeController extends Controller
             ->toArray();
 
         $settings = app(Company::class);
-        $categories = Cache::remember("home_categories_{$locale}", 3600, function () use ($locale) {
-            return Category::join('category_translations', 'categories.id', '=', 'category_translations.category_id')
-                ->select(
-                    'categories.id',
-                    'categories.image',
-                    'category_translations.name'
-                )
-                ->where('category_translations.locale', $locale)
-                ->whereNotNull('categories.image')
-                ->take(3)
-                ->get();
-        });
-        $products = Cache::remember("home_products_{$locale}", 3600, function () use ($locale) {
-            return Product::join('product_translations', 'products.id', '=', 'product_translations.product_id')
-                ->select(
-                    'products.id',
-                    'products.thumbnail_image',
-                    'products.title',
-                    'products.slug',
-                    'product_translations.title_section'
-                )
-                ->where('product_translations.locale', $locale)
-                ->orderBy('products.sort', 'asc')
-                ->take(3)
-                ->get();
-        });
+        $categories = Category::join('category_translations', 'categories.id', '=', 'category_translations.category_id')
+            ->select(
+                'categories.id',
+                'categories.image',
+                'category_translations.name'
+            )
+            ->where('category_translations.locale', $locale)
+            ->whereNotNull('categories.image')
+            ->take(3)
+            ->get();
+        $products = Product::join('product_translations', 'products.id', '=', 'product_translations.product_id')
+            ->select(
+                'products.id',
+                'products.thumbnail_image',
+                'products.title',
+                'products.slug',
+                'product_translations.title_section'
+            )
+            ->where('product_translations.locale', $locale)
+            ->orderBy('products.sort', 'asc')
+            ->take(3)
+            ->get();
 
         // 4. Cache Brands (Tidak ada translasi)
-        $brands = Cache::remember('home_brands', 3600, function () {
-            return Brand::select('id', 'name', 'website', 'logo_path')->get();
-        });
+        $brands = Brand::select('id', 'name', 'website', 'logo_path')->get();
 
         // 5. Cache Articles (Translasi title berdasarkan locale)
-        $articles = Cache::remember("home_articles_{$locale}", 3600, function () use ($locale) {
-            return Article::join('article_translations', 'articles.id', '=', 'article_translations.article_id')
-                ->select(
-                    'articles.id',
-                    'articles.image',
-                    'articles.type',
-                    'articles.video_url',
-                    'articles.updated_at',
-                    'article_translations.title' // Mengambil title yang sesuai dengan bahasa
-                )
-                ->where('article_translations.locale', $locale)
-                ->latest('articles.updated_at')
-                ->take(3)
-                ->get();
-        });
-
+        $articles = Article::join('article_translations', 'articles.id', '=', 'article_translations.article_id')
+            ->select(
+                'articles.id',
+                'articles.image',
+                'articles.type',
+                'articles.video_url',
+                'articles.updated_at',
+                'article_translations.title' // Mengambil title yang sesuai dengan bahasa
+            )
+            ->where('article_translations.locale', $locale)
+            ->latest('articles.updated_at')
+            ->take(3)
+            ->get();
+        
         return view('pages.index', compact(
             'hero',
             'settings',
