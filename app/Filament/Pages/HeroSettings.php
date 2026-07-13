@@ -107,7 +107,7 @@ class HeroSettings extends SettingsPage
                                     ])
                                     ->optimize('webp')
                                     ->helperText('Max Size: 500KB')
-                                    ->directory('hero/slides/' . now()->format('Y-m'))
+                                    ->directory('hero/slides')
                                     ->imagePreviewHeight('150')
                                     ->downloadable()
                                     ->maxSize(500)
