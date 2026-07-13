@@ -21,8 +21,6 @@ class TranslationResource extends Resource
 
     protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedRectangleStack;
 
-    protected static ?string $recordTitleAttribute = 'translation';
-
     public static function form(Schema $schema): Schema
     {
         return TranslationForm::configure($schema);
