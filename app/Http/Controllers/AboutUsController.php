@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Jobs\SendInboxNotification;
 use App\Models\CaseStudy;
+use App\Models\Certification;
 use App\Models\Inbox as InboxModel;
 use App\Settings\Company;
 use App\Settings\Contact;
@@ -16,7 +17,8 @@ class AboutUsController extends Controller
     public function companyProfile()
     {
         $settings = app(Company::class);
-        return view('pages.about.company-profile', compact('settings'));
+        $certification = Certification::get();
+        return view('pages.about.company-profile', compact('settings', 'certification'));
     }
 
     public function caseStudies()

@@ -229,5 +229,27 @@
         @endif
       </div>
     </section>
+
+    {{-- ============================================= --}}
+    {{-- Akreditasi & Sertifikasi --}}
+    {{-- ============================================= --}}
+    <section class="mx-auto max-w-7xl px-4 py-12 font-sans sm:px-6 lg:px-8">
+      <h2 class="text-center text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
+        {{ t('contactPage_certification') }}</h2>
+      <div class="grid grid-cols-1 gap-x-12 gap-y-10 md:grid-cols-2 mt-12">
+        @foreach ($certification as $item)
+          <div class="flex items-start gap-4">
+            <div class="flex h-16 w-16 flex-shrink-0 items-center justify-center">
+              <img src="{{ Storage::url($item->image) }}" alt="">
+            </div>
+            <div>
+              <h3 class="mb-2 text-lg leading-tight font-medium text-gray-900">{{ $item->title }}</h3>
+              <p class="text-base leading-relaxed text-gray-600">{{ $item->subtitle }}
+              </p>
+            </div>
+          </div>
+        @endforeach
+      </div>
+    </section>
   </main>
 @endsection
