@@ -3,7 +3,7 @@
 @section('content')
   <main class="">
     {{-- Hero Section CTA --}}
-    <section class="h-screen relative overflow-hidden">
+    <section class="relative overflow-hidden">
       @if (empty($hero->slides) || count($hero->slides) === 0)
         @php
           $locale = app()->getLocale();
@@ -11,7 +11,7 @@
           $designation = $locale === 'en' ? $hero->designation_en ?? $hero->designation_id : $hero->designation_id;
         @endphp
         <div
-          class="bg-radial-[at_50%_75%] from-sky-400 via-sky-600 to-sky-900 to-90% h-full flex items-center flex-col justify-between">
+          class="bg-radial-[at_50%_75%] from-sky-400 via-sky-600 to-sky-900 to-90% h-[60vh] md:h-screen min-h-[400px] flex items-center flex-col justify-between">
           <div class="max-w-2xl mx-auto px-3 md:px-6 pt-32 rounded-lg text-center">
             <div class="inline-flex items-center gap-2 px-2 py-1 mb-6 rounded-md bg-slate-900/30">
               <span class="w-2 h-2 rounded-full bg-blue-500 animate-pulse"></span>
@@ -108,7 +108,7 @@
 
     {{-- Customer Slide --}}
     @if ($clients->isNotEmpty())
-      <section class="pt-10">
+      <section class="pt-6 md:pt-10">
         <div class="w-full relative flex overflow-hidden " x-data="{ hover: false }" @mouseenter="hover = true"
           @mouseleave="hover = false">
           <div class="flex whitespace-nowrap animate-marquee" :style="hover ? 'animation-play-state: paused;' : ''">
