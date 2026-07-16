@@ -68,7 +68,7 @@ class GenerateSitemap extends Command
             ->setPriority(1.0));
 
         // ---------------------------------------------------------
-        // 2. Tambahkan Halaman Dinamis (Katalog Produk)
+        // Tambahkan Halaman Dinamis (Katalog Produk)
         // ---------------------------------------------------------
 
         // Kita ambil semua produk. Jika Anda punya status 'is_active', 

@@ -8,26 +8,31 @@
 
   {{-- SEO & Open Graph Dinamis dengan Fallback Default --}}
   <title>@yield('title', t('brand_spark_robotics'))</title>
-  <meta name="description" content="@yield('description', __('seo.meta.description'))">
+  <meta name="description" content="@yield('description', t('meta_description'))">
 
   {{-- Open Graph / Facebook / WhatsApp --}}
-  <meta property="og:title" content="@yield('title', t('brand_spark_robotics'))">
-  <meta property="og:description" content="@yield('description', __('seo.meta.description'))">
-  <meta property="og:type" content="@yield('og_type', 'website')">
+  <meta property="og:title" content="@yield('title', t('meta_og_title'))">
+  <meta property="og:description" content="@yield('description', t('meta_og_description'))">
+  <meta property="og:site_name" content="{{ t('brand_spark_robotics') }}">
+  <meta property="og:type" content="website">
   <meta property="og:url" content="{{ url()->current() }}">
-  {{-- Jika page tidak set 'image', maka pakai og-spark.png --}}
-  <meta property="og:image" content="@yield('image', asset('images/og-spark.png'))">
+  <meta property="og:image" content="@yield('image', asset('images/og.webp'))" />
+  <meta property="og:image:type" content="image/webp">
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:image:alt" content="{{ t('brand_spark_robotics') . ' - ' . t('meta_og_title') }}" />
 
   {{-- Twitter --}}
   <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:domain" content="sparkrobotics.id">
+  <meta name="twitter:url" content="{{ url()->current() }}">
   <meta name="twitter:title" content="@yield('title', t('brand_spark_robotics'))">
   <meta name="twitter:description" content="@yield('description', __('seo.meta.description'))">
-  <meta name="twitter:image" content="@yield('image', asset('images/og-spark.png'))">
+  <meta name="twitter:image" content="@yield('image', asset('images/og.webp'))">
 
   {{-- Meta Statis --}}
-  <meta name="author" content="SPARK Robotics">
-  <meta name="keywords"
-    content="SPARK Robotics Indonesia, Distributor Resmi DJI Enterprise Indonesia, Authorized Unitree Robotics Indonesia, PT Spark Space Indonesia">
+  <meta name="author" content="{{ t('brand_spark_robotics') }}">
+  <meta name="keywords" content="{{ t('meta_keywords') }}">
 
   {{-- Canonical & Hreflang --}}
   <link rel="alternate" hreflang="en" href="{{ url('/en' . request()->getRequestUri()) }}" />
