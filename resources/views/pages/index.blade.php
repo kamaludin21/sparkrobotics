@@ -42,45 +42,46 @@
           </div>
         </div>
       @else
-        <div class="relative w-full h-full bg-slate-200 overflow-hidden" x-data="{
-            activeSlide: 0,
-            totalSlides: {{ count($hero->slides) }},
-            next() {
-                this.activeSlide = this.activeSlide === this.totalSlides - 1 ? 0 : this.activeSlide + 1;
-            },
-            prev() {
-                this.activeSlide = this.activeSlide === 0 ? this.totalSlides - 1 : this.activeSlide - 1;
-            }
-        }" x-init="setInterval(() => next(), 5000)">
+        <div class="relative w-full h-[60vh] md:h-screen min-h-[400px] bg-slate-200 overflow-hidden"
+          x-data="{
+              activeSlide: 0,
+              totalSlides: {{ count($hero->slides) }},
+              next() {
+                  this.activeSlide = this.activeSlide === this.totalSlides - 1 ? 0 : this.activeSlide + 1;
+              },
+              prev() {
+                  this.activeSlide = this.activeSlide === 0 ? this.totalSlides - 1 : this.activeSlide - 1;
+              }
+          }" x-init="setInterval(() => next(), 5000)">
           @foreach ($hero->slides as $index => $slide)
             <div class="absolute inset-0 w-full h-full" x-show="activeSlide === {{ $index }}"
               x-transition:enter="transition ease-out duration-700" x-transition:enter-start="opacity-0 scale-105"
               x-transition:enter-end="opacity-100 scale-100" x-transition:leave="transition ease-in duration-500 absolute"
               x-transition:leave-start="opacity-100 scale-100" x-transition:leave-end="opacity-0 scale-105"
               style="display: none;">
+
               <img src="{{ asset('storage/' . $slide['image']) }}" alt="{{ $slide['title'] }}"
-                class="h-full w-full object-cover" />
+                class="h-full w-full object-cover object-center" />
               <div class="absolute inset-0 bg-black/30"></div>
 
-              <div class="w-full absolute inset-0 flex flex-col justify-end p-6 md:p-12 text-white">
+              <div class="w-full absolute inset-0 flex flex-col justify-end p-6 pb-20 md:p-12 md:pr-48 text-white">
                 <div class="flex justify-between items-end">
-                  <div class="drop-shadow-lg shadow-black">
-                    <h1 class="text-4xl md:text-6xl font-bold mb-4">{{ $slide['title'] }}</h1>
-                    <p class="text-lg md:text-2xl">{{ $slide['subtitle'] }}</p>
+                  <div class="drop-shadow-lg shadow-black w-full">
+                    <h1 class="text-3xl md:text-6xl font-bold mb-2 md:mb-4 leading-tight">{{ $slide['title'] }}</h1>
+                    <p class="text-base md:text-2xl line-clamp-2 md:line-clamp-none">{{ $slide['subtitle'] }}</p>
                   </div>
                 </div>
               </div>
             </div>
           @endforeach
-
-          {{-- Navigasi Slider --}}
           @if (count($hero->slides) > 1)
-            <div class="absolute bottom-6 md:bottom-12 right-6 md:right-12 z-10 flex gap-2 md:gap-4">
+            <div
+              class="absolute bottom-6 left-6 right-6 md:left-auto md:right-12 md:bottom-12 z-10 flex justify-between md:justify-end gap-2 md:gap-4">
               <button @click="prev()"
                 class="bg-sky-600 hover:bg-sky-700 text-white font-semibold py-2 px-3 rounded-lg transition-colors duration-300">
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
                   stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                  class="h-8 w-auto">
+                  class="h-6 w-auto md:h-8">
                   <path stroke="none" d="M0 0h24v24H0z" fill="none" />
                   <path d="M5 12l14 0" />
                   <path d="M5 12l6 6" />
@@ -91,7 +92,7 @@
                 class="bg-sky-600 hover:bg-sky-700 text-white font-semibold py-2 px-3 rounded-lg transition-colors duration-300">
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
                   stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                  class="h-8 w-auto">
+                  class="h-6 w-auto md:h-8">
                   <path stroke="none" d="M0 0h24v24H0z" fill="none" />
                   <path d="M5 12l14 0" />
                   <path d="M13 18l6 -6" />
