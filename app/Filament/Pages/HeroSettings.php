@@ -62,21 +62,21 @@ class HeroSettings extends SettingsPage
                             ])
                             ->columnSpanFull(),
                         FileUpload::make('image')
-                            ->label('Gambar (PNG,JPG,WEBP)')
+                            ->label('Gambar (PNG, JPG, WEBP)')
                             ->image()
-                            ->disk('public')
                             ->acceptedFileTypes([
-                                'image/jpg',
                                 'image/jpeg',
                                 'image/png',
                                 'image/webp',
                             ])
-                            ->optimize('webp')
-                            ->helperText('Max Size: 500KB')
-                            ->directory('hero')
-                            ->imagePreviewHeight('150')
-                            ->downloadable()
                             ->maxSize(500)
+                            ->maxImageWidth(1000)
+                            ->optimize('webp')
+                            ->disk('public')
+                            ->directory('hero')
+                            ->downloadable()
+                            ->imagePreviewHeight('150')
+                            ->helperText('Max Size: 500 KB')
                             ->nullable(),
                     ]),
                 Repeater::make('slides')
@@ -96,21 +96,21 @@ class HeroSettings extends SettingsPage
                                     ->maxLength(150)
                                     ->columnSpan(1),
                                 FileUpload::make('image')
-                                    ->label('Gambar (PNG,JPG,WEBP)')
+                                    ->label('Gambar (PNG, JPG, WEBP)')
                                     ->image()
-                                    ->disk('public')
                                     ->acceptedFileTypes([
-                                        'image/jpg',
                                         'image/jpeg',
                                         'image/png',
                                         'image/webp',
                                     ])
-                                    ->optimize('webp')
-                                    ->helperText('Max Size: 500KB')
-                                    ->directory('hero/slides')
-                                    ->imagePreviewHeight('150')
-                                    ->downloadable()
                                     ->maxSize(500)
+                                    ->maxImageWidth(1000)
+                                    ->optimize('webp')
+                                    ->disk('public')
+                                    ->directory('hero/slides')
+                                    ->downloadable()
+                                    ->imagePreviewHeight(150)
+                                    ->helperText('Max Size: 500 KB')
                                     ->nullable(),
                                 Toggle::make('is_visible')
                                     ->label('Tampilkan Slide')
