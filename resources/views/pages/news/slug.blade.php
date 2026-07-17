@@ -30,7 +30,23 @@
           </span>
         </div>
 
-        <div class="flex items-center gap-2 text-slate-600">
+        {{-- Share Button with Alpine.js --}}
+        <div x-data="{
+            copied: false,
+            copyUrl() {
+                if (!navigator.clipboard) {
+                    alert('Your browser does not support copying to clipboard.');
+                    return;
+                }
+                navigator.clipboard.writeText(window.location.href).then(() => {
+                    this.copied = true;
+                    setTimeout(() => this.copied = false, 2000);
+                }).catch(err => {
+                    console.error('Failed to copy URL: ', err);
+                });
+            }
+        }" @click="copyUrl()"
+          class="relative flex items-center gap-2 text-slate-600 cursor-pointer hover:text-blue-600 transition-colors select-none">
           <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
             stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
             class="icon icon-tabler icons-tabler-outline icon-tabler-link">
@@ -39,8 +55,24 @@
             <path d="M11 6l.463 -.536a5 5 0 0 1 7.071 7.072l-.534 .464" />
             <path d="M13 18l-.397 .534a5.068 5.068 0 0 1 -7.127 0a4.972 4.972 0 0 1 0 -7.071l.524 -.463" />
           </svg>
-          <span class="text-sm font-semibold tracking-widest">{{ t('newsPage_share') }}</span>
+          <span class="text-sm font-semibold tracking-widest"
+            x-text="copied ? 'Copied!' : '{{ t('newsPage_share') }}'"></span>
+
+          {{-- Floating Notification (Toast) --}}
+          <div x-show="copied" x-transition:enter="transition ease-out duration-300"
+            x-transition:enter-start="opacity-0 translate-y-2" x-transition:enter-end="opacity-100 translate-y-0"
+            x-transition:leave="transition ease-in duration-200" x-transition:leave-start="opacity-100"
+            x-transition:leave-end="opacity-0"
+            class="fixed bottom-6 right-6 bg-green-600 text-white px-4 py-2 rounded-md shadow-lg z-50 flex items-center gap-2 text-sm font-medium"
+            style="display: none;">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24"
+              stroke="currentColor" stroke-width="3">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+            </svg>
+            <span>URL copied to clipboard!</span>
+          </div>
         </div>
+
       </div>
 
       {{-- Grid Content - Fix: tambahkan items-start --}}
