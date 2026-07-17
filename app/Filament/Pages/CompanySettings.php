@@ -87,11 +87,12 @@ class CompanySettings extends SettingsPage
                             ->label('Foto Perusahaan')
                             ->image()
                             ->multiple()
+                            ->maxImageWidth(1000)
                             ->optimize('webp')
-                            ->disk('public')
-                            ->imageEditor()
                             ->maxSize(500)
+                            ->disk('public')
                             ->directory('settings/about/company')
+                            ->downloadable()
                             ->columnSpanFull(),
                         Tabs::make('Bahasa')
                             ->tabs([
@@ -275,6 +276,7 @@ class CompanySettings extends SettingsPage
                                 'image/webp',
                             ])
                             ->optimize('webp')
+                            ->maxImageWidth(500)
                             ->helperText('Max Size: 500KB')
                             ->directory('settings/company/client_image')
                             ->imagePreviewHeight('150')
