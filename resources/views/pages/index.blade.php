@@ -58,7 +58,7 @@
               x-transition:enter="transition ease-out duration-700" x-transition:enter-start="opacity-0 scale-105"
               x-transition:enter-end="opacity-100 scale-100" x-transition:leave="transition ease-in duration-500 absolute"
               x-transition:leave-start="opacity-100 scale-100" x-transition:leave-end="opacity-0 scale-105"
-              style="display: none;">
+              style="{{ $index === 0 ? '' : 'display: none;' }}">
 
               <img src="{{ asset('storage/' . $slide['image']) }}" alt="{{ $slide['title'] }}"
                 @if ($index === 0) fetchpriority="high"
@@ -377,7 +377,7 @@
           <div x-ref="slider"
             class="flex snap-x snap-mandatory [scrollbar-width:'none'] gap-4 overflow-x-auto [-ms-overflow-style:'none'] lg:grid lg:grid-cols-4 lg:gap-8 lg:overflow-visible [&::-webkit-scrollbar]:hidden">
             @foreach (collect($settings->about_image)->take(4) as $item)
-              <img src="{{ Storage::url($item) }}"
+              <img src="{{ Storage::url($item) }}" loading="lazy"
                 class="h-72 w-[85%] shrink-0 snap-center rounded-2xl object-cover shadow-lg duration-200 lg:h-96 lg:w-full hover:lg:-mt-4"
                 alt="About Us" />
             @endforeach
@@ -423,7 +423,7 @@
           <div class="bg-white rounded-2xl p-4 ring ring-slate-200 flex flex-col h-full">
             @if ($item->type === 'video' && $item->video_url)
               <iframe title="{{ $item->title }}" class="w-full h-56 rounded-xl" src="{{ $item->embed_video_url }}"
-                title="{{ $item->title }}" frameborder="0"
+                title="{{ $item->title }}" frameborder="0" loading="lazy"
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                 referrerpolicy="strict-origin-when-cross-origin" allowfullscreen>
               </iframe>
