@@ -4,13 +4,27 @@
   // Ambil semua kategori dari database
   $categories = \App\Models\ArticleCategory::all();
 
-  // Fungsi pembantu untuk menentukan class aktif
-  $isActive = function ($slug) use ($active) {
-      return $active === $slug ? 'bg-gradient-to-r from-sky-600 to-sky-50 pr-8 w-fit pl-2 text-white' : '';
+  // Fungsi pembantu untuk menentukan class aktif berdasarkan pencocokan URL absolut
+  $isActive = function ($slug) {
+      // Tentukan URL yang seharusnya untuk slug ini
+      $expectedUrl =
+          $slug === 'download-center'
+              ? localized_route('news.download_center')
+              : localized_route('news.category', $slug);
+
+      // Bandingkan URL saat ini dengan URL yang seharusnya
+      return request()->url() === $expectedUrl
+          ? 'bg-gradient-to-r from-sky-600 to-sky-50 pr-8 w-fit pl-2 text-white'
+          : '';
   };
 
-  $isLinkActive = function ($slug) use ($active) {
-      return $active === $slug ? '' : 'hover:text-slate-900 transition-colors';
+  $isLinkActive = function ($slug) {
+      $expectedUrl =
+          $slug === 'download-center'
+              ? localized_route('news.download_center')
+              : localized_route('news.category', $slug);
+
+      return request()->url() === $expectedUrl ? '' : 'hover:text-slate-900 transition-colors';
   };
 
   $counter = 1;
@@ -25,6 +39,7 @@
     class="w-full lg:w-1/2 grid grid-cols-1 sm:grid-cols-2 gap-y-4 border-t border-slate-400 py-4 text-xl sm:text-2xl text-slate-600">
 
     {{-- Loop Kategori --}}
+    @php $counter = 1; @endphp
     @foreach ($categories as $category)
       @php
         $slug = $category->slug;
