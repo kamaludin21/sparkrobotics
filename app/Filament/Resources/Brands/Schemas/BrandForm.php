@@ -36,12 +36,13 @@ class BrandForm
                         'image/png',
                         'image/webp',
                     ])
+                    ->maxSize(500)
+                    ->maxImageWidth(500)
                     ->optimize('webp')
                     ->helperText('Max Size: 500KB')
                     ->directory('brands')
                     ->imagePreviewHeight('150')
                     ->downloadable()
-                    ->maxSize(500)
                     ->nullable(),
                 TextInput::make('website')
                     ->label('Website')

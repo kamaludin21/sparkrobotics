@@ -412,7 +412,7 @@
       </div>
       <div class="flex justify-between items-end">
         <p class="text-4xl font-semibold text-slate-700 font-jakarta">{{ t('blogIndex_subtitle') }}</p>
-        <a href="{{ localized_route('news.index') }}"
+        <a href="{{ localized_route('news.index') }}" aria-label="See more news articles"
           class="hidden lg:flex items-center px-6 py-2 bg-sky-600 hover:bg-sky-700 rounded-full text-white font-medium">
           <span>{{ t('blogIndex_btn_more') }}</span>
           <x-icons.arrow-up-right stroke="1.5" class="h-7 w-auto" />
@@ -450,7 +450,7 @@
           </div>
         @endforelse
       </div>
-      <a href="{{ localized_route('news.index') }}"
+      <a href="{{ localized_route('news.index') }}" aria-label="See more news articles"
         class="flex lg:hidden w-fit justify-center items-center px-6 py-2 bg-sky-600 hover:bg-sky-700 rounded-full text-white mx-auto mt-6">
         <span>{{ t('blogIndex_btn_more') }}</span>
         <x-icons.arrow-up-right stroke="1.5" class="h-7 w-auto" />
