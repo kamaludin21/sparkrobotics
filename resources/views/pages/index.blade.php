@@ -66,7 +66,7 @@
          @else
            loading="lazy"
            decoding="async" @endif
-                class="h-full w-full object-cover object-center" />
+                class="h-full w-full object-cover object-bottom" />
               <div class="absolute inset-0 bg-black/30"></div>
 
               <div class="w-full absolute inset-0 flex flex-col justify-end p-4 pb-20 md:p-12 md:pr-48 text-white">
@@ -422,8 +422,8 @@
         @forelse ($articles as $item)
           <div class="bg-white rounded-2xl p-4 ring ring-slate-200 flex flex-col h-full">
             @if ($item->type === 'video' && $item->video_url)
-              <iframe class="w-full h-56 rounded-xl" src="{{ $item->embed_video_url }}" title="{{ $item->title }}"
-                frameborder="0"
+              <iframe title="{{ $item->title }}" class="w-full h-56 rounded-xl" src="{{ $item->embed_video_url }}"
+                title="{{ $item->title }}" frameborder="0"
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                 referrerpolicy="strict-origin-when-cross-origin" allowfullscreen>
               </iframe>

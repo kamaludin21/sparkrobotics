@@ -104,13 +104,14 @@ class HeroSettings extends SettingsPage
                                         'image/webp',
                                     ])
                                     ->maxSize(500)
-                                    ->maxImageWidth(1000)
+                                    ->maxImageWidth(1920)
                                     ->optimize('webp')
                                     ->disk('public')
                                     ->directory('hero/slides')
                                     ->downloadable()
                                     ->imagePreviewHeight(150)
-                                    ->helperText('Max Size: 500 KB')
+                                    ->helperText('Rekomendasi rasio 16:9 (1920 × 1080)')
+                                    ->hint('Max Size: 500 KB')
                                     ->nullable(),
                                 Toggle::make('is_visible')
                                     ->label('Tampilkan Slide')
