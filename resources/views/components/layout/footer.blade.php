@@ -37,7 +37,7 @@
 
       <div class=" lg:col-span-7">
         <div class="mapouter rounded-xl overflow-hidden">
-          <div class="gmap_canvas"><iframe class="gmap_iframe" width="100%" frameborder="0" scrolling="no"
+          <div class="gmap_canvas"><iframe title="Office location" class="gmap_iframe" width="100%" frameborder="0" scrolling="no"
               marginheight="0" marginwidth="0"
               src="https://maps.google.com/maps?width=520&amp;height=400&amp;hl=en&amp;q=pt%20spark%20space%20indonesia&amp;t=&amp;z=12&amp;ie=UTF8&amp;iwloc=B&amp;output=embed"></iframe>
             <br />
