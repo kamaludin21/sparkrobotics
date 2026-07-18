@@ -5,7 +5,7 @@
     <x-layout.news-nav :title="t('newsPage_main_title')" active="news" />
 
     <section class="py-10 w-full mx-auto">
-      <form class="w-full max-w-lg mx-auto">
+      <form action="{{ localized_route('news.search') }}" method="GET" class="w-full max-w-lg mx-auto">
         <label for="default-search" class="sr-only">{{ t('newsPage_search_title') }}</label>
         <div class="relative">
           <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
@@ -15,7 +15,8 @@
                 d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z" />
             </svg>
           </div>
-          <input type="search" id="default-search"
+          <!-- Tambahkan name="q" dan value="{{ request('q') }}" -->
+          <input type="search" id="default-search" name="q" value="{{ request('q') }}"
             class="block w-full p-4 pl-10 text-sm text-slate-700 border-1 border-slate-200 rounded-lg bg-slate-100 focus:ring-sky-500 focus:border-sky-500 outline-none transition-all"
             placeholder="{{ t('newsPage_search_placeholder') }}" required />
 

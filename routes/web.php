@@ -24,6 +24,7 @@ Route::name('en.')->group(function () {
     Route::get(trans('routes.news', locale: 'en'), [ArticleController::class, 'article'])->name('news.index');
     Route::get(trans('routes.news_category', locale: 'en'), [ArticleController::class, 'articleByCategory'])->name('news.category');
     Route::get(trans('routes.news_detail', locale: 'en'), [ArticleController::class, 'show'])->name('news.detail');
+    Route::get(trans('routes.news_search', locale: 'en'), [ArticleController::class, 'search'])->name('news.search');
     Route::get(trans('routes.news_download_center', locale: 'en'), [ArticleController::class, 'downloadCenter'])->name('news.download_center');
     // About Us
     Route::get(trans('routes.about_us', locale: 'en'), [AboutUsController::class, 'companyProfile'])->name('about.index');
@@ -51,7 +52,8 @@ Route::prefix('{locale}')
         Route::get(trans('routes.news', locale: 'id'), [ArticleController::class, 'article'])->name('news.index');
         Route::get(trans('routes.news_category', locale: 'id'), [ArticleController::class, 'articleByCategory'])->name('news.category');
         Route::get(trans('routes.news_detail', locale: 'id'), [ArticleController::class, 'show'])->name('news.detail');
-        Route::get(trans('routes.news_download_center', locale: 'en'), [ArticleController::class, 'downloadCenter'])->name('news.download_center');
+        Route::get(trans('routes.news_search', locale: 'id'), [ArticleController::class, 'search'])->name('news.search');
+        Route::get(trans('routes.news_download_center', locale: 'id'), [ArticleController::class, 'downloadCenter'])->name('news.download_center');
         // Tentang Kami
         Route::get(trans('routes.about_us', locale: 'id'), [AboutUsController::class, 'companyProfile'])->name('about.index');
         Route::get(trans('routes.about_case_study', locale: 'id'), [AboutUsController::class, 'caseStudies'])->name('about.case_study');
@@ -63,4 +65,3 @@ Route::prefix('{locale}')
 Route::post('/submit-contact', [AboutUsController::class, 'submitForm'])
     ->name('contact.submit')
     ->middleware('throttle:2,1'); // 2 requests per 1 minute
-

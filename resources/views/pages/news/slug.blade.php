@@ -14,16 +14,17 @@
     </div>
 
     <section class="py-10 space-y-6">
-      {{-- Title - Fix: max-w-2/3 bukan class valid --}}
+
+      <div class="px-2 py-1 bg-slate-200 rounded-lg ring-slate-300 ring-1 w-fit">
+        <span class="text-slate-600 font-medium">{{ $article->category->title }}</span>
+      </div>
       <h1 class="text-4xl md:text-5xl w-full lg:max-w-[66.666%] font-bold text-slate-700 leading-tight md:leading-[4rem]">
         {{ $article->title }}
       </h1>
-
-      {{-- Meta Info --}}
       <div
         class="flex flex-col md:flex-row justify-between items-start md:items-center border-b border-slate-200 pb-6 mb-10 gap-6">
         <div class="flex items-center gap-4">
-          <span class="text-slate-500 text-sm">
+          <span class="text-slate-500 text-base font-light">
             {{ app()->getLocale() === 'id'
                 ? $article->updated_at->translatedFormat('d F Y')
                 : $article->updated_at->format('F d, Y') }}
@@ -60,7 +61,7 @@
 
           {{-- Floating Notification (Toast) --}}
           <div x-show="copied" x-transition:enter="transition ease-out duration-300"
-            x-transition:enter-start="opacity-0 translate-y-2" x-transition:enter-end="opacity-100 translate-y-0"
+            x-transition:enter-start="o pacity-0 translate-y-2" x-transition:enter-end="opacity-100 translate-y-0"
             x-transition:leave="transition ease-in duration-200" x-transition:leave-start="opacity-100"
             x-transition:leave-end="opacity-0"
             class="fixed bottom-6 right-6 bg-green-600 text-white px-4 py-2 rounded-md shadow-lg z-50 flex items-center gap-2 text-sm font-medium"
