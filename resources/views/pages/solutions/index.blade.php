@@ -1,5 +1,7 @@
 @extends('layout.app', ['activePage' => 'solutions'])
 
+@section('title', __('seo.nav.solutions') . ' | SPARK Robotics')
+
 @section('content')
   <section class="py-24 md:py-32 bg-slate-50 relative" x-data="layananSpark(@js($solutions))" wire:key="solutions-{{ app()->getLocale() }}">
     <div class="main-wrapper px-4">
@@ -10,7 +12,6 @@
             {{ t('solutionsPage_subtitle') }}
           </p>
         </div>
-
         <div class="shrink-0">
           <a href="{{ localized_route('about.contact') }}"
             class="inline-flex items-center justify-center px-7 py-3.5 text-base font-semibold text-white bg-sky-600 rounded-xl shadow-sm hover:bg-slate-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-sky-600 transition-all duration-300 group">

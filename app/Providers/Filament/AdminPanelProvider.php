@@ -19,6 +19,7 @@ use Illuminate\Routing\Middleware\SubstituteBindings;
 use Illuminate\Session\Middleware\StartSession;
 use Illuminate\View\Middleware\ShareErrorsFromSession;
 use Doriiaan\FilamentAstrotomic\FilamentAstrotomicPlugin;
+use Jeffgreco13\FilamentBreezy\BreezyCore;
 
 class AdminPanelProvider extends PanelProvider
 {
@@ -58,6 +59,26 @@ class AdminPanelProvider extends PanelProvider
             ])
             ->plugins([
                 FilamentAstrotomicPlugin::make(),
+                BreezyCore::make()
+                    ->myProfile(
+                        shouldRegisterUserMenu: true,
+                        userMenuLabel: 'My Profile',
+                        slug: 'my-profile',
+                        navigationGroup: 'Settings',
+                        shouldRegisterNavigation: true,
+                        hasAvatars: false,
+                    )
+                    ->withoutMyProfileComponents([
+                        'personal_info',
+                        'two_factor_authentication',
+                        'sanctum_tokens',
+                        'browser_sessions',
+                    ])
+                    // Optionally configure password rules
+                    ->passwordUpdateRules(
+                        rules: ['min:8'],
+                        requiresCurrentPassword: true,
+                    ),
             ]);
     }
 }

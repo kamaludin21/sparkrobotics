@@ -13,10 +13,10 @@ use Filament\Forms\Components\TextInput;
 class InboxSettings extends SettingsPage
 {
     protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedCog6Tooth;
+    protected static string | UnitEnum | null $navigationGroup = 'Settings';
 
     protected static string $settings = Inbox::class;
 
-    protected static string | UnitEnum | null $navigationGroup = 'Settings';
 
     public function form(Schema $schema): Schema
     {

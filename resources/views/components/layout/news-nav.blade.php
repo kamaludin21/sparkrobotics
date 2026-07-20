@@ -38,6 +38,7 @@
   <ul
     class="w-full lg:w-1/2 grid grid-cols-1 sm:grid-cols-2 gap-y-4 border-t border-slate-400 py-4 text-xl sm:text-2xl text-slate-600">
 
+
     {{-- Loop Kategori --}}
     @php $counter = 1; @endphp
     @foreach ($categories as $category)
@@ -59,10 +60,10 @@
     @endforeach
 
     {{-- Download Center (Manual) --}}
-    <li class="{{ $isActive('download-center') }}">
+    {{-- <li class="{{ $isActive('download-center') }}">
       <a href="{{ localized_route('news.download_center') }}" class="{{ $isLinkActive('download-center') }}">
         Download Center
       </a>
-    </li>
+    </li> --}}
   </ul>
 </section>

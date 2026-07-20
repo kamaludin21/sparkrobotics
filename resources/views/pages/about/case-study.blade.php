@@ -1,5 +1,7 @@
 @extends('layout.app', ['activePage' => 'case-studies'])
 
+@section('title', __('seo.nav.about-us') . ' | SPARK Robotics')
+
 @section('content')
   <section class="max-w-5xl mx-auto px-4 py-24 md:py-32">
     <header class="text-center mb-8 space-y-6">

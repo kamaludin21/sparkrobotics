@@ -57,7 +57,7 @@
         <p class="text-5xl font-semibold text-white md:text-6xl">Showcase</p>
       </div>
 
-      <div class="mx-auto flex w-full flex-col gap-3 pb-4 pl-4 md:max-w-4xl lg:max-w-7xl lg:flex-row lg:gap-12"
+      <div class="mx-auto flex w-full flex-col gap-3 pb-4 px-4 md:max-w-4xl lg:max-w-7xl lg:flex-row lg:gap-12"
         x-data="{
             isDown: false,
             startX: 0,
@@ -102,7 +102,7 @@
           @endforeach
         </div>
 
-        <div class="flex-justify-between order-2 flex w-full items-end gap-2 lg:order-1 lg:w-1/4">
+        <div class="flex justify-between md:justify-start order-2 flex w-full items-end gap-2 lg:order-1 lg:w-1/4">
           <button @click="slidePrev()"
             class="rounded-full bg-white p-2 ring-1 ring-slate-700 transition-colors hover:bg-slate-100">
             <x-icons.chevron-right class="h-8 w-auto rotate-180 text-slate-700" />
@@ -274,28 +274,11 @@
           <div>
             <p class="text-4xl md:text-5xl text-slate-700 font-semibold">{{ t('productsPage_other_section') }}</p>
           </div>
-
-          <div class="flex gap-2 lg:hidden">
-            <button @click="slidePrev()"
-              class="p-2 bg-white rounded-full ring-1 ring-slate-300 hover:bg-slate-100 transition">
-              <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 rotate-180 text-slate-700" fill="none"
-                viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
-              </svg>
-            </button>
-            <button @click="slideNext()"
-              class="p-2 bg-white rounded-full ring-1 ring-slate-300 hover:bg-slate-100 transition">
-              <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-slate-700" fill="none" viewBox="0 0 24 24"
-                stroke="currentColor" stroke-width="2">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
-              </svg>
-            </button>
-          </div>
         </div>
 
         <div x-ref="slider" @mousedown="startDragging" @mouseleave="stopDragging" @mouseup="stopDragging"
           @mousemove="drag" @touchstart="startDragging" @touchend="stopDragging" @touchmove="drag"
-          class="flex lg:grid lg:grid-cols-4 gap-4 overflow-x-auto lg:overflow-visible no-scrollbar cursor-grab active:cursor-grabbing lg:cursor-auto pb-4">
+          class="flex lg:grid lg:grid-cols-4 gap-4 overflow-x-auto lg:overflow-visible no-scrollbar cursor-grab active:cursor-grabbing lg:cursor-auto">
 
           @forelse ($otherProducts as $item)
             <div
@@ -333,6 +316,23 @@
               <p class="text-base font-medium text-slate-600">{{ t('home_product_empty') }}</p>
             </div>
           @endforelse
+        </div>
+
+        <div class="flex gap-2 lg:hidden justify-between">
+          <button @click="slidePrev()"
+            class="p-2 bg-white rounded-full ring-1 ring-slate-300 hover:bg-slate-100 transition">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 rotate-180 text-slate-700" fill="none"
+              viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
+            </svg>
+          </button>
+          <button @click="slideNext()"
+            class="p-2 bg-white rounded-full ring-1 ring-slate-300 hover:bg-slate-100 transition">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-slate-700" fill="none" viewBox="0 0 24 24"
+              stroke="currentColor" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
+            </svg>
+          </button>
         </div>
       </div>
     </section>

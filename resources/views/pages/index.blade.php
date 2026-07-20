@@ -155,9 +155,9 @@
                 </div>
                 <div>
                   <a href="{{ localized_route('products.index', ['categories' => [$categories->get(0)->id]]) }}"
-                    class="inline-flex items-center gap-1.5 text-2xl font-bold uppercase leading-none font-bold tracking-tight border-b-2 border-b-transparent hover:border-white text-slate-100 hover:text-white uppercase hover:bg-slate-800/30 pl-2 cursor-pointer">
-                    {{ $categories->get(0)->name }}
-                    <x-icons.arrow-up-right class="h-8 w-8" />
+                    class="inline-block text-balance text-2xl font-bold uppercase leading-tight tracking-tight border-b-2 border-b-transparent hover:border-white text-slate-100 hover:text-white hover:bg-slate-800/30 pl-2 pr-2 cursor-pointer">
+                    <span class="align-middle">{{ $categories->get(0)->name }}</span>
+                    <x-icons.arrow-up-right class="inline-block h-8 w-8 align-middle" />
                   </a>
                 </div>
               </div>
@@ -170,11 +170,11 @@
               <img src="{{ Storage::url($categories->get(1)->image) }}" alt="{{ $categories->get(1)->name }}"
                 loading="lazy" decoding="async" class="h-full w-full object-cover" />
               <div class="absolute inset-0 bg-black/10"></div>
-              <div class="absolute bottom-4 right-4">
+              <div class="absolute bottom-4 mx-4">
                 <a href="{{ localized_route('products.index', ['categories' => [$categories->get(1)->id]]) }}"
-                  class="inline-flex items-center gap-1.5 text-2xl font-bold uppercase leading-none font-bold tracking-tight border-b-2 border-b-transparent hover:border-white text-slate-100 hover:text-white uppercase hover:bg-slate-800/30 pl-2 cursor-pointer">
-                  {{ $categories->get(1)->name }}
-                  <x-icons.arrow-up-right class="h-8 w-8" />
+                  class="inline-block text-balance text-2xl font-bold uppercase leading-tight tracking-tight border-b-2 border-b-transparent hover:border-white text-slate-100 hover:text-white hover:bg-slate-800/30 pl-2 pr-2 cursor-pointer">
+                  <span class="align-middle">{{ $categories->get(1)->name }}</span>
+                  <x-icons.arrow-up-right class="inline-block h-8 w-8 align-middle" />
                 </a>
               </div>
             </div>
@@ -210,11 +210,11 @@
               <img src="{{ Storage::url($categories->get(2)->image) }}" alt="{{ $categories->get(2)->name }}"
                 loading="lazy" decoding="async" class="h-full w-full object-cover" />
               <div class="absolute inset-0 bg-black/10"></div>
-              <div class="absolute bottom-4 left-4">
+              <div class="absolute bottom-4 mx-4">
                 <a href="{{ localized_route('products.index', ['categories' => [$categories->get(2)->id]]) }}"
-                  class="inline-flex items-center gap-1.5 text-2xl font-bold uppercase leading-none font-bold tracking-tight border-b-2 border-b-transparent hover:border-white text-slate-100 hover:text-white uppercase hover:bg-slate-800/30 pl-2 cursor-pointer">
-                  {{ $categories->get(2)->name }}
-                  <x-icons.arrow-up-right class="h-8 w-8" />
+                  class="inline-block text-balance text-2xl font-bold uppercase leading-tight tracking-tight border-b-2 border-b-transparent hover:border-white text-slate-100 hover:text-white hover:bg-slate-800/30 pl-2 pr-2 cursor-pointer">
+                  <span class="align-middle">{{ $categories->get(2)->name }}</span>
+                  <x-icons.arrow-up-right class="inline-block h-8 w-8 align-middle" />
                 </a>
               </div>
             </div>

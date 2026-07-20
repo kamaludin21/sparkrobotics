@@ -17,7 +17,7 @@
           class="absolute top-1/2 left-1/2 w-[150%] h-[150%] -translate-x-1/2 -translate-y-1/2 object-cover pointer-events-none"
           :videoId="$background['src']" />
       @else
-      <img src="{{ $background['src'] }}" alt="{{ $background['alt'] ?? 'Hero Background' }}"
+        <img src="{{ $background['src'] }}" alt="{{ $background['alt'] ?? 'Hero Background' }}"
           class="w-full h-full object-cover object-center" />
       @endif
     </div>
@@ -28,13 +28,13 @@
         <h1 class="text-5xl md:text-6xl font-medium font-jakarta text-white">{{ $title }}</h1>
         <p class="text-xl font-medium text-slate-100">{{ $subtitle }}</p>
         <div class="flex gap-2 items-center pt-2">
-          <button
+          <a href="{{ localized_route('about.contact') }}"
             class="flex items-center gap-2 text-white px-1 py-1 bg-white rounded-full ring ring-slate-300 transition hover:bg-slate-50">
             <span class="text-base font-semibold text-slate-800 pl-3">{{ $inquiryText }}</span>
             <div class="rounded-full bg-slate-800 p-0.5">
               <x-icons.narrow-right class="h-6 w-auto" />
             </div>
-          </button>
+          </a>
         </div>
       </div>
     </div>

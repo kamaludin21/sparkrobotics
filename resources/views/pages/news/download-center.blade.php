@@ -1,5 +1,7 @@
 @extends('layout.app', ['activePage' => 'news'])
 
+@section('title', __('seo.nav.news') . ' | SPARK Robotics')
+
 @section('content')
   <main class="main-wrapper px-4 py-24 lg:py-32 overflow-x-hidden">
     <x-layout.news-nav title="Download Center" />

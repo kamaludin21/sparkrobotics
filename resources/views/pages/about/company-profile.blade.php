@@ -1,5 +1,7 @@
 @extends('layout.app', ['activePage' => 'about'])
 
+@section('title', __('seo.nav.about-us') . ' | SPARK Robotics')
+
 @section('content')
   @php
     $locale = app()->getLocale();

@@ -1,5 +1,7 @@
 @extends('layout.app', ['activePage' => 'contact'])
 
+@section('title', __('seo.nav.about-us') . ' | SPARK Robotics')
+
 @section('content')
   <main
     class="relative flex min-h-screen items-center justify-center overflow-hidden bg-sky-600  py-24 md:py-32 text-white">
