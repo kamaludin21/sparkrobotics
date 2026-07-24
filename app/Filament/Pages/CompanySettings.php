@@ -20,10 +20,15 @@ use Illuminate\Support\Str;
 
 class CompanySettings extends SettingsPage
 {
-    protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedCog6Tooth;
-
+    protected static ?int $navigationSort = 1;
+    protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedBriefcase;
     protected static string $settings = Company::class;
-    protected static string | UnitEnum | null $navigationGroup = 'Settings';
+    protected static string | UnitEnum | null $navigationGroup = 'System and Settings';
+    protected static ?string $navigationLabel = 'Company Profiles';
+    protected static ?string $pluralModelLabel = 'Company Profiles';
+    protected static ?string $title = 'Company Profiles';
+    protected static ?string $slug = 'company-profiles';
+    protected static ?string $modelLabel = 'Company Profiles';
 
     public function form(Schema $schema): Schema
     {

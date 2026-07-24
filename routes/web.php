@@ -65,3 +65,5 @@ Route::prefix('{locale}')
 Route::post('/submit-contact', [AboutUsController::class, 'submitForm'])
     ->name('contact.submit')
     ->middleware('throttle:2,1'); // 2 requests per 1 minute
+
+

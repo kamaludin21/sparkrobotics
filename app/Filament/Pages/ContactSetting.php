@@ -14,11 +14,12 @@ use Filament\Support\Icons\Heroicon;
 
 class ContactSetting extends SettingsPage
 {
-    protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedCog6Tooth;
+    protected static ?int $navigationSort = 3;
+    protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedPhone;
 
     protected static string $settings = Contact::class;
 
-    protected static string | UnitEnum | null $navigationGroup = 'Settings';
+    protected static string | UnitEnum | null $navigationGroup = 'System and Settings';
 
     public function form(Schema $schema): Schema
     {

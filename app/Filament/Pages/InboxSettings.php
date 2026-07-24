@@ -12,8 +12,9 @@ use Filament\Forms\Components\TextInput;
 
 class InboxSettings extends SettingsPage
 {
+    protected static ?int $navigationSort = 5;
     protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedCog6Tooth;
-    protected static string | UnitEnum | null $navigationGroup = 'Settings';
+    protected static string | UnitEnum | null $navigationGroup = 'System and Settings';
 
     protected static string $settings = Inbox::class;
 

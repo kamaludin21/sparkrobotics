@@ -5,6 +5,7 @@ namespace App\Filament\Resources\Categories\Tables;
 use App\Filament\Resources\Categories\CategoryResource;
 use App\Models\Category;
 use Filament\Actions\EditAction;
+use Filament\Tables\Columns\ImageColumn;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
@@ -18,12 +19,12 @@ class CategoriesTable
                 TextColumn::make('index')
                     ->label('No.')
                     ->rowIndex(),
+                ImageColumn::make('image')
+                    ->label('Gambar'),
                 TextColumn::make('name_id')
                     ->label('Nama (ID)')
-                    // Mengambil relasi translasi khusus 'id'
                     ->state(fn(Category $record): ?string => $record->translate('id')?->name)
                     ->searchable(query: function (Builder $query, string $search) {
-                        // Mencari berdasarkan locale 'id'
                         $query->whereTranslationLike('name', '%' . $search . '%', 'id');
                     }),
 

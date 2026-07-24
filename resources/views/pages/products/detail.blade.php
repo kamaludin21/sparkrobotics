@@ -152,26 +152,27 @@
     </section>
 
     <section class="main-wrapper my-24 md:my-32 flex flex-col md:flex-row gap-6 px-4" aria-label="Product Specifications">
-      <div class="w-full md:w-1/3 mb-0 md:mb-6 space-y-4">
+      <div class="w-full lg:w-1/3 mb-0 lg:mb-6 space-y-4 bg-red-200">
         <h2 class="text-5xl md:text-6xl text-slate-700 font-semibold">{{ t('productsIndex_specification') }}</h2>
 
         <div class="text-base text-slate-600 font-medium">
+          {{-- TODO: ganti url ke download url laravel way --}}
           <a href="{{ Storage::url($product->datasheet_file_path) }}" download>
             <div
               class="border-b hover:bg-slate-300 cursor-pointer border-slate-400 border-dashed w-fit flex items-center gap-1 pb-1">
               Reach <span class="italic">{{ $product->title }}</span> Datasheet
-              <span>
+              <span class="">
                 <x-icons.download class="h-5 w-auto" />
               </span>
             </div>
           </a>
 
-          <div class="font-mono mt-4">
+          <div class="font-mono mt-2">
             {{ $product->size }}
           </div>
         </div>
       </div>
-      <div x-data="{ activeTab: 0 }" class="w-full md:w-2/3 overflow-hidden">
+      <div x-data="{ activeTab: 0 }" class="w-full lg:w-2/3 overflow-hidden">
 
         <div class="flex flex-nowrap overflow-x-auto no-scrollbar border-b border-slate-800" role="tablist">
           @foreach ($product->specifications as $index => $specGroup)
@@ -193,7 +194,7 @@
               <div class="grid grid-cols-1 gap-x-12 gap-y-2 text-slate-800">
                 @foreach ($specGroup['items'] as $item)
                   <div class="flex justify-between py-3 border-b border-slate-800/50">
-                    <span class="text-slate-600">{{ $item['label'] }}</span>
+                    <span class="text-slate-600 bg-red-500 pr-4">{{ $item['label'] }}</span>
                     <span class="text-right font-medium">{{ $item['value'] }}</span>
                   </div>
                 @endforeach
@@ -288,16 +289,16 @@
           @endforelse
         </div>
 
-        <div class="flex gap-2 lg:hidden justify-between">
+        <div class="flex gap-2 lg:hidden justify-between mt-4">
           <button @click="slidePrev()" aria-label="Previous product"
-            class="p-2 bg-white rounded-full ring-1 ring-slate-300 hover:bg-slate-100 transition">
+            class="p-2 bg-white rounded-full ring-1 ring-slate-300 hover:bg-sky-700 hover:text-white transition">
             <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 rotate-180 text-slate-700" fill="none"
               viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
               <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
             </svg>
           </button>
           <button @click="slideNext()" aria-label="Next product"
-            class="p-2 bg-white rounded-full ring-1 ring-slate-300 hover:bg-slate-100 transition">
+            class="p-2 bg-white rounded-full ring-1 ring-slate-300 hover:bg-sky-700 hover:text-white transition">
             <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-slate-700" fill="none" viewBox="0 0 24 24"
               stroke="currentColor" stroke-width="2">
               <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
@@ -308,18 +309,15 @@
     </section>
 
     <section class="bg-radial-[at_50%_75%] from-sky-400 via-sky-600 to-sky-800 to-90% py-20 md:py-32 px-4">
-      <div class="flex flex-col lg:flex-row gap-6 items-center justify-between main-wrapper ">
+      <div class="flex flex-col lg:flex-row gap-6 items-center justify-between main-wrapper px-4">
         <div class="max-w-xl">
-          <h2 class="text-5xl font-medium font-jakarta text-slate-50 mb-4 max-w-3xl mx-auto">Experience the Product in
-            Action</h2>
-          <p class="text-xl font-jakarta text-slate-100 mb-6 max-w-3xl mx-auto">See every feature, detail, and
-            capability
-            designed to support your daily needs.</p>
+          <h2 class="text-5xl font-medium font-jakarta text-slate-50 mb-4 max-w-3xl mx-auto">{{ t('productsPage_cta_title') }}</h2>
+          <p class="text-xl font-jakarta text-slate-100 mb-6 max-w-3xl mx-auto">{{ t('productsPage_cta_subtitle') }}</p>
         </div>
         <div class="flex justify-center gap-4">
           <a href="{{ localized_route('about.contact') }}"
             class="bg-black px-5 py-2 rounded-full text-white font-semibold text-base">
-            Place an Inquiry
+            {{ t('productsPage_cta_btn') }}
           </a>
         </div>
       </div>

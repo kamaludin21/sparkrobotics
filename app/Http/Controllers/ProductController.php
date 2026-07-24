@@ -53,7 +53,7 @@ class ProductController extends Controller
         $slug = $param2 ? $param2 : $param1;
 
         $product = Product::where('slug', $slug)->firstOrFail();
-        $otherProducts = Product::whereNot('id', $product->id)->get();
+        $otherProducts = Product::whereNot('id', $product->id)->take(4)->get();
         return view('pages.products.detail', compact('product', 'otherProducts'));
     }
 }

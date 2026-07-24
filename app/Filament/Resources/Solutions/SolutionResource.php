@@ -14,13 +14,17 @@ use Filament\Resources\Resource;
 use Filament\Schemas\Schema;
 use Filament\Support\Icons\Heroicon;
 use Filament\Tables\Table;
+use UnitEnum;
 
 class SolutionResource extends Resource
 {
     use ResourceTranslatable;
+
+    protected static ?int $navigationSort = 4;
     protected static ?string $model = Solution::class;
 
-    protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedRectangleStack;
+    protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedLightBulb;
+    protected static string | UnitEnum | null $navigationGroup = 'Content';
 
     public static function form(Schema $schema): Schema
     {

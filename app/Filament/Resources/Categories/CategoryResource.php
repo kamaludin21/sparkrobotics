@@ -13,12 +13,20 @@ use Filament\Resources\Resource;
 use Filament\Schemas\Schema;
 use Filament\Support\Icons\Heroicon;
 use Filament\Tables\Table;
+use UnitEnum;
 
 class CategoryResource extends Resource
 {
+    protected static ?int $navigationSort = 2;
     protected static ?string $model = Category::class;
 
-    protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedRectangleStack;
+    protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedSwatch;
+    protected static string | UnitEnum | null $navigationGroup = 'Catalog';
+    protected static ?string $navigationLabel = 'Product Category';
+    protected static ?string $pluralModelLabel = 'Product Category';
+    protected static ?string $title = 'Product Category';
+    protected static ?string $slug = 'product-category';
+    protected static ?string $modelLabel = 'Product Category';
 
     public static function form(Schema $schema): Schema
     {

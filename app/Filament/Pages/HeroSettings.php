@@ -16,10 +16,18 @@ use Filament\Schemas\Components\Tabs;
 use Filament\Schemas\Schema;
 use Filament\Support\Icons\Heroicon;
 use Illuminate\Support\Str;
+use UnitEnum;
 
 class HeroSettings extends SettingsPage
 {
-    protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedCog6Tooth;
+    protected static ?int $navigationSort = 1;
+    protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedPhoto;
+    protected static string | UnitEnum | null $navigationGroup = 'Content';
+    protected static ?string $navigationLabel = 'Hero and Slides';
+    protected static ?string $pluralModelLabel = 'Hero and Slides';
+    protected static ?string $title = 'Hero and Slides';
+    protected static ?string $slug = 'hero-and-slides';
+    protected static ?string $modelLabel = 'Hero and Slides';
 
     protected static string $settings = Hero::class;
 

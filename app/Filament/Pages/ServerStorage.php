@@ -7,8 +7,9 @@ use Filament\Support\Icons\Heroicon;
 
 class ServerStorage extends Page
 {
-    protected static string|\BackedEnum|null $navigationIcon = Heroicon::OutlinedCog6Tooth;
-    protected static string |\UnitEnum | null $navigationGroup = 'Settings';
+    protected static ?int $navigationSort = 4;
+    protected static string|\BackedEnum|null $navigationIcon = Heroicon::OutlinedServerStack;
+    protected static string |\UnitEnum | null $navigationGroup = 'System and Settings';
 
     protected static ?string $title = 'Server Storage';
 
