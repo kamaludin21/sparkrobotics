@@ -31,6 +31,9 @@ php artisan filament:optimize
 ### 7. Restart queue worker agar memuat kode terbaru
 php artisan queue:restart
 
+### 8. Generate Sitemap
+php artisan app:generate-sitemap
+
 ### Matikan mode maintenance (web kembali online)
 php artisan up
 

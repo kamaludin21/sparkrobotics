@@ -152,7 +152,7 @@
     </section>
 
     <section class="main-wrapper my-24 md:my-32 flex flex-col md:flex-row gap-6 px-4" aria-label="Product Specifications">
-      <div class="w-full lg:w-1/3 mb-0 lg:mb-6 space-y-4 bg-red-200">
+      <div class="w-full lg:w-1/3 mb-0 lg:mb-6 space-y-4">
         <h2 class="text-5xl md:text-6xl text-slate-700 font-semibold">{{ t('productsIndex_specification') }}</h2>
 
         <div class="text-base text-slate-600 font-medium">
@@ -194,7 +194,7 @@
               <div class="grid grid-cols-1 gap-x-12 gap-y-2 text-slate-800">
                 @foreach ($specGroup['items'] as $item)
                   <div class="flex justify-between py-3 border-b border-slate-800/50">
-                    <span class="text-slate-600 bg-red-500 pr-4">{{ $item['label'] }}</span>
+                    <span class="text-slate-600 pr-4">{{ $item['label'] }}</span>
                     <span class="text-right font-medium">{{ $item['value'] }}</span>
                   </div>
                 @endforeach
