@@ -13,7 +13,22 @@
       'src' => $src,
       'alt' => $product->title ?? 'Product Media',
   ];
+
+  // Persiapan data untuk SEO Schema Markup (JSON-LD)
+  $productSchema = [
+      '@context' => 'https://schema.org',
+      '@type' => 'Product',
+      'name' => $product->title,
+      'description' => Str::limit(strip_tags($product->content), 300),
+      'image' => [asset(Storage::url($product->thumbnail_image))],
+      'brand' => [
+          '@type' => 'Brand',
+          'name' => 'SPARK Robotics',
+      ],
+      'sku' => $product->slug, // atau $product->id jika ada
+  ];
 @endphp
+
 @extends('layout.app', ['activePage' => 'products'])
 
 @section('title', $product->title . ' | SPARK Robotics')
@@ -22,39 +37,42 @@
 @section('og_type', 'product')
 
 @section('content')
+  {{-- Embed SEO Schema Markup --}}
+  <script type="application/ld+json">
+    {!! json_encode($productSchema, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE) !!}
+  </script>
+
   <main>
     <x-sections.hero :title="$product->title_section" :subtitle="$product->subtitle_section" inquiryText="Place an Inquiry" :background="$bgImage" />
+
     {{-- Product Description --}}
     <section class="main-wrapper mt-24 md:mt-32 px-4">
       <div class="max-w-4xl mx-auto text-center mb-6">
-        <p
-          class="bg-linear-to-r from-sky-600 to-teal-500 bg-clip-text text-5xl font-semibold text-transparent md:text-6xl">
-        </p>
         <div class="w-full text-center space-y-4">
-          <p
+          {{-- Mengubah tag <p> menjadi <h1> untuk SEO --}}
+          <h1
             class="bg-linear-to-r from-sky-600 to-teal-500 bg-clip-text text-5xl font-semibold text-transparent md:text-6xl">
-            {{ $product->title }}</p>
+            {{ $product->title }}
+          </h1>
 
           <div class="text-lg font-medium text-slate-700">
             {!! $product->content !!}
           </div>
 
         </div>
-
       </div>
     </section>
     {{-- Product Description --}}
 
     {{-- Showcase --}}
-    <section class="mt-24 w-full overflow-x-hidden bg-sky-600 md:mt-32">
+    <section class="mt-24 w-full overflow-x-hidden bg-sky-600 md:mt-32" aria-label="Product Showcase">
       <div class="bg-white pb-3">
         <div class="mx-auto w-full px-4 md:max-w-4xl lg:max-w-7xl">
-          <p class="text-5xl font-semibold text-slate-700 md:text-6xl">Product</p>
-
+          <h2 class="text-5xl font-semibold text-slate-700 md:text-6xl">Product</h2>
         </div>
       </div>
       <div class="mx-auto w-full bg-sky-600 px-4 py-3 md:max-w-4xl lg:max-w-7xl">
-        <p class="text-5xl font-semibold text-white md:text-6xl">Showcase</p>
+        <h2 class="text-5xl font-semibold text-white md:text-6xl">Showcase</h2>
       </div>
 
       <div class="mx-auto flex w-full flex-col gap-3 pb-4 px-4 md:max-w-4xl lg:max-w-7xl lg:flex-row lg:gap-12"
@@ -80,7 +98,6 @@
                 this.$refs.slider.scrollLeft = this.scrollLeft - walk;
             },
             slidePrev() {
-                // Bergeser dinamis mengikuti lebar item + gap (16px)
                 const itemWidth = this.$refs.slider.firstElementChild.offsetWidth + 16;
                 this.$refs.slider.scrollBy({ left: -itemWidth, behavior: 'smooth' });
             },
@@ -96,19 +113,19 @@
           @foreach ($product->showcase_images as $item)
             <div
               class="h-72 w-[85%] shrink-0 overflow-hidden rounded-3xl bg-slate-200/30 select-none md:h-72 md:w-auto md:min-w-[calc(32%-1rem)]">
-              <img src="{{ Storage::url($item) }}" draggable="false"
+              <img src="{{ Storage::url($item) }}" draggable="false" alt="{{ $product->title }} Showcase Image"
                 class="pointer-events-none h-full w-full object-cover" />
             </div>
           @endforeach
         </div>
 
         <div class="flex justify-between md:justify-start order-2 flex w-full items-end gap-2 lg:order-1 lg:w-1/4">
-          <button @click="slidePrev()"
+          <button @click="slidePrev()" aria-label="Previous slide"
             class="rounded-full bg-white p-2 ring-1 ring-slate-700 transition-colors hover:bg-slate-100">
             <x-icons.chevron-right class="h-8 w-auto rotate-180 text-slate-700" />
           </button>
 
-          <button @click="slideNext()"
+          <button @click="slideNext()" aria-label="Next slide"
             class="rounded-full bg-white p-2 ring-1 ring-slate-700 transition-colors hover:bg-slate-100">
             <x-icons.chevron-right class="h-8 w-auto text-slate-700" />
           </button>
@@ -118,15 +135,15 @@
     {{-- Showcase --}}
 
     {{-- Fitur --}}
-    <section class="main-wrapper mt-24 md:mt-32 px-4">
+    <section class="main-wrapper mt-24 md:mt-32 px-4" aria-label="Product Features">
       <div class="max-w-2xl mx-auto text-center mb-6">
-        <p class="text-5xl md:text-6xl text-slate-700 font-semibold">{{ t('productsIndex_features') }}</p>
+        <h2 class="text-5xl md:text-6xl text-slate-700 font-semibold">{{ t('productsIndex_features') }}</h2>
       </div>
       <div class="bg-slate-200 p-4 md:p-6 rounded-4xl">
         <div class="columns-1 gap-4 sm:columns-2">
           @foreach ($product->features_images as $item)
             <div class="mb-4 break-inside-avoid">
-              <img src="{{ Storage::url($item) }}" alt=""
+              <img src="{{ Storage::url($item) }}" alt="{{ $product->title }} Feature Image"
                 class="h-auto w-full rounded-xl shadow-md transition-shadow duration-300 hover:shadow-xl" />
             </div>
           @endforeach
@@ -134,10 +151,9 @@
       </div>
     </section>
 
-    <section class="main-wrapper my-24 md:my-32 flex flex-col md:flex-row gap-6 px-4">
-
+    <section class="main-wrapper my-24 md:my-32 flex flex-col md:flex-row gap-6 px-4" aria-label="Product Specifications">
       <div class="w-full md:w-1/3 mb-0 md:mb-6 space-y-4">
-        <p class="text-5xl md:text-6xl text-slate-700 font-semibold">{{ t('productsIndex_specification') }}</p>
+        <h2 class="text-5xl md:text-6xl text-slate-700 font-semibold">{{ t('productsIndex_specification') }}</h2>
 
         <div class="text-base text-slate-600 font-medium">
           <a href="{{ Storage::url($product->datasheet_file_path) }}" download>
@@ -157,9 +173,9 @@
       </div>
       <div x-data="{ activeTab: 0 }" class="w-full md:w-2/3 overflow-hidden">
 
-        <div class="flex flex-nowrap overflow-x-auto no-scrollbar border-b border-slate-800">
+        <div class="flex flex-nowrap overflow-x-auto no-scrollbar border-b border-slate-800" role="tablist">
           @foreach ($product->specifications as $index => $specGroup)
-            <button @click="activeTab = {{ $index }}"
+            <button @click="activeTab = {{ $index }}" role="tab"
               :class="activeTab === {{ $index }} ? 'border-slate-900' :
                   'text-slate-600 border-transparent hover:text-slate-500 hover:bg-slate-800/30'"
               class="flex-1 text-left px-6 py-4 text-sm font-medium border transition-all whitespace-nowrap">
@@ -190,59 +206,12 @@
       </div>
     </section>
 
-    {{-- <section class="main-wrapper my-24 md:my-32 flex flex-col md:flex-row gap-6 px-4">
-      <div class="w-full mb-0 md:mb-6 space-y-4 md:w-1/2 ">
-        <p class="text-5xl md:text-6xl text-slate-700 font-semibold">{{ t('productsIndex_specification') }}</p>
-        <div class="text-base text-slate-600 font-medium">
-          <a href="{{ Storage::url($product->datasheet_file_path) }}" download>
-            <div
-              class="border-b hover:bg-slate-300 cursor-pointer border-slate-400 border-dashed w-fit flex items-center gap-1">
-              Reach <span class="italic">{{ $product->title }}</span> Datasheet <span>
-                <x-icons.download class="h-5 w-auto" />
-              </span>
-            </div>
-          </a>
-          <div class="font-mono">
-            {{ $product->size }}
-        </div>
-      </div>
-      <div x-data="{ activeTab: 0 }" class="w-full md:w-2/3 overflow-x-hidden">
-        <div class="flex flex-nowrap overflow-x-auto no-scrollbar border-b border-slate-800">
-          @foreach ($product->specifications as $index => $specGroup)
-            <button @click="activeTab = {{ $index }}"
-              :class="activeTab === {{ $index }} ? 'border-slate-900' :
-                  'text-slate-600 border-transparent hover:text-slate-500 hover:bg-slate-800/30'"
-              class="flex-1 text-left px-6 py-4 text-sm font-medium border transition-all whitespace-nowrap">
-              {{ $specGroup['title'] }}
-            </button>
-          @endforeach
-        </div>
-        <div class="relative min-h-[300px]">
-          @foreach ($product->specifications as $index => $specGroup)
-            <div x-show="activeTab === {{ $index }}" x-transition:enter="transition ease-out duration-300"
-              x-transition:enter-start="opacity-0 translate-y-2" x-transition:enter-end="opacity-100 translate-y-0"
-              class="absolute inset-0 py-6 md:py-8" style="display: none;">
-              <div class="grid grid-cols-1 gap-x-12 gap-y-2 text-slate-800">
-                @foreach ($specGroup['items'] as $item)
-                  <div class="flex justify-between py-3 border-b border-slate-800/50">
-                    <span class="text-slate-600">{{ $item['label'] }}</span>
-                    <span class="text-right font-medium">{{ $item['value'] }}</span>
-                  </div>
-                @endforeach
-              </div>
-            </div>
-          @endforeach
-        </div>
-      </div>
-    </section> --}}
-
-    <section class="py-20 md:py-32 bg-slate-100">
+    <section class="py-20 md:py-32 bg-slate-100" aria-label="Other Products">
       <div class="main-wrapper px-4" x-data="{
           isDown: false,
           startX: 0,
           scrollLeft: 0,
           startDragging(e) {
-              // Nonaktifkan fungsi drag jika di layar desktop (karena sudah berbentuk grid statis)
               if (window.innerWidth >= 1024) return;
               this.isDown = true;
               const pageX = e.pageX || (e.touches && e.touches[0].pageX);
@@ -261,7 +230,7 @@
               this.$refs.slider.scrollLeft = this.scrollLeft - walk;
           },
           slidePrev() {
-              const itemWidth = this.$refs.slider.firstElementChild.offsetWidth + 16; // 16px adalah gap
+              const itemWidth = this.$refs.slider.firstElementChild.offsetWidth + 16;
               this.$refs.slider.scrollBy({ left: -itemWidth, behavior: 'smooth' });
           },
           slideNext() {
@@ -272,7 +241,7 @@
 
         <div class="flex items-end justify-between mb-8">
           <div>
-            <p class="text-4xl md:text-5xl text-slate-700 font-semibold">{{ t('productsPage_other_section') }}</p>
+            <h2 class="text-4xl md:text-5xl text-slate-700 font-semibold">{{ t('productsPage_other_section') }}</h2>
           </div>
         </div>
 
@@ -285,7 +254,8 @@
               class="w-full shrink-0 h-full flex flex-col bg-white border border-slate-200 rounded-3xl overflow-hidden group select-none transition hover:shadow-lg hover:border-sky-200">
               <div class="h-56 shrink-0 bg-slate-200 overflow-hidden relative">
                 @if (!empty($item->thumbnail_image))
-                  <img src="{{ Storage::url($item->thumbnail_image) }}" alt="{{ $item->title }}" loading="lazy"
+                  <img src="{{ Storage::url($item->thumbnail_image) }}" alt="{{ $item->title }} Thumbnail"
+                    loading="lazy"
                     class="w-full h-full object-cover pointer-events-none transition-transform duration-500 group-hover:scale-105">
                 @else
                   <div class="absolute inset-0 flex items-center justify-center bg-slate-200 text-slate-400">
@@ -319,14 +289,14 @@
         </div>
 
         <div class="flex gap-2 lg:hidden justify-between">
-          <button @click="slidePrev()"
+          <button @click="slidePrev()" aria-label="Previous product"
             class="p-2 bg-white rounded-full ring-1 ring-slate-300 hover:bg-slate-100 transition">
             <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 rotate-180 text-slate-700" fill="none"
               viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
               <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
             </svg>
           </button>
-          <button @click="slideNext()"
+          <button @click="slideNext()" aria-label="Next product"
             class="p-2 bg-white rounded-full ring-1 ring-slate-300 hover:bg-slate-100 transition">
             <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-slate-700" fill="none" viewBox="0 0 24 24"
               stroke="currentColor" stroke-width="2">
@@ -336,6 +306,7 @@
         </div>
       </div>
     </section>
+
     <section class="bg-radial-[at_50%_75%] from-sky-400 via-sky-600 to-sky-800 to-90% py-20 md:py-32 px-4">
       <div class="flex flex-col lg:flex-row gap-6 items-center justify-between main-wrapper ">
         <div class="max-w-xl">
