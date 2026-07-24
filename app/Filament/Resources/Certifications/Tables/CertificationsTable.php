@@ -20,9 +20,11 @@ class CertificationsTable
                     ->label('Image'),
                 TextColumn::make('title')
                     ->searchable()
+                    ->wrap()
                     ->lineClamp(2),
                 TextColumn::make('subtitle')
                     ->searchable()
+                    ->wrap()
                     ->lineClamp(2),
             ])
             ->recordActions([
