@@ -19,9 +19,11 @@ class CertificationsTable
                 HoverImageColumn::make('image')
                     ->label('Image'),
                 TextColumn::make('title')
-                    ->searchable(),
+                    ->searchable()
+                    ->lineClamp(2),
                 TextColumn::make('subtitle')
-                    ->searchable(),
+                    ->searchable()
+                    ->lineClamp(2),
             ])
             ->recordActions([
                 EditAction::make(),
